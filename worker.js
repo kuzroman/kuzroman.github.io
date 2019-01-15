@@ -37,76 +37,30 @@ self.addEventListener('activate', event => {
 
 
 
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        // Этот метод анализирует запрос и
-        // ищет кэшированные результаты для этого запроса в любом из
-        // созданных сервис-воркером кэшей.
-        caches.match(event.request)
-            .then(function(response) {
-                // если в кэше найдено то, что нужно, мы можем тут же вернуть ответ.
-                if (response) {
-                    return response;
-                }
+self.addEventListener('fetch', function(evt) {
+    console.log('The service worker is serving the asset.');
 
-                // Клонируем запрос. Так как объект запроса - это поток,
-                // обратиться к нему можно лишь один раз.
-                // При этом один раз мы обрабатываем его для нужд кэширования,
-                // ещё один раз он обрабатывается браузером, для запроса ресурсов,
-                // поэтому объект запроса нужно клонировать.
-                let fetchRequest = event.request.clone();
-
-                // В кэше ничего не нашлось, поэтому нужно выполнить загрузку материалов,
-                // что заключается в выполнении сетевого запроса и в возврате данных, если
-                // то, что нужно, может быть получено из сети.
-                return fetch(fetchRequest).then(
-                    function(response) {
-                        // Проверка того, получили ли мы правильный ответ
-                        if(!response || response.status !== 200 || response.type !== 'basic') {
-                            return response;
-                        }
-
-                        // Клонирование объекта ответа, так как он тоже является потоком.
-                        // Так как нам надо, чтобы ответ был обработан браузером,
-                        // а так же кэшем, его нужно клонировать,
-                        // поэтому в итоге у нас будет два потока.
-                        let responseToCache = response.clone();
-
-                        caches.open(cacheName)
-                            .then(function(cache) {
-                                // Добавляем ответ в кэш для последующего использования.
-                                cache.put(event.request, responseToCache);
-                            });
-
-                        return response;
-                    }
-                );
-            })
-    );
+    evt.respondWith(fromNetwork(evt.request, 400).catch(function () {
+        return fromCache(evt.request);
+    }));
 });
 
+function fromNetwork(request, timeout) {
+    return new Promise(function (fulfill, reject) {
 
-// self.addEventListener('fetch', function(event) {
-//     event.respondWith(caches.match(event.request).then(function(response) {
-//         // caches.match() always resolves
-//         // but in case of success response will have value
-//         if (response !== undefined) {
-//             return response;
-//         } else {
-//             return fetch(event.request).then(function (response) {
-//                 // response may be used only once
-//                 // we need to save clone to put one copy in cache
-//                 // and serve second one
-//                 let responseClone = response.clone();
-//
-//                 caches.open(cacheName).then(function (cache) {
-//                     cache.put(event.request, responseClone);
-//                 });
-//                 return response;
-//             })
-//             //     .catch(function () {
-//             //     return caches.match('/sw-test/gallery/myLittleVader.jpg');
-//             // });
-//         }
-//     }));
-// });
+        let timeoutId = setTimeout(reject, timeout);
+
+        fetch(request).then(function (response) {
+            clearTimeout(timeoutId);
+            fulfill(response);
+        }, reject);
+    });
+}
+
+function fromCache(request) {
+    return caches.open(CACHE).then(function (cache) {
+        return cache.match(request).then(function (matching) {
+            return matching || Promise.reject('no-match');
+        });
+    });
+}
