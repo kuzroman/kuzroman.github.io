@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#ffed00">
+    <link rel="manifest" href="/manifest.json">
+
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/worker.js');
+        }
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="/src/css/main.css"/>
+    <script type="text/javascript" src="/src/js/main.js"></script>
+</head>
+<body>
+
+<div>
+    page 1 Boom
+</div>
+
+<img src="https://lorempixel.com/400/200/" alt="random">
+
+<a href="/">to main page</a>
+
+</body>
+</html>
