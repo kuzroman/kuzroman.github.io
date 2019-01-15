@@ -27,37 +27,42 @@ self.addEventListener('activate', event => {
     event.waitUntil(self.clients.claim());
 });
 
-// self.addEventListener('fetch', event => {
-//     event.respondWith(
-//         caches.open(cacheName)
-//             .then(cache => cache.match(event.request, {ignoreSearch: true}))
-//             .then(response => {
-//                 return response || fetch(event.request);
-//             })
-//     );
-// });
-
-self.addEventListener('fetch', function(event) {
-    event.respondWith(caches.match(event.request).then(function(response) {
-        // caches.match() always resolves
-        // but in case of success response will have value
-        if (response !== undefined) {
-            return response;
-        } else {
-            return fetch(event.request).then(function (response) {
-                // response may be used only once
-                // we need to save clone to put one copy in cache
-                // and serve second one
-                let responseClone = response.clone();
-
-                caches.open(cacheName).then(function (cache) {
-                    cache.put(event.request, responseClone);
-                });
-                return response;
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        caches.open(cacheName)
+            .then(cache => cache.match(event.request, {ignoreSearch: true}))
+            .then(response => {
+                return response || fetch(event.request);
             })
-            //     .catch(function () {
-            //     return caches.match('/sw-test/gallery/myLittleVader.jpg');
-            // });
-        }
-    }));
+    );
 });
+
+
+
+
+
+
+// self.addEventListener('fetch', function(event) {
+//     event.respondWith(caches.match(event.request).then(function(response) {
+//         // caches.match() always resolves
+//         // but in case of success response will have value
+//         if (response !== undefined) {
+//             return response;
+//         } else {
+//             return fetch(event.request).then(function (response) {
+//                 // response may be used only once
+//                 // we need to save clone to put one copy in cache
+//                 // and serve second one
+//                 let responseClone = response.clone();
+//
+//                 caches.open(cacheName).then(function (cache) {
+//                     cache.put(event.request, responseClone);
+//                 });
+//                 return response;
+//             })
+//             //     .catch(function () {
+//             //     return caches.match('/sw-test/gallery/myLittleVader.jpg');
+//             // });
+//         }
+//     }));
+// });
