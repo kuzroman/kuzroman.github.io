@@ -7,8 +7,10 @@
     <link rel="manifest" href="/manifest.json">
 
     <script>
-        if('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/worker.js', { scope: '/' });
+        window.load = function () {
+            if('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/worker.js', { scope: '/' });
+            }
         }
     </script>
 
