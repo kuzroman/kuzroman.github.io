@@ -10,7 +10,7 @@
         window.onload = function () {
             if('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/worker.js', { scope: '/' });
-                navigator.serviceWorker.ready.then(reload);
+                // navigator.serviceWorker.ready.then(reload);
             }
         }
     </script>
