@@ -1,0 +1,21 @@
+{
+  "short_name": "Raiffeisen",
+  "name": "Raiffeisen Site",
+  "icons": [
+    {
+      "src": "/common/new/images/manifest/raiffeisen-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/common/new/images/manifest/raiffeisen-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#ffed00",
+  "display": "minimal-ui"
+}
