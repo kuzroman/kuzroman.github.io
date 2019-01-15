@@ -5,7 +5,7 @@ self.addEventListener('install', e => {
         caches.open(cacheName).then(cache => {
             return cache.addAll([
                 '/',
-                '/pages/some1.html',
+                '/manifest.json',
                 '/src/css/main.css',
                 '/src/js/main.js',
                 // '/common/new/styles/build.css',
