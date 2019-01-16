@@ -32,12 +32,12 @@ self.addEventListener('fetch', event => {
             .then(cache => cache.match(event.request, {ignoreSearch: true}))
             .then(response => {
                 return response || fetch(event.request);
-            })
+            }).catch(function() {})
     );
 });
 
 // self.addEventListener('fetch', function(evt) {
-//     console.log('The service worker is serving the asset.');
+//     // console.log('The service worker is serving the asset.');
 //
 //     evt.respondWith(fromNetwork(evt.request, 400).catch(function () {
 //         return fromCache(evt.request);
