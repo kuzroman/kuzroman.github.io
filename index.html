@@ -7,12 +7,12 @@
     <link rel="manifest" href="/manifest.json">
 
     <script>
-        window.onload = function () {
-            if('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/worker.js', { scope: '/' });
-                // navigator.serviceWorker.ready.then(reload);
-            }
-        }
+        // window.onload = function () {
+        //     if('serviceWorker' in navigator) {
+        //         navigator.serviceWorker.register('/worker.js', { scope: '/' });
+        //         // navigator.serviceWorker.ready.then(reload);
+        //     }
+        // }
     </script>
 
     <link rel="stylesheet" type="text/css" href="/src/css/main.css"/>
@@ -32,6 +32,25 @@
     <div>
         <a href="/pages/some1.html">some page 2</a>
     </div>
+
+    <div class="fixed">
+        <input class="fixed_input" type="text">
+    </div>
+
+    <style>
+        .fixed {
+            width: 100%;
+            height: 50px;
+            position: fixed;
+            background: #fc0;
+            bottom: 0;
+        }
+
+        .fixed_input {
+            width: 100%;
+            height: 50px;
+        }
+    </style>
 
 </body>
 </html>
