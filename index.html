@@ -19,31 +19,23 @@
     <script type="text/javascript" src="./src/js/main.js"></script>
 </head>
 <body>
-    <!--<div>-->
-        <!--Boom-->
-    <!--</div>-->
-    <!--<img src="https://lorempixel.com/400/200/" alt="random">-->
-    <!--<div>-->
-        <!--<a href="/pages/some1.html">some page 1</a>-->
-    <!--</div>-->
-    <!--<div>-->
-        <!--<a href="/pages/some1.html">some page 2</a>-->
-    <!--</div>-->
 
-    <div id="openPopup">Click me</div>
+    <div class="content">
+        <div id="openPopup">Click me</div>
 
-    <div id="bigPopup">
-        <div id="closePopup">X</div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
-    </div>
+        <div id="bigPopup">
+            <div id="closePopup">X</div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consectetur corporis culpa dicta dignissimos expedita impedit iure, laborum minima molestias nisi nulla officia possimus provident saepe suscipit vel veniam voluptates?
+        </div>
 
-    <div class="fixed">
-        <input class="fixed_input" type="text">
+        <div id="search" class="fixed">
+            <input class="fixed_input" type="text">
+        </div>
     </div>
 
     <style>
@@ -51,6 +43,10 @@
             margin: 0;
             background: antiquewhite;
             font-size: 24px;
+        }
+
+        .content {
+            height: 100%;
         }
 
         #bigPopup{
@@ -100,6 +96,9 @@
 
         .show {
             display: block !important;
+        }
+        .hide {
+            display: none !important;
         }
     </style>
 
