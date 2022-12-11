@@ -1,0 +1,52 @@
+// Colors
+$--colors: (
+  "primary": (
+    "base": #0055B8,
+  ),
+  "success": (
+    "base": #21ba45,
+  ),
+  "warning": (
+    "base": #f2711c,
+  ),
+  "danger": (
+    "base": #db2828,
+  ),
+  "error": (
+    "base": #db2828,
+  ),
+  "info": (
+    "base": #5E36AD,
+  )
+);
+
+$color-gray: #A5B0BE;
+$color-gray-light: #E4E7EB;
+$color-new: #64B4FD;
+$color-started: #FF7A00;
+$color-completed: #1CAD19;
+$color-warning: #D33636;
+
+$viewport-mobile: 480px;
+$viewport-tablet: 768px;
+
+$header-height: 60px;
+$footer-height: 60px;
+
+// we can add this to custom namespace, default is 'el'
+@forward "../../../node_modules/element-plus/theme-chalk/src/mixins/config";
+
+// You should use them in scss, because we calculate it by sass.
+// comment next lines to use default color
+@forward "../../../node_modules/element-plus/theme-chalk/src/common/var" with (
+  // do not use same name, it will override.
+  $colors: $--colors,
+  $button-border-radius: ("large": 6px),
+  $button-font-size: ("large": 18px),
+);
+
+// if you want to import all
+// @use "element-plus/theme-chalk/src/index.scss" as *;
+
+// You can comment it to hide debug info.
+// @debug $--colors;

@@ -1,0 +1,20 @@
+{
+  "General": ["JavaScript", "HTML", "CSS"],
+  "Framework": ["Vue.js","Nuxt.js"],
+  "FileManager": ["Npm", "Yarn", "Bower"],
+  "Library": ["Lodash", "Underscore" ,"JQuery","JQuery UI"],
+  "Protocol": ["HTTP", "WebSocket"],
+  "Bundler": ["Webpack","Browserify"],
+  "Compiler": ["Babel", "Sass", "Less", "PostCss"],
+  "VersionControl": ["Git"],
+  "TaskManager": ["Jira", "Trello"],
+  "Tests": ["Jest"],
+  "API": ["Highcharts", "Yandex map", "DaData"],
+
+  "TaskRunner": ["Gulp", "Grunt"],
+  "TemplateEngines": ["Twig","Twig.js","Django","Dot.js","Jade.js","JQuery templates"],
+
+  "T-shape": ["Node", "Express", "MongoDB", "Nginx", "Apache", "CenOs","Photoshop", "lowDB"],
+
+  "Familiar": ["PHP", "MySQL","Backbone", "Mercurial"]
+}

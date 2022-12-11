@@ -1,0 +1,23 @@
+$color-1: #5a5a5a;
+$color-2: #7f7f7f;
+
+$color-6: #2a2a2a;
+$color-7: #333;
+$color-8: #2e2e2e;
+$color-9: #2d2d2d;
+$color-10: #8a8a8a;
+$color-12: #cacaca;
+
+$zIndex-1: 5;
+$zIndex-2: 20;
+$zIndex-3: 50;
+$zIndex-4: 100;
+
+$maxWidth1: 840px;
+
+$mq-phone: 481px;
+//@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+//@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
+//@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+//@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+//@media (min-width:1281px) { /* hi-res laptops and desktops */ }
