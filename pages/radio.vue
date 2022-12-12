@@ -78,10 +78,6 @@ const pause = () => {
   display: flex;
   align-items: center;
   font-family: 'DancingScript', sans-serif;
-  position: absolute;
-  top: .5em;
-  left: 2em;
-  z-index: 10;
 
   &:hover {
 
@@ -103,7 +99,7 @@ const pause = () => {
   }
 
   .stations {
-    max-width: 0;
+    //max-width: 0;
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;

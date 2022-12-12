@@ -9,6 +9,7 @@ export default {
     isPageLoaderHide: false, // useful in develop mode
     navigation: [],
     router: null,
+    radioKey: ''
   },
   getters: {
     isSiteFirstLoaded: (state) => state.isSiteFirstLoaded,
@@ -18,6 +19,7 @@ export default {
     hidePageControl: (state) => state.hidePageControl,
     isPageLoaderHide: (state) => state.isPageLoaderHide,
     navigation: (state) => state.navigation,
+    radioKey: (state) => state.radioKey,
   },
   mutations: {
     // setIsSiteFirstLoaded(state, bool) {
@@ -58,6 +60,9 @@ export default {
     },
     setRoutes(state, routes) {
       state.router = routes
-    }
+    },
+    setRadioKey(state, radioKey) {
+      state.radioKey = radioKey
+    },
   },
 }

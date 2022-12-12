@@ -29,7 +29,7 @@
 
       <div class="description">
         <div v-if="work.link" class="link">
-          <a :href="work.link" target="_blank">Watch project</a>
+          Watch project: <a :href="work.link" target="_blank">{{ pureLink }}</a>
         </div>
         <div
             class="desc"
@@ -61,6 +61,11 @@ const galleryImgs = ref(null);
 const clickMiniImg = (key) => {
   galleryImgs.value[key].scrollIntoView({behavior: 'smooth'})
 };
+
+const pureLink = computed(() => {
+  console.log('work.link', work.link);
+  return work.value.link.replace(/https:/ig, '').replace(/\//ig, '');
+});
 </script>
 
 <style lang="scss">

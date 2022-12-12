@@ -5,11 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
-
 html,
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: sans-serif;
   height: 100%;
   width: 100%;
   margin: 0;

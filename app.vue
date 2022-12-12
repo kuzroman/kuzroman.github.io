@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <PageLoader v-if="!isPageLoaderHide" />
+<!--    <PageLoader v-if="!isPageLoaderHide" />-->
     <MenuNavigation />
     <IconBurger />
     <SoundBar />
@@ -9,7 +9,7 @@
     <main class="content">
       <router-view v-slot="{ Component }">
         <transition name="fade">
-            <component :is="Component" class="view" :class="routeStyles"  />
+            <component :is="Component" class="view pt-28" :class="routeStyles"  />
         </transition>
       </router-view>
 
@@ -98,7 +98,9 @@ const nextRoute = computed(() => {
     .view {
       width: 100vw;
       height: 100vh;
-      padding: 0 15%;
+      //padding: 0 15%;
+      padding-left: 15%;
+      padding-right: 15%;
       margin: auto;
       background: $color-9;
       position: absolute;

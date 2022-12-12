@@ -1,12 +1,28 @@
 export default [
   {
+    imageDirectory: 'syncmd',
+    nameTitle: 'Web application',
+    nameCompany: 'SyncMd.com',
+    descCompany: '',
+    numberImg: 8,
+    descDeal: `<div>Expanded the UI component library</div>
+        <div>Expanded and optimized the business logic</div>
+        <div>Made the transition from Vue 2 to Vue3 framework</div>
+        <div>Product Backlog Refinement</div>
+        <div>Splitting features into subtasks and evaluating them</div>
+        <div>Updated the forked packages</div>`,
+    skills: ['Vue 2-3', 'TypeScript', 'UI Element Plus', 'Tailwind', 'SSR', 'SSG', 'SPA', 'CSS', 'JS', 'sass', 'npm', 'Git'],
+    date: 2021,
+    link: 'https://syncmd.com/'
+  },
+  {
     imageDirectory: 'kuzroman',
     nameTitle: '',
     nameCompany: 'Kuznetsov Roman',
     descCompany: '',
     numberImg: 3,
     descDeal: 'Made by fun, after my return from downshifting.',
-    skills: ['Vue', 'Nuxt', 'SSR', 'SPA', 'Audio', 'CSS', 'JS', 'Lodash', 'Webpack', 'LowDb', 'SASS', 'NPM', 'Node', 'Git'],
+    skills: ['Vue 3', 'Nuxt 3', 'SSG', 'SPA', 'Audio', 'CSS', 'JS', 'Lodash', 'sass', 'npm', 'Node', 'Git'],
     date: 2021,
     link: ''
     }
@@ -33,11 +49,11 @@ export default [
             '    <a href="https://dgtl.raiffeisen.ru/blog">blog</a><br>\n' +
             '    <a href="https://www.instagram.com/explore/locations/931013290335056/raiffeisen-digital/">instagram</a><br>\n' +
             '</div>',
-        skills: ['Vue', 'SSR', 'SPA', 'Docker', 'CSS', 'JS', 'Lodash', 'Webpack', 'SASS', 'NPM', 'Node', 'Git', 'React', 'styled-component',
+        skills: ['Vue', 'SSR', 'SPA', 'Docker', 'CSS', 'JS', 'Lodash', 'Webpack', 'sass', 'npm', 'Node', 'Git', 'React', 'styled-component',
             'jest', 'lerna'
         ],
         date: 2018,
-        link: ''
+        link: 'https://www.raiffeisen.ru/'
     }
     , {
         imageDirectory: 'videojs',
@@ -100,7 +116,7 @@ export default [
     <div>Create UI component base</div>
     <div>Made p2p transfer currency (card to card)</div>
 </div>`,
-        skills: ['JS', 'HTML', 'history api', 'SASS', 'jQuery', 'Parallax', 'AJAX', 'Git', 'Photoshop', 'Bower', 'Audio', 'Video'],
+        skills: ['JS', 'HTML', 'history api', 'sass', 'jQuery', 'Parallax', 'AJAX', 'Git', 'Photoshop', 'Bower', 'Audio', 'Video'],
         date: 2014,
         link: ''
     },
