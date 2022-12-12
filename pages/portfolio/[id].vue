@@ -7,15 +7,22 @@
         <div v-if="work.descCompany">{{work.descCompany}}</div>
       </div>
 
-<!--      <el-carousel :interval="0" type="card" height="510px">-->
-<!--        <el-carousel-item v-for="(image, i) in images" :key="i">-->
-<!--          <img :src="image.src" alt="">-->
-<!--        </el-carousel-item>-->
-<!--      </el-carousel>-->
-
-      <div class="gallery">
-        <div v-for="(image, i) in images" :key="i">
-          <img :src="image.src" alt="">
+      <div class="gallery m-12 mx-auto">
+        <div class="gallery__scroll" ref="galleryMain">
+          <div
+              ref="galleryImgs"
+              v-for="(image, i) in images" :key="i">
+            <img class="mx-auto border border-gray-700" :src="image.src" alt="">
+          </div>
+        </div>
+        <div class="gallery__horizon mt-4">
+          <div
+            class="inline-block w-2/12 h-full"
+            v-for="(image, i) in images" :key="i"
+            @click="clickMiniImg(i)"
+          >
+            <img :src="image.src" alt="">
+          </div>
         </div>
       </div>
 
@@ -48,46 +55,44 @@ const images = computed(() => {
     src: `/img/portfolio/gallery/${projectName.value}/${i+1}.jpg`
   }))
 });
+
+const galleryMain = ref(null);
+const galleryImgs = ref(null);
+const clickMiniImg = (key) => {
+  galleryImgs.value[key].scrollIntoView({behavior: 'smooth'})
+};
 </script>
 
 <style lang="scss">
 @import "../../assets/styles/props";
 
 .gallery {
-  height: 40vh;
-  overflow-y: auto;
-  scrollbar-width: none;
+  width: 840px;
 
-  ::-webkit-scrollbar {
-    width: 0px;
+  &__scroll {
+    height: 510px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+
+  &__horizon {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    img {
+      border: 1px solid $color-7;
+    }
   }
 }
 
 .portfolio-id {
   line-height: 2;
-
-  .el-carousel__item {
-
-    h3 {
-      color: #475669;
-      opacity: 0.75;
-      line-height: 200px;
-      margin: 0;
-      text-align: center;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-      margin: 0 auto;
-      object-fit: cover;
-    }
-    &:nth-child(2n) {
-      background-color: #99a9bf;
-    }
-    &:nth-child(2n + 1) {
-      background-color: #d3dce6;
-    }
-  }
 
   .row {
     margin: 0;
@@ -142,8 +147,5 @@ const images = computed(() => {
       }
     }
   }
-
-
-
 }
 </style>

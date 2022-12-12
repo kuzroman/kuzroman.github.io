@@ -1,7 +1,7 @@
 export default [
   {
     imageDirectory: 'kuzroman',
-    nameTitle: 'this site',
+    nameTitle: '',
     nameCompany: 'Kuznetsov Roman',
     descCompany: '',
     numberImg: 3,

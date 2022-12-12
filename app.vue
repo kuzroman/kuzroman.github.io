@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-<!--    <PageLoader v-if="!isPageLoaderHide" />-->
+    <PageLoader v-if="!isPageLoaderHide" />
     <MenuNavigation />
     <IconBurger />
     <SoundBar />
@@ -39,7 +39,7 @@ store.commit('app/setRoutes', router)
 
 const transitionDirection = computed(() => store.getters['app/transitionDirection']);
 const isSiteFirstLoaded = computed(() => store.getters['app/isSiteFirstLoaded']);
-// const isPageLoaderHide = computed(() => store.getters['app/isPageLoaderHide']);
+const isPageLoaderHide = computed(() => store.getters['app/isPageLoaderHide']);
 const navigation = computed(() => store.getters['app/navigation']);
 const isGameReady = computed(() => store.getters['game/isGameReady']);
 const routesLen = computed(() => navigation.value.length);
@@ -51,38 +51,22 @@ onMounted(() => {
   router.options.routes.forEach(route => {
     if (route.name.indexOf('-id') === -1) navigation.push(route)
   })
-  // console.log('navigation', navigation);
   store.commit('app/setNavigation', navigation)
 })
 
 const routeStyles = computed(() => {
   let styles = []
   styles.push(transitionDirection.value)
-  // if (isSiteFirstLoaded.value) {
-  //   styles.push('first-loaded')
-  // }
+  if (isSiteFirstLoaded.value) {
+    styles.push('first-loaded')
+  }
   return styles
 });
 
-const currentPath = computed(() => {
-  console.log(route.path);
-  return route.path
-});
-// console.log('currentPath', currentPath.value);
-
-
-// watch(
-//     () => route.params.id,
-//     async newId => {
-//       console.log('newId', newId);
-//       userData.value = await fetchUser(newId)
-//     }
-// )
+const currentPath = computed(() => route.path);
 
 const currentRouteIndex = computed(() => {
-  // console.log('navigation',navigation.value);
   return navigation.value.findIndex((x) => {
-    // console.log(x);
     return x.path === currentPath.value
   })
 })

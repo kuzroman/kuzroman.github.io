@@ -29,7 +29,8 @@ export default {
     setHidePageControl(state, bool) {
       state.hidePageControl = bool
     },
-    setDirection(state, route, direction) {
+    setDirection(state, { route, direction }) {
+      console.log('direction', route, direction);
       if (direction) {
         state.transitionDirection = direction;
         return
@@ -42,7 +43,7 @@ export default {
     toPage(state, { route, direction }) {
       this.commit('app/setIsMenuNavigation', false)
       this.commit('app/setHidePageControl', true)
-      this.commit('app/setDirection', route, direction)
+      this.commit('app/setDirection', { route, direction })
 
       setTimeout(() => navigateTo(route), 600)
       // setTimeout(() => state.router.push(route), 600)
