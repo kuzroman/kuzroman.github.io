@@ -32,8 +32,8 @@ const src = {
 const store = useStore();
 const isActive = ref(false);
 const isGameReady = computed(() => store.getters['game/isGameReady']);
-const radioKey = computed(() => store.getters['app/radioKey']);
-const player = ref(null);
+const radioKey = computed<Stations>(() => store.getters['app/radioKey']);
+const player = ref<HTMLVideoElement >(null);
 
 const setRadioKey = (key: string) => {
   store.commit('app/setRadioKey', key);
@@ -49,7 +49,8 @@ const isUnderlineRadio = (key: string) => {
 };
 
 const switchRadio = (ev: Event) => {
-  const key = ev.target.dataset.key
+  if (!(ev.target instanceof HTMLButtonElement)) return;
+  const key = ev.target.dataset.key as string
   setRadioKey(key);
   player.value.setAttribute('src', src[radioKey.value]);
   play();
@@ -58,7 +59,7 @@ watch(() => isGameReady.value, (isTrue) => {
   isTrue && pause()
 })
 const switchPlayPause = () => {
-  player.value.paused ? play() : pause()
+  player.value!.paused ? play() : pause()
 };
 const play = () => {
   player.value.play()

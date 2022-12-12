@@ -11,7 +11,7 @@
         <div :class="{underline: isUnderlineRadio(Stations.MAXIMUM)}" :data-key="Stations.MAXIMUM">Maximum</div>
         <div :class="{underline: isUnderlineRadio(Stations.POP90)}" :data-key="Stations.POP90">90s pop</div>
       </div>
-      <video class="video" controls="" autoplay="" ref="player"></video>
+      <video class="video" ref="player" playsinline ></video>
     </div>
   </div>
 </template>
@@ -32,8 +32,8 @@ const src = {
 const store = useStore();
 const isActive = ref(false);
 const isGameReady = computed(() => store.getters['game/isGameReady']);
-const radioKey = computed(() => store.getters['app/radioKey']);
-const player = ref(null);
+const radioKey = computed<Stations>(() => store.getters['app/radioKey']);
+const player = ref<HTMLVideoElement>(null);
 
 const setRadioKey = (key: string) => {
   store.commit('app/setRadioKey', key);
@@ -41,17 +41,22 @@ const setRadioKey = (key: string) => {
 
 onMounted(() => {
   setRadioKey(src[Stations.MAXIMUM]);
-  player.value.setAttribute('src', src[Stations.MAXIMUM]);
+  setSrc(src[Stations.MAXIMUM]);
 })
+
+const setSrc = (srs: string) => {
+  player.value.setAttribute('src', srs);
+};
 
 const isUnderlineRadio = (key: string) => {
   return radioKey.value === key
 };
 
 const switchRadio = (ev: Event) => {
-  const key = ev.target.dataset.key
+  if (!(ev.target instanceof HTMLElement)) return;
+  const key = ev.target.dataset.key as string
   setRadioKey(key);
-  player.value.setAttribute('src', src[radioKey.value]);
+  setSrc(src[radioKey.value]);
   play();
 };
 watch(() => isGameReady.value, (isTrue) => {
@@ -80,7 +85,7 @@ const pause = () => {
   font-family: 'DancingScript', sans-serif;
   position: absolute;
   top: .5em;
-  left: 2em;
+  left: $px-desk;
   z-index: 10;
 
   &:hover {
@@ -116,9 +121,16 @@ const pause = () => {
       cursor: pointer;
     }
   }
+  .video {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 }
 
-.video {
-  display: none;
+@media (max-width: $mq-phone) {
+  .radio {
+    left: $px-mob;
+  }
 }
 </style>

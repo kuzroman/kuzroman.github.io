@@ -59,11 +59,10 @@ const images = computed(() => {
 const galleryMain = ref(null);
 const galleryImgs = ref(null);
 const clickMiniImg = (key) => {
-  galleryImgs.value[key].scrollIntoView({behavior: 'smooth'})
+  galleryImgs.value[key].scrollIntoView({behavior: 'smooth', block: 'nearest'})
 };
 
 const pureLink = computed(() => {
-  console.log('work.link', work.link);
   return work.value.link.replace(/https:/ig, '').replace(/\//ig, '');
 });
 </script>
@@ -150,6 +149,16 @@ const pureLink = computed(() => {
         padding: 4px 6px;
         background: $color-7;
       }
+    }
+  }
+}
+
+@media (max-width: $mq-phone) {
+  .gallery {
+    width: 100%;
+
+    &__scroll {
+      height: 200px;
     }
   }
 }

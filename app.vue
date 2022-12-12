@@ -98,9 +98,8 @@ const nextRoute = computed(() => {
     .view {
       width: 100vw;
       height: 100vh;
-      //padding: 0 15%;
-      padding-left: 15%;
-      padding-right: 15%;
+      padding-left: $px-desk;
+      padding-right: $px-desk;
       margin: auto;
       background: $color-9;
       position: absolute;
@@ -170,19 +169,11 @@ const nextRoute = computed(() => {
     animation: rotateNextEnter $speed forwards;
   }
 
-  //.first-loaded {
-  //  &.fade-enter-active {
-  //    animation: rotateNextEnter 0s forwards;
-  //  }
-  //}
-
   @keyframes rotateNextLeave {
     0% {
-      //left: 0;
       transform: translateX(0) rotateY(0deg);
     }
     100% {
-      //left: 50%;
       transform: translateX(50%) perspective(100em) rotateY(90deg);
     }
   }
@@ -213,6 +204,41 @@ const nextRoute = computed(() => {
     }
     100% {
       left: 0;
+    }
+  }
+}
+
+@media (max-width: $mq-phone) {
+  .app {
+    .to-left {
+      &.fade-leave-active {
+        animation: none
+      }
+      &.fade-enter-active {
+        animation: none
+      }
+    }
+    .to-right {
+      &.fade-leave-active {
+        animation: none
+      }
+      &.fade-enter-active {
+        animation: none
+      }
+    }
+    .fade-leave-active {
+      animation: none
+    }
+    .fade-enter-active {
+      animation: none
+    }
+
+    .content {
+
+      .view {
+        padding-left: $px-mob;
+        padding-right: $px-mob;
+      }
     }
   }
 }
