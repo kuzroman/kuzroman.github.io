@@ -4,7 +4,7 @@ export default [
     nameTitle: 'Web application',
     nameCompany: 'SyncMd.com',
     descCompany: '',
-    numberImg: 8,
+    numberImg: 11,
     descDeal: `<div>Expanded the UI component library</div>
         <div>Expanded and optimized the business logic</div>
         <div>Made the transition from Vue 2 to Vue3 framework</div>

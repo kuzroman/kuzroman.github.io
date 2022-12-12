@@ -12,7 +12,7 @@
           <div
               ref="galleryImgs"
               v-for="(image, i) in images" :key="i">
-            <img class="mx-auto border border-gray-700" :src="image.src" alt="">
+            <img class="mx-auto border border-none" :src="image.src" alt="">
           </div>
         </div>
         <div class="gallery__horizon mt-4">
