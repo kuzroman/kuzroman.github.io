@@ -8,8 +8,13 @@
           @click.native="switchPlayPause"
       />
       <div class="stations" @click="switchRadio">
-        <div :class="{underline: isUnderlineRadio(Stations.MAXIMUM)}" :data-key="Stations.MAXIMUM">Maximum</div>
+        <div
+          class="pt-0"
+          :class="{underline: isUnderlineRadio(Stations.MAXIMUM)}"
+          :data-key="Stations.MAXIMUM">Maximum
+        </div>
         <div :class="{underline: isUnderlineRadio(Stations.POP90)}" :data-key="Stations.POP90">90s pop</div>
+        <div :class="{underline: isUnderlineRadio(Stations.cyberSpace)}" :data-key="Stations.cyberSpace">Cyber Space</div>
       </div>
       <video class="video" ref="player" playsinline ></video>
     </div>
@@ -22,11 +27,13 @@ import { useStore } from "vuex";
 enum Stations {
   MAXIMUM = 'maximum',
   POP90 = 'pop90',
+  cyberSpace = 'cyberSpace',
 }
 
 const src = {
   [Stations.MAXIMUM] : 'https://maximum.hostingradio.ru/maximum96.aacp',
   [Stations.POP90]: 'https://90s90s.hoerradar.de/90s90s-pop-mp3-hq',
+  [Stations.cyberSpace]: 'https://pub0101.101.ru/stream/pro/aac/64/79',
 }
 
 const store = useStore();
@@ -89,21 +96,9 @@ const pause = () => {
   z-index: 10;
 
   &:hover {
-
     .stations {
       max-width: 100%;
-    }
-  }
-
-  .play {
-    display: inline-block;
-    position: relative;
-    transform: translateY(0);
-    transition: transform .3s;
-    z-index: $zIndex-2;
-
-    &.hide {
-      transform: translateY(-10em);
+      border: none;
     }
   }
 
@@ -121,6 +116,19 @@ const pause = () => {
       cursor: pointer;
     }
   }
+
+  .play {
+    display: inline-block;
+    position: relative;
+    transform: translateY(0);
+    transition: transform .3s;
+    z-index: $zIndex-2;
+
+    &.hide {
+      transform: translateY(-10em);
+    }
+  }
+
   .video {
     display: none;
     width: 0;
@@ -130,7 +138,30 @@ const pause = () => {
 
 @media (max-width: $mq-phone) {
   .radio {
-    left: $px-mob;
+    left: 0;
+    top: 0;
+    align-items: start;
+
+    &:hover {
+      .stations {
+        max-height: 100%;
+      }
+    }
+
+    .play {
+      transform: translate(16px, 16px);
+    }
+
+    .stations {
+      max-height: 0;
+      display: flex;
+      flex-direction: column;
+      background: $color-9;
+      border-radius: 0 0 8px 0;
+      position: relative;
+      transform: translate(-30px, 0px);
+      padding-left: 52px;
+    }
   }
 }
 </style>

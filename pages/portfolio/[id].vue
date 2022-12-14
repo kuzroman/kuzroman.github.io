@@ -7,7 +7,7 @@
         <div v-if="work.descCompany">{{work.descCompany}}</div>
       </div>
 
-      <div class="gallery m-12 mx-auto">
+      <div class="gallery m-12">
         <div class="gallery__scroll" ref="galleryMain">
           <div
               ref="galleryImgs"
@@ -110,12 +110,10 @@ const pureLink = computed(() => {
   }
 
   .header {
-    max-width: $maxWidth1;
     margin: 2em auto;
   }
 
   .desc {
-    max-width: $maxWidth1;
     margin: 0 auto 3em;
   }
 
@@ -129,7 +127,6 @@ const pureLink = computed(() => {
   }
 
   .description {
-    max-width: $maxWidth1;
     margin: 0 auto;
 
     .link {

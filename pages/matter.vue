@@ -73,14 +73,18 @@ export default {
 <style lang="scss">
 //@import "../assets/styles/props";
 
+.app .content .view {
+
+}
+
 .box {
-  width: 800px;
-  height: 600px;
+  width: 100%;
+  max-width: 1200px;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
+  //z-index: 10;
 }
 
 canvas {
