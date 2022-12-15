@@ -1,0 +1,1 @@
+import{f as s,J as c,o,a as n,I as a,t as r,K as _,e as i}from"./entry.3c9de8ab.js";const l={},u={type:"text"};function d(e,f){const t=c("focus");return o(),n("div",null,[a(r(e.count)+" ",1),_(i("input",u,null,512),[[t]])])}const v=s(l,[["render",d]]);export{v as default};

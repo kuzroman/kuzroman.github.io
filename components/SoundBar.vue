@@ -14,7 +14,7 @@
           :data-key="Stations.MAXIMUM">Maximum
         </div>
         <div :class="{underline: isUnderlineRadio(Stations.POP90)}" :data-key="Stations.POP90">90s pop</div>
-        <div :class="{underline: isUnderlineRadio(Stations.cyberSpace)}" :data-key="Stations.cyberSpace">Cyber Space</div>
+        <div :class="{underline: isUnderlineRadio(Stations.CYBER_SPACE)}" :data-key="Stations.CYBER_SPACE">Cyber Space</div>
       </div>
       <video class="video" ref="player" playsinline ></video>
     </div>
@@ -27,13 +27,13 @@ import { useStore } from "vuex";
 enum Stations {
   MAXIMUM = 'maximum',
   POP90 = 'pop90',
-  cyberSpace = 'cyberSpace',
+  CYBER_SPACE = 'cyberSpace',
 }
 
 const src = {
   [Stations.MAXIMUM] : 'https://maximum.hostingradio.ru/maximum96.aacp',
   [Stations.POP90]: 'https://90s90s.hoerradar.de/90s90s-pop-mp3-hq',
-  [Stations.cyberSpace]: 'https://pub0101.101.ru/stream/pro/aac/64/79',
+  [Stations.CYBER_SPACE]: 'https://pub0101.101.ru/stream/pro/aac/64/79',
 }
 
 const store = useStore();
