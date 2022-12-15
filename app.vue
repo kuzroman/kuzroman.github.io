@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-<!--    <PageLoader v-if="!isPageLoaderHide" />-->
+    <PageLoader v-if="!isPageLoaderHide" />
     <MenuNavigation />
     <IconBurger />
     <SoundBar />
