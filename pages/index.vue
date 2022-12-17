@@ -5,6 +5,9 @@
 </template>
 
 <script setup>
+useHead({
+  title: 'In game',
+})
 </script>
 
 <style lang="scss">

@@ -65,7 +65,7 @@ const description = computed(() =>
     props.isDebug
     ? 'Hello'
     : 'Hello, my name is Roman.|' +
-    'I am a Front-End developer with 12 years experience.|' +
+    'I am a Front-End developer with 12 years old experience.|' +
     'SPA, SSR, SSG, js and Vue ... are my passion.|' +
     'Check this out some projects on my Work page.|' +
     'Feel free if you wanna say hello at kuzroman@list.ru then do it!)');

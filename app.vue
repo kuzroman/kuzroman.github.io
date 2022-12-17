@@ -47,12 +47,21 @@ const routesLen = computed(() => navigation.value.length);
 const toPage = (page) => store.commit('app/toPage', page)
 
 onMounted(() => {
+  runGoogleAnal();
+
   let navigation = []
   router.options.routes.forEach(route => {
     if (route.name.indexOf('-id') === -1) navigation.push(route)
   })
   store.commit('app/setNavigation', navigation)
 })
+
+const runGoogleAnal = () => {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XWDSRJ4TEC');
+};
 
 const routeStyles = computed(() => {
   let styles = []

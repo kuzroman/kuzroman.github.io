@@ -2,14 +2,19 @@
   <div class="skills">
     <div class="scroll-y">
       <h1 class="h1">About</h1>
-      <p class="pt1 pb1">Professional Front-end web developer with more 10 years old experience<br>
-        Highly skilled at JavaScript including SPA, SSR, MVVM flux patterns.
+      <p class="pt1 pb1">Senior Front-end web developer with more 12 years old experience<br>
+        Highly skilled at JavaScript including SPA, SSR, SSG, MVVM flux patterns.
       </p>
       <h2>Last jobs:</h2>
       <div class="mt1 mb1">
+        2021. SyncMd, SyncId -
+        <a class="link" href="http://www.syncmd.com" target="_blank">www.syncmd.com</a>
+        <div class="sub">Agile, Scrum, Kanban.</div>
+      </div>
+      <div class="mt1 mb1">
         2018. Raiffeisen Bank -
         <a class="link" href="http://www.raiffeisen.ru" target="_blank">www.raiffeisen.ru</a>
-        <div class="sub">Scrum + Kanban.</div>
+        <div class="sub">Agile, Scrum, Kanban.</div>
       </div>
       <div class="mt1 mb1">
         2015. Ros Business Consulting - RBC media holding -
