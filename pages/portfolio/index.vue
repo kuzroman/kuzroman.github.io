@@ -1,7 +1,7 @@
 <template>
   <div class="portfolio">
     <div class="scroll-y">
-      <h1 class="h1">Portfolio</h1>
+<!--      <h1 class="h1">Portfolio</h1>-->
 
 <!--      <p>{{ $t("message.hello") }}</p>-->
 <!--      <select v-model="$i18n.locale">-->
@@ -26,6 +26,10 @@
 </template>
 
 <script setup>
+useHead({
+  title: 'kuzroman portfolio',
+})
+
 import { default as worksData } from "/db/works.js";
 // import { useI18n } from 'vue-i18n';
 // const { t, locale } = useI18n(); // than can change locale!

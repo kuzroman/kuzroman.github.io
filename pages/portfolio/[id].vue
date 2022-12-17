@@ -44,6 +44,10 @@
 </template>
 
 <script setup>
+useHead({
+  title: 'some latest job',
+})
+
 import { default as works } from '/db/works.js';
 
 const route = useRoute()

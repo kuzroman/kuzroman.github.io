@@ -40,6 +40,8 @@ $iconSize: 36px;
   height: $iconSize;
   position: relative;
   cursor: pointer;
+  font-family: DancingScript, sans-serif;
+  font-size: 26px;
 
   &.left,
   &.right {

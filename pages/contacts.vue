@@ -18,7 +18,9 @@
 </template>
 
 <script setup>
-
+useHead({
+  title: 'my contacts',
+})
 </script>
 
 <style lang="scss">

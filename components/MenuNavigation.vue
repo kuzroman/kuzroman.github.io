@@ -1,10 +1,14 @@
 <template>
-  <div class="menu-navigation" :class="{ active: isMenuNavigationOpened }">
+  <div
+    class="menu-navigation"
+    :class="{ active: isMenuNavigationOpened }"
+    @mouseleave="setIsMenuNavigation(false)"
+  >
     <nav>
       <UILink2Move
           v-for="route in navigation"
           :key="route?.name"
-          :text="route?.name"
+          :text="route?.name === 'index' ? 'game' : route?.name"
           @click.native="toPage({ route })"
       />
     </nav>
@@ -14,15 +18,12 @@
 <script setup>
 import { useStore } from 'vuex'
 
-const route = useRoute()
-
 const store = useStore();
 const isMenuNavigationOpened = computed(() => store.getters['app/isMenuNavigationOpened']);
 const navigation = computed(() => store.getters['app/navigation']);
-// const isSiteFirstLoaded = computed(() => store.getters['app/isSiteFirstLoaded']);
+const setIsMenuNavigation = (bool) => store.commit('app/setIsMenuNavigation', bool);
 
 const toPage = (route) => {
-  console.log("route" , route);
   store.commit('app/toPage', route)
 };
 </script>
@@ -32,23 +33,31 @@ const toPage = (route) => {
 
 .menu-navigation {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  right: 0;
   z-index: $zIndex-3;
   background: $color-7;
-  transform: translateY(-100%);
+  transform: translateX(100%);
   transition: transform 0.4s;
+  border-radius: 0 0 0 8px;
 
   &.active {
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   & > nav {
+    width: 200px;
     height: 100%;
     z-index: $zIndex-4;
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding-top: 55px;
+    padding-bottom: 50px;
+
+    a {
+      margin-top: 10px;
+      font-family: DancingScript, sans-serif;
+      font-size: 30px;
+    }
   }
 }
 </style>

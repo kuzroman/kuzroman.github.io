@@ -46,7 +46,9 @@
 </template>
 
 <script setup>
-
+useHead({
+  title: 'some about kuzroman',
+})
 </script>
 
 <style lang="scss">

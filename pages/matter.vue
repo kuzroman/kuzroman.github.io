@@ -5,6 +5,10 @@
 </template>
 
 <script>
+useHead({
+  title: 'matter.js great gravity =)',
+})
+
 import Matter from 'matter-js'
 const { Engine, Render, World, Bodies, Body, Events, Composite, Composites, Constraint,
   Vertices, Mouse, Bounds, MouseConstraint, Query, Common, Runner } = Matter

@@ -1,5 +1,7 @@
 <template>
-  <UIIconBurger class="icon-burger" @click.native="switchMenu" />
+  <UIIconBurger
+    class="icon-burger"
+    @mouseenter.native="switchMenu" />
 </template>
 
 <script setup lang="ts">
