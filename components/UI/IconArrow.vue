@@ -42,6 +42,7 @@ $iconSize: 36px;
   cursor: pointer;
   font-family: DancingScript, sans-serif;
   font-size: 26px;
+  user-select: none;
 
   &.left,
   &.right {

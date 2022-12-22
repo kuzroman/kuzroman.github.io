@@ -98,7 +98,7 @@ export default {
   background-color: $color-6;
   box-shadow: 8px 8px 0 rgba(15, 15, 15, 0.45);
   padding: 24px 16px 26px;
-
+  user-select: none;
   position: absolute;
   left: 50%;
   top: 50%;

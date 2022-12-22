@@ -23,7 +23,7 @@ export default {
       texts: {
         default: 'Destroy this text',
         wait: 'Wait for falling ...',
-        again: 'Play again',
+        again: 'Close',
       },
     }
   },
@@ -89,6 +89,7 @@ export default {
   left: calc(50%);
   transform: translate(-7em, 0);
   transition: transform 0.3s;
+  user-select: none;
 
   @media (max-width: $mq-phone) {
     display: none;

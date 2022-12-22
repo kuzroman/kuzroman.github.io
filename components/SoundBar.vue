@@ -7,7 +7,7 @@
           :class="{hide: isGameReady}"
           @click.native="switchPlayPause"
       />
-      <div class="stations" @click="switchRadio">
+      <div class="stations" @click="handleClickRadio">
         <div
           class="pt-0"
           :class="{underline: isUnderlineRadio(Stations.MAXIMUM)}"
@@ -59,9 +59,12 @@ const isUnderlineRadio = (key: string) => {
   return radioKey.value === key
 };
 
-const switchRadio = (ev: Event) => {
+const handleClickRadio = (ev: Event) => {
   if (!(ev.target instanceof HTMLElement)) return;
   const key = ev.target.dataset.key as string
+  switchRadio(key)
+};
+const switchRadio = (key: string) => {
   setRadioKey(key);
   setSrc(src[radioKey.value]);
   play();
@@ -92,8 +95,9 @@ const pause = () => {
   font-family: 'DancingScript', sans-serif;
   position: absolute;
   top: .5em;
-  left: $px-desk;
+  left: 2em;
   z-index: 10;
+  user-select: none;
 
   &:hover {
     .stations {

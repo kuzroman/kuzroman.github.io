@@ -39,6 +39,7 @@ const toPage = (route) => {
   transform: translateX(100%);
   transition: transform 0.4s;
   border-radius: 0 0 0 8px;
+  user-select: none;
 
   &.active {
     transform: translateX(0);

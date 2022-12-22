@@ -12,8 +12,6 @@
       @canvas-letters-damage="increaseDamage"
     />
 
-<!--    <ClickForFire />-->
-
     <GameButtonPlay
       @button-play--mounted="setBarrier"
       @button-play--restart="restartGame"
@@ -42,8 +40,6 @@ const shooter = ref(null);
 
 const isGameFinished = computed(() => store.getters['game/isGameFinished']);
 const isGameReady = computed(() => store.getters['game/isGameReady']);
-// const shots = computed(() => store.getters['game/shots']);
-// const damage = computed(() => store.getters['game/damage']);
 
 const setIsGameStart = (bool) => store.commit('game/setIsGameStart', bool);
 const resetStateGame = () => store.commit('game/resetStateGame');

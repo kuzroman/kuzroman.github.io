@@ -32,7 +32,6 @@ export default {
       state.hidePageControl = bool
     },
     setDirection(state, { route, direction }) {
-      console.log('direction', route, direction);
       if (direction) {
         state.transitionDirection = direction;
         return
@@ -55,7 +54,7 @@ export default {
       state.isPageLoaderHide = bool
     },
     setNavigation(state, arr) {
-      const orderList = ['index','portfolio','about','contacts', 'matter']
+      const orderList = ['index','portfolio','about','contacts']
       state.navigation = orderList.map(name => arr.find(x=>x.name === name))
     },
     setRoutes(state, routes) {

@@ -224,12 +224,11 @@ onUnmounted(() => {
 .canvas-letters {
   & .letters {
     width: 100%;
-    //position: absolute;
-    //z-index: 1;
     color: #fff;
     font-size: 1.4em;
     text-align: center;
     margin-top: 8em;
+    user-select: none;
   }
 
   & #canvas {
