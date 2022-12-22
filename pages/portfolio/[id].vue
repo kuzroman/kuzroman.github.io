@@ -7,7 +7,7 @@
         <div v-if="work.descCompany">{{work.descCompany}}</div>
       </div>
 
-      <div class="gallery m-12">
+      <div class="gallery mx-0 m-12">
         <div class="gallery__scroll" ref="galleryMain">
           <div
               ref="galleryImgs"
@@ -29,7 +29,7 @@
 
       <div class="description">
         <div v-if="work.link" class="link">
-          Watch project: <a :href="work.link" target="_blank">{{ pureLink }}</a>
+          Link to project: <a :href="work.link" target="_blank">{{ pureLink }}</a>
         </div>
         <div
             class="desc"

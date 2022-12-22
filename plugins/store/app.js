@@ -9,7 +9,8 @@ export default {
     isPageLoaderHide: false, // useful in develop mode
     navigation: [],
     router: null,
-    radioKey: ''
+    radioKey: '',
+    isMobile: null,
   },
   getters: {
     isSiteFirstLoaded: (state) => state.isSiteFirstLoaded,
@@ -20,11 +21,15 @@ export default {
     isPageLoaderHide: (state) => state.isPageLoaderHide,
     navigation: (state) => state.navigation,
     radioKey: (state) => state.radioKey,
+    isMobile: (state) => state.isMobile,
   },
   mutations: {
     // setIsSiteFirstLoaded(state, bool) {
     //   state.isSiteFirstLoaded = bool
     // },
+    isMobile(state, bool) {
+      state.isMobile = bool
+    },
     setIsMenuNavigation(state, bool) {
       state.isMenuNavigationOpened = bool
     },

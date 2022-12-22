@@ -1,19 +1,39 @@
 <template>
   <UIIconBurger
+    ref="burger"
     class="icon-burger"
-    @mouseenter.native="switchMenu" />
+    @mouseenter.native="handlerMouseenter"
+    @click.native="handlerClick"
+  />
 </template>
 
 <script setup lang="ts">
-// import UIIconBurger from './UI/IconBurger.vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
 const isMenuNavigationOpened = computed(() => store.getters['app/isMenuNavigationOpened']);
+const isMobile = computed(() => store.getters['app/isMobile']);
 const setIsMenuNavigation = (bool: boolean) => store.commit('app/setIsMenuNavigation', bool);
+const burger = ref();
 
-const switchMenu = () => {
-  setIsMenuNavigation(!isMenuNavigationOpened.value)
+const handlerMouseenter = () => {
+  if (!isMobile.value) setIsMenuNavigation(true)
+};
+const handlerClick = () => {
+  if(isMobile.value) setIsMenuNavigation(!isMenuNavigationOpened.value)
+};
+
+onMounted(() => {
+  window.addEventListener('click', hideMenu)
+})
+onUnmounted(() => {
+  window.removeEventListener('click', hideMenu)
+})
+
+const hideMenu = (ev: Event) => {
+  if (!burger.value.$el.contains(ev.target)) {
+    setIsMenuNavigation(false);
+  }
 };
 </script>
 

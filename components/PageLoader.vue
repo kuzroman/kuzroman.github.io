@@ -11,7 +11,6 @@
 import { useStore } from 'vuex'
 
 const store = useStore();
-// const emit = defineEmits([`animation-start-${key}`]);
 const time = 300
 
 const animation = ref({

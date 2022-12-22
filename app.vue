@@ -54,7 +54,22 @@ onMounted(() => {
     if (route.name.indexOf('-id') === -1) navigation.push(route)
   })
   store.commit('app/setNavigation', navigation)
+
+  store.commit('app/isMobile', mobileCheck())
+  window.addEventListener('resize', resize)
 })
+
+onUnmounted(() => {
+  window.removeEventListener('resize', resize)
+})
+
+const resize = () => {
+  store.commit('app/isMobile', mobileCheck())
+};
+
+const mobileCheck = () => {
+  return window.innerWidth < 480;
+};
 
 const runGoogleAnal = () => {
   window.dataLayer = window.dataLayer || [];

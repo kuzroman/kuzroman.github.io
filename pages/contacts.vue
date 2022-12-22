@@ -1,19 +1,17 @@
 <template>
   <div class="contacts">
-    <div class="scroll-y">
-      <h1 class="h1">Contacts</h1>
-      <div class="pt1 pb1">
-        <p>Currently I'm located in Armenia, Yerevan (GMT+4)</p>
-        <p>Wanna talk about a project or offer me job?</p>
-        <p>Welcome
-          <a class="email" href="mailto:kuzroman@list.ru">kuzroman@list.ru</a>
-        </p>
-      </div>
-      <div class="social">
-        <a class="linkedin" href="https://www.linkedin.com/in/kuzroman" target="_blank">linkedin</a>
-        <a class="github" href="https://github.com/kuzroman" target="_blank">github</a>
-      </div>
-    </div>
+        <h1 class="h1">Contacts</h1>
+        <div class="text pt1 pb1">
+          <p>Currently I'm located in Armenia, Yerevan (GMT+4)</p>
+          <p>Wanna talk about a project or offer me job?</p>
+          <p>Welcome
+            <a class="email" href="mailto:kuzroman@list.ru">kuzroman@list.ru</a>
+          </p>
+        </div>
+        <div class="social">
+          <a class="linkedin" href="https://www.linkedin.com/in/kuzroman" target="_blank">linkedin</a>
+          <a class="github" href="https://github.com/kuzroman" target="_blank">github</a>
+        </div>
   </div>
 </template>
 
@@ -26,7 +24,27 @@ useHead({
 <style lang="scss">
 @import "../assets/styles/props";
 
+//@keyframes gradient {
+//  0% {
+//    background-position: 0 50%;
+//  }
+//  50% {
+//    background-position: 100% 50%;
+//  }
+//  100% {
+//    background-position: 0 50%;
+//  }
+//}
+
 .contacts {
+
+  //.text {
+  //  background: linear-gradient(-45deg, #494949, #2a2a2a, #5a5a5a, #333);
+  //  background-size: 400% 400%;
+  //  animation: gradient 15s ease infinite;
+  //  display: inline-block;
+  //  padding: 20px;
+  //}
 
   .email {
     color: lighten($color-12, 10%);
