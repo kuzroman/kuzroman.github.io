@@ -1,0 +1,1 @@
+import{o as a,a as o,e as l,t}from"./entry.a3ba67e5.js";const u={__name:"tests",setup(r){return(e,n)=>(a(),o("div",null,[l("div",null,t(e.obj),1),l("div",null,t(e.num),1),l("button",{onClick:n[0]||(n[0]=(...s)=>e.handlerClick&&e.handlerClick(...s))},"Click Me pls")]))}};export{u as default};

@@ -40,6 +40,8 @@ const toPage = (route) => {
   transition: transform 0.4s;
   border-radius: 0 0 0 8px;
   user-select: none;
+  //background-image: radial-gradient($color-7 1px, transparent 0);
+  //background-size: 4px 4px;
 
   &.active {
     transform: translateX(0);

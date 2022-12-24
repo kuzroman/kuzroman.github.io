@@ -129,8 +129,10 @@ const nextRoute = computed(() => {
       padding-left: $px-desk;
       padding-right: $px-desk;
       margin: auto;
-      background: $color-9;
+      //background: $color-9;
       position: absolute;
+      background-image: radial-gradient($color-9 1px, transparent 0);
+      background-size: 4px 4px;
     }
 
     &-arrow {

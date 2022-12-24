@@ -31,7 +31,7 @@ export default {
   border-radius: 2px;
   cursor: pointer;
   transform: translateY(0);
-  box-shadow: 0 8px 10px rgba(0, 0, 0, 1);
+  //box-shadow: 0 8px 10px rgba(0, 0, 0, 1);
   transition: 0.3s transform, 0.3s box-shadow;
   font-size: 0.8em;
   text-transform: uppercase;
@@ -49,7 +49,7 @@ export default {
   }
 
   &:not(.disabled):hover {
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7);
+    //box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7);
     transform: translateY(-2px);
 
     &:after {

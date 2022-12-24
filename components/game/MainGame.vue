@@ -56,8 +56,8 @@ const restartGame = () => {
   audioBg.destroy()
   audioShot.destroy()
 };
-const setBarrier = () => {
-  barrier.value = barrier
+const setBarrier = (data) => {
+  barrier.value = data
 };
 const makeShot = () => {
   if (!isGameReady.value || isGameFinished.value) return
