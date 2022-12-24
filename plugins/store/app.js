@@ -1,7 +1,6 @@
 export default {
   namespaced: true,
   state: {
-    isSiteFirstLoaded: true,
     isMenuNavigationOpened: false,
     hidePageControl: false,
     isActiveBurger: false,
@@ -11,9 +10,9 @@ export default {
     router: null,
     radioKey: '',
     isMobile: null,
+    isPageAnimationFinished: true,
   },
   getters: {
-    isSiteFirstLoaded: (state) => state.isSiteFirstLoaded,
     isMenuNavigationOpened: (state) => state.isMenuNavigationOpened,
     isActiveBurger: (state) => state.isActiveBurger,
     transitionDirection: (state) => state.transitionDirection,
@@ -22,11 +21,12 @@ export default {
     navigation: (state) => state.navigation,
     radioKey: (state) => state.radioKey,
     isMobile: (state) => state.isMobile,
+    isPageAnimationFinished: (state) => state.isPageAnimationFinished,
   },
   mutations: {
-    // setIsSiteFirstLoaded(state, bool) {
-    //   state.isSiteFirstLoaded = bool
-    // },
+    setIsPageAnimationFinished(state, bool) {
+      state.isPageAnimationFinished = bool
+    },
     isMobile(state, bool) {
       state.isMobile = bool
     },

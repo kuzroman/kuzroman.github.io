@@ -48,7 +48,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('game', ['setIsGameReady']),
+    ...mapMutations('game', ['setIsGameReady', 'setBarrier']),
 
     handleClick() {
       if (this.isSeedsFall) return
@@ -73,7 +73,7 @@ export default {
   },
   mounted() {
     this.createBarrier()
-    this.$emit('button-play--mounted', this.barrier)
+    this.setBarrier(this.barrier)
   },
 }
 </script>

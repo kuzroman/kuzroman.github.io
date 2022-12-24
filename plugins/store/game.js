@@ -26,6 +26,7 @@ export default {
     shots: defaultShots,
     damage: defaultDamage,
     timeLeft: defaultTimeLeft,
+    barrier: null,
   },
   getters: {
     isSeedsFall: (state) => state.isSeedsFall,
@@ -42,8 +43,12 @@ export default {
     shots: (state) => state.shots,
     damage: (state) => state.damage,
     timeLeft: (state) => state.timeLeft,
+    barrier: (state) => state.barrier,
   },
   mutations: {
+    setBarrier(state, data) {
+      state.barrier = data
+    },
     setIsSeedsFall(state, bool) {
       state.isSeedsFall = bool
     },

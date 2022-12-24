@@ -42,7 +42,6 @@ let intervalLetters, animationId
 const emit = defineEmits(['canvas-letters-damage'])
 const props = defineProps({
   isDebug: { type: Boolean, default: false },
-  barrier: { type: Object, default: null },
   shooter: {
     type: Object,
     default: () => {},
@@ -61,6 +60,8 @@ const viewPortHeight = ref(0);
 const isPageLoaderHide = computed(() => store.getters['app/isPageLoaderHide']);
 const shots = computed(() => store.getters['game/shots']);
 const letters = computed(() => store.getters['game/letters']);
+const barrier = computed(() => store.getters['game/barrier']);
+
 const description = computed(() =>
     props.isDebug
     ? 'Hello'
@@ -77,9 +78,6 @@ const updateLetters = (letter) => store.commit('game/updateLetters', letter);
 const showLetter = (letters) => store.commit('game/showLetter', letters);
 const killLetter = (letters) => store.commit('game/killLetter', letters);
 
-watch(() => isPageLoaderHide.value, () => {
-  prepareToGame()
-})
 watch(() => shots.value, () => {
   let bullet = new Bullet(props.shooter.x1, props.shooter.y1)
   bullets.value.push(bullet)
@@ -143,7 +141,7 @@ const startAnimation = () => {
 
 const updateSeeds = () => {
   seeds.value = seeds.value.filter((seed) => {
-    seed.update(props.barrier)
+    seed.update(barrier.value)
 
     if (seed.type === 'shrapnel') {
       checkDamage(props.shooter, seed)
@@ -206,10 +204,7 @@ onMounted(() => {
   viewPortHeight.value = window.innerHeight
   audioBit = new CustomAudio(bitMp3, 0.3)
 
-
-  // if (isPageLoaderHide.value) {
   prepareToGame()
-  // }
 })
 
 onUnmounted(() => {

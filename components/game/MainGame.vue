@@ -7,15 +7,16 @@
   >
     <GameCanvasLetters
       :isDebug="isDebug"
-      :barrier="barrier"
       :shooter="shooterPosition"
       @canvas-letters-damage="increaseDamage"
     />
 
-    <GameButtonPlay
-      @button-play--mounted="setBarrier"
-      @button-play--restart="restartGame"
-    />
+    <Transition>
+      <GameButtonPlay
+        v-if="isPageAnimationFinished"
+        @button-play--restart="restartGame"
+      />
+    </Transition>
 
     <GameStatusBar />
     <GameRobotShooter :position="shooterPosition" ref="shooter" />
@@ -32,7 +33,6 @@ import backgroundGame from '../../assets/media/backgroundGame.mp3'
 
 const store = useStore()
 let audioShot, audioBg
-const barrier = ref(null);
 const isDebug = ref(false);
 const shooterPosition = ref({});
 const mainGameKey = ref(0);
@@ -40,10 +40,10 @@ const shooter = ref(null);
 
 const isGameFinished = computed(() => store.getters['game/isGameFinished']);
 const isGameReady = computed(() => store.getters['game/isGameReady']);
+const isPageAnimationFinished = computed(() => store.getters['app/isPageAnimationFinished']);
 
 const setIsGameStart = (bool) => store.commit('game/setIsGameStart', bool);
 const resetStateGame = () => store.commit('game/resetStateGame');
-// const setIsGameFinished = (bool) => store.commit('game/setIsGameFinished', bool);
 const increaseShoots = () => store.commit('game/increaseShoots');
 const increaseDamage = () => store.commit('game/increaseDamage');
 const resetStateLeaderBoard = () => store.commit('leaderBoard/resetStateLeaderBoard');
@@ -56,9 +56,7 @@ const restartGame = () => {
   audioBg.destroy()
   audioShot.destroy()
 };
-const setBarrier = (data) => {
-  barrier.value = data
-};
+
 const makeShot = () => {
   if (!isGameReady.value || isGameFinished.value) return
   setIsGameStart(true)
@@ -114,5 +112,15 @@ watch(() => isGameFinished.value, () => {
   top: 0;
   left: 0;
   overflow: hidden;
+
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
 }
 </style>

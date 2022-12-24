@@ -27,22 +27,16 @@ const animations = computed(() => {
     return animation.value[key] === false ? a : a + ' ' + key
   }, '')
 });
-const setIsPageLoaderHide = (bool) => store.commit('app/setIsPageLoaderHide', bool);
+
 const runAnimations = () => {
   Object.keys(animation.value).map((key, i) => {
     setTimeout(() => {
       animation.value[key] = true
-      // this.$emit(`animation-start-${key}`)
     }, time + time * i)
   });
 }
 
 onMounted(() => {
-  // this.$on('animation-start-goDown', () => {
-  //   setTimeout(() => {
-  //     this.setIsPageLoaderHide(true)
-  //   }, time)
-  // })
   runAnimations()
 })
 

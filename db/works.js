@@ -142,13 +142,11 @@ export default [
         nameCompany: 'Advertising boulevard',
         descCompany: 'Strategic marketing, creative development and production',
         numberImg: 7,
-        descDeal: 'First job, my work included mainly layouts, started work with js. ' +
+        descDeal: 'First job in frontend develpmpent, my work included mainly layouts, started work with js. ' +
             'Completed courses js, php, mysql. Afterwards expanded my responsibilities with this knowledge. ' +
             'some works lives up to date: <br>' +
-            '<a href="http://www.trueski.ru/" target="_blank">trueski.ru</a><br>' +
             '<a href="http://www.belbereg.ru/" target="_blank">belbereg.ru</a><br>' +
             '<a href="http://www.imperialtea.ru/" target="_blank">imperialtea.ru</a><br>' +
-            '<a href="http://www.tom-t.ru/" target="_blank">tom-t.ru</a><br>' +
             '<a href="http://www.trans-i.ru" target="_blank">trans-i.ru</a><br>',
         skills: ['HTML', 'CSS3', 'JavaScript', 'jQuery', 'animations', 'Photoshop'],
         date: 2010,

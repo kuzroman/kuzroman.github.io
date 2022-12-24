@@ -8,7 +8,11 @@
 
     <main class="content">
       <router-view v-slot="{ Component }">
-        <transition name="fade">
+        <transition
+          name="fade"
+          @after-enter="onAfterEnter"
+          @before-leave="onBeforeLeave"
+        >
             <component :is="Component" class="view pt-28" :class="routeStyles"  />
         </transition>
       </router-view>
@@ -38,13 +42,19 @@ const router = useRouter()
 store.commit('app/setRoutes', router)
 
 const transitionDirection = computed(() => store.getters['app/transitionDirection']);
-const isSiteFirstLoaded = computed(() => store.getters['app/isSiteFirstLoaded']);
 const isPageLoaderHide = computed(() => store.getters['app/isPageLoaderHide']);
 const navigation = computed(() => store.getters['app/navigation']);
 const isGameReady = computed(() => store.getters['game/isGameReady']);
 const routesLen = computed(() => navigation.value.length);
 
 const toPage = (page) => store.commit('app/toPage', page)
+
+const onBeforeLeave = (() => {
+  store.commit('app/setIsPageAnimationFinished', false)
+})
+const onAfterEnter = (() => {
+  store.commit('app/setIsPageAnimationFinished', true)
+})
 
 onMounted(() => {
   runGoogleAnal();
@@ -85,9 +95,6 @@ const runGoogleAnal = () => {
 const routeStyles = computed(() => {
   let styles = []
   styles.push(transitionDirection.value)
-  if (isSiteFirstLoaded.value) {
-    styles.push('first-loaded')
-  }
   return styles
 });
 
