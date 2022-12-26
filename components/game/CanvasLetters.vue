@@ -57,7 +57,6 @@ const canvas = ref(null);
 const viewPortWidth = ref(0);
 const viewPortHeight = ref(0);
 
-const isPageLoaderHide = computed(() => store.getters['app/isPageLoaderHide']);
 const shots = computed(() => store.getters['game/shots']);
 const letters = computed(() => store.getters['game/letters']);
 const barrier = computed(() => store.getters['game/barrier']);

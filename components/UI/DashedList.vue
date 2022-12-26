@@ -1,38 +1,8 @@
 <template>
   <div class="ui-dashed-list">
-    <slot
-      ><!--
-      Example
-      <div class="result">
-        <div>left side</div>
-        <div>right side</div>
-      </div>
-      <div class="result">
-        <div>left side</div>
-        <div>right side</div>
-      </div>
-      OR
-      <div class="result">
-        <div>
-          <span>1st.</span>
-          <span>Name</span>
-        </div>
-        <div>12345 points</div>
-      </div>
-      <div class="result">
-        <div>
-          <span>10st.</span>
-          <span>Name</span>
-        </div>
-        <div>12345 points</div>
-      </div>-->
-    </slot>
+    <slot></slot>
   </div>
 </template>
-
-<script>
-export default {}
-</script>
 
 <style lang="scss">
 @import './_props.scss';

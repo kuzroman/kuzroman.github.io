@@ -18,15 +18,15 @@
       />
     </Transition>
 
-    <GameStatusBar />
-    <GameRobotShooter :position="shooterPosition" ref="shooter" />
-    <GameScoreBoard />
-<!--    <GameLeaderBoard />-->
+    <GameStatusBar/>
+    <GameRobotShooter :position="shooterPosition" ref="shooter"/>
+    <GameScoreBoard/>
+    <!--    <GameLeaderBoard />-->
   </div>
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
+import {useStore} from 'vuex'
 import CustomAudio from '../abstractions/Audio'
 import shootMp3 from '../../assets/media/shoot.mp3'
 import backgroundGame from '../../assets/media/backgroundGame.mp3'
@@ -48,7 +48,9 @@ const increaseShoots = () => store.commit('game/increaseShoots');
 const increaseDamage = () => store.commit('game/increaseDamage');
 const resetStateLeaderBoard = () => store.commit('leaderBoard/resetStateLeaderBoard');
 
-const forceUpdateComponent = () => { mainGameKey.value += 1 };
+const forceUpdateComponent = () => {
+  mainGameKey.value += 1
+};
 const restartGame = () => {
   resetStateLeaderBoard()
   resetStateGame()
