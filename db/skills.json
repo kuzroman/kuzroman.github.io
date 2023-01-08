@@ -1,18 +1,18 @@
 {
   "General": ["JavaScript", "HTML", "CSS", "Type Script"],
   "Framework": ["Vue.js 2-3","Nuxt.js 2-3"],
-  "FileManager": ["Npm", "Yarn", "Bower"],
+  "FileManager": ["pnpm", "npm", "Yarn", "Bower", "composer"],
   "Library": ["Tailwind", "UI Element plus", "Lodash" ,"JQuery"],
-  "Protocol": ["HTTP", "WebSocket"],
-  "Bundler": ["Vite", "Webpack","Browserify"],
-  "Compiler": ["Babel", "Sass", "Less", "PostCss"],
+  "Protocol": ["HTTP", "WebSocket", "SSE"],
+  "Bundler": ["Vite", "Webpack", "Browserify"],
+  "Compiler": ["PostCss", "Babel", "Sass", "Less"],
   "VersionControl": ["Git"],
   "TaskManager": ["Jira", "Trello", "Asure"],
   "Tests": ["Jest", "Vue Test Utils"],
   "API": ["Highcharts", "Yandex map", "DaData", "Sync Fusion"],
 
   "TaskRunner": ["Gulp", "Grunt"],
-  "TemplateEngines": ["Twig","Twig.js","Django","Dot.js","Jade.js","JQuery templates"],
+  "TemplateEngines": ["Twig", "Razor", "Twig.js","Django","Dot.js","Jade.js","JQuery templates"],
 
   "T-shape": ["Node", "Express", "MongoDB", "Nginx", "Apache", "CenOs","Photoshop", "lowDB"],
 

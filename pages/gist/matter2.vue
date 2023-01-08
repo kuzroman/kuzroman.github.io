@@ -6,11 +6,18 @@
 
 <script>
 import Matter from 'matter-js'
+import {mapMutations} from "vuex";
 const { Engine, Render, World, Bodies, Body, Events, Composite, Composites, Constraint,
   Vertices, Mouse, Bounds, MouseConstraint, Query, Common, Runner } = Matter
 
 export default {
+  methods: {
+    ...mapMutations('app', ['setIsPageLoaderHide']),
+  },
+
   mounted() {
+    this.setIsPageLoaderHide(true)
+
     const engine = Engine.create({
       gravity: {
         y: 1

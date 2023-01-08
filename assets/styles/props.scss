@@ -29,3 +29,7 @@ $mq-phone: 481px;
   font-family: 'DancingScript';
   src: url('/public/fonts/DancingScript-Medium.ttf');
 }
+
+@function rem($size, $viewport: 1920) {
+  @return calc($size / ($viewport * 0.01 * 1px) ) * 1vw;
+}
