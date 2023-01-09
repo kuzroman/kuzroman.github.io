@@ -20,7 +20,6 @@ defineProps({
   position: relative;
   cursor: pointer;
   transition: 0.3s;
-  background: #2f2f2f;
 
   & i {
     width: 2px;

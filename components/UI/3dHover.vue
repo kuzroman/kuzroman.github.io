@@ -18,6 +18,7 @@ const THRESHOLD = 15;
 const cardEl = ref();
 
 onMounted(() => {
+  if (window.innerWidth < 480) return;
   const motionMatchMedia = window.matchMedia('(prefers-reduced-motion)');
   if (!motionMatchMedia.matches) {
     cardEl.value.addEventListener('mousemove', handleHover);
@@ -50,6 +51,8 @@ function resetStyles(e) {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/styles/props";
+
 .flexible {
   position: relative;
 
@@ -59,8 +62,6 @@ function resetStyles(e) {
     position: relative;
     color: #fff;
     transition: transform 0.1s ease;
-    transform-style: preserve-3d;
-    will-change: transform;
 
     &::before {
       content: "";
@@ -83,6 +84,17 @@ function resetStyles(e) {
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease;
+  }
+}
+
+@media (max-width: $mq-phone) {
+  .flexible {
+
+      &__card {
+        &:hover .content {
+          transform: none;
+        }
+      }
   }
 }
 </style>

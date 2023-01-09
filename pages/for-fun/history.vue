@@ -1,11 +1,9 @@
 <template>
-  <div class="history"
-       @scroll="handleScroll"
-  >
+  <div class="history" @scroll="handleScroll">
     <div class="grain"></div>
 
     <div class="top-screen">
-      <video loop muted>
+      <video loop muted autoplay>
         <source src="~/assets/video/history.mp4" data-wf-ignore="true">
       </video>
       <h1 class="animation-text" ref="tricks">Some creative text</h1>
@@ -83,7 +81,10 @@
           </p>
         </template >
       </UI3dHover>
+
     </div>
+
+    <UIDarkCards class="m50" />
 
   </div>
 </template>
@@ -109,7 +110,7 @@ const worksCompiled = ref((() => {
 onMounted(() => {
   setTimeout(() => {
     tricks.value.classList.add('active')
-  }, 1000)
+  }, 100)
 })
 
 const handleScroll = (ev) => {
@@ -234,6 +235,37 @@ p {
       100% {
         opacity: 1;
       }
+    }
+  }
+}
+
+@media (max-width: $mq-phone) {
+  .content-area {
+    padding: 50px 20px;
+    line-height: 1.2;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .desc {
+    font-size: 18px;
+  }
+
+  .text {
+    font-size: 15px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 15px;
+  }
+  .flexible {
+
+    &:deep(.flexible__card) {
+      padding: 0;
     }
   }
 }
