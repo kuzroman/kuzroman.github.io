@@ -11,6 +11,7 @@ const router = useRouter();
 
 const isPortfolioIDPage = computed(() => {
   return router.currentRoute.value.name === 'portfolio-id'
+    || router.currentRoute.value.name.indexOf('challenge') > -1
 });
 
 const comeBack = () => router.push({path: '/portfolio'});

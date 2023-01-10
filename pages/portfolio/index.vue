@@ -9,7 +9,7 @@
 <!--      </select>-->
 
       <div class="works">
-        <router-link v-for="(work, i) in works" :to="{ path: `/portfolio/${i}`}" :key="i" >
+        <router-link v-for="(work, i) in works" :to="{ path: `/portfolio/${i}`}">
           <div class="work"
                :style="{'background-image': `url(${getBg(work, '0')})`}">
             <div class="work-date">{{ work.date }}</div>
@@ -19,6 +19,15 @@
             <div class="work-logo" :style="{'background-image': `url(${getBg(work, 'logo')})`}"></div>
           </div>
         </router-link>
+
+        <router-link v-for="(work, i) in challenge" :to="{ path: `/challenge/${work.link}`}" >
+          <div class="work" :style="{'background-image': `url(${getBg(work, '0')})`}">
+            <div class="work-desc">
+              <div v-for="skill in work.skills">{{ skill }}</div>
+            </div>
+          </div>
+        </router-link>
+
       </div>
     </div>
   </div>
@@ -38,7 +47,8 @@ import { default as worksData } from "/db/works.js";
 // const i18nPlugin = inject('i18nPlugin')
 // console.log(111, i18nPlugin.greetings.hello)
 
-const works = ref(worksData);
+const works = worksData.filter(i => !i.isChallenge);
+const challenge = worksData.filter(i => i.isChallenge);
 const getBg = (work, name) => {
   const type = name === 'logo' ? '.png' : '.jpg'
   return `/img/portfolio/gallery/${work.imageDirectory}/${name + type}`
