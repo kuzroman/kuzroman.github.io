@@ -18,8 +18,10 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
+    "axios": "^1.2.2",
     "http-server": "^14.1.1",
     "matter-js": "^0.18.0",
+    "ofetch": "^1.0.0",
     "sass": "^1.56.1",
     "vuex": "^4.0.2"
   }
