@@ -41,13 +41,18 @@ const isActive = ref(false);
 const isGameReady = computed(() => store.getters['game/isGameReady']);
 const radioKey = computed<Stations>(() => store.getters['app/radioKey']);
 const player = ref<HTMLVideoElement>(null);
+const prevStation = ref();
 
 const setRadioKey = (key: string) => {
+  setPrevStationKey(radioKey.value)
   store.commit('app/setRadioKey', key);
+};
+const setPrevStationKey = (key: string) => {
+  prevStation.value = key
 };
 
 onMounted(() => {
-  setRadioKey(src[Stations.MAXIMUM]);
+  setRadioKey(Stations.MAXIMUM);
   setSrc(src[Stations.MAXIMUM]);
 })
 
@@ -67,11 +72,12 @@ const handleClickRadio = (ev: Event) => {
 const switchRadio = (key: string) => {
   setRadioKey(key);
   setSrc(src[radioKey.value]);
-  play();
+  isActive.value && prevStation.value === radioKey.value ?  pause() : play();
 };
 watch(() => isGameReady.value, (isTrue) => {
   isTrue && pause()
 })
+
 const switchPlayPause = () => {
   player.value.paused ? play() : pause()
 };
