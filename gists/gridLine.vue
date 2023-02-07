@@ -12,9 +12,10 @@
 </template>
 
 <script setup>
-import {useStore} from "vuex";
+import {useStore} from 'vuex';
 
 const store = useStore()
+
 store.commit('app/setIsPageLoaderHide', true)
 
 </script>

@@ -23,7 +23,6 @@ const knowledge = ref(skills);
     color: $color-12;
     background: $color-1;
     margin: .4em 0.4em;
-    //box-shadow: 0 3px 9px 0 #000000c9;
     transition: color .3s, background .3s;
     display: inline-block;
 
