@@ -2,7 +2,7 @@
   <div class="contacts">
         <h1 class="h1">Contacts</h1>
         <div class="text pt1 pb1">
-          <p>Currently I'm located in Armenia, Yerevan (GMT+4)</p>
+          <p>Currently I'm located in Russia, Moscow (GMT+3)</p>
           <p>Wanna talk about a project or offer me job?</p>
           <p>Welcome
             <a class="email" href="mailto:kuzroman@list.ru">kuzroman@list.ru</a>
@@ -24,28 +24,7 @@ useHead({
 <style lang="scss">
 @import "../assets/styles/props";
 
-//@keyframes gradient {
-//  0% {
-//    background-position: 0 50%;
-//  }
-//  50% {
-//    background-position: 100% 50%;
-//  }
-//  100% {
-//    background-position: 0 50%;
-//  }
-//}
-
 .contacts {
-
-  //.text {
-  //  background: linear-gradient(-45deg, #494949, #2a2a2a, #5a5a5a, #333);
-  //  background-size: 400% 400%;
-  //  animation: gradient 15s ease infinite;
-  //  display: inline-block;
-  //  padding: 20px;
-  //}
-
   .email {
     color: lighten($color-12, 10%);
   }
@@ -71,9 +50,6 @@ useHead({
         transform: translateY(-2px);
       }
     }
-    //.facebook {
-    //  background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDk2LjEyNCA5Ni4xMjMiIHhtbDpzcGFjZT0icHJlc2VydmUiPiA8Zz4KPHBhdGggZD0iTTcyLjA4OSwwLjAyTDU5LjYyNCwwQzQ1LjYyLDAsMzYuNTcsOS4yODUsMzYuNTcsMjMuNjU2djEwLjkwN0gyNC4wMzdjLTEuMDgzLDAtMS45NiwwLjg3OC0xLjk2LDEuOTYxdjE1LjgwMyBjMCwxLjA4MywwLjg3OCwxLjk2LDEuOTYsMS45NmgxMi41MzN2MzkuODc2YzAsMS4wODMsMC44NzcsMS45NiwxLjk2LDEuOTZoMTYuMzUyYzEuMDgzLDAsMS45Ni0wLjg3OCwxLjk2LTEuOTZWNTQuMjg3aDE0LjY1NCBjMS4wODMsMCwxLjk2LTAuODc3LDEuOTYtMS45NmwwLjAwNi0xNS44MDNjMC0wLjUyLTAuMjA3LTEuMDE4LTAuNTc0LTEuMzg2Yy0wLjM2Ny0wLjM2OC0wLjg2Ny0wLjU3NS0xLjM4Ny0wLjU3NUg1Ni44NDJ2LTkuMjQ2IGMwLTQuNDQ0LDEuMDU5LTYuNyw2Ljg0OC02LjdsOC4zOTctMC4wMDNjMS4wODIsMCwxLjk1OS0wLjg3OCwxLjk1OS0xLjk2VjEuOThDNzQuMDQ2LDAuODk5LDczLjE3LDAuMDIyLDcyLjA4OSwwLjAyeiIvPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDwvc3ZnPgo=);
-    //}
     .linkedin {
       background-color: #1178b3;
       background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDkwIDkwIgogeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+IDxnPiA8Zz4KIDxwYXRoIGQ9Ik0yMC4zNzksMTAuMjUyYzAsNS4zMTUtMy45MjQsOS42Mi0xMC4zODEsOS42MkMzLjkyNCwxOS44NzIsMCwxNS41NjgsMCwxMC4yNTIgYzAtNS40NDMsNC4wNTEtOS42MjEsMTAuMjUyLTkuNjIxQzE2LjQ1NSwwLjYzMSwyMC4yNTQsNC44MDksMjAuMzc5LDEwLjI1MnogTTAuNTA2LDg5LjM2OFYyNy40NjhoMTkuMjQydjYxLjkwMUgwLjUwNnoiLz4KIDxwYXRoIGQ9Ik0zMS4yNjIsNDcuMjE1YzAtNy43MjEtMC4yNTItMTQuMTc2LTAuNTA0LTE5Ljc0N2gxNi43MDdsMC44ODksOC42MDhoMC4zNzkgYzIuNTMxLTQuMDUzLDguNzM0LTEwLjAwMiwxOS4xMTUtMTAuMDAyQzgwLjUwNiwyNi4wNzQsOTAsMzQuNTU2LDkwLDUyLjc4NHYzNi41ODVINzAuNzU4VjU1LjA2MyBjMC03Ljk3Ni0yLjc4NS0xMy40MTctOS43NDgtMTMuNDE3Yy01LjMxNiwwLTguNDc5LDMuNjctOS44NzEsNy4yMTVjLTAuNTA4LDEuMjY1LTAuNjM1LDMuMDM4LTAuNjM1LDQuODExdjM1LjY5N0gzMS4yNjJWNDcuMjE1eiAiLz4gPC9nPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDwvc3ZnPgo=);

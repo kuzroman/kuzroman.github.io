@@ -7,12 +7,6 @@ import { ofetch } from 'ofetch'
 // import { fileURLToPath } from 'url';
 // const __dirname = dirname(fileURLToPath(import.meta.url));
 
-interface FileData {
-  directory: string,
-  fileName: string,
-  fileType: string,
-}
-
 export default defineEventHandler(async function (event) {
   const body = await readBody(event)
   console.log('body', body); // get POST payload
@@ -35,7 +29,7 @@ export default defineEventHandler(async function (event) {
     fileName: 'file',
     fileType: fileType,
     directory: 'assets/challenge/ImageToText'
-  } as FileData
+  }
 })
 
 // function someAsyncFunc() {
