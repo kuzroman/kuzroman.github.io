@@ -155,25 +155,21 @@ export default [
   {
     imageDirectory: 'svgWave',
     nameTitle: 'Challenge day',
-    nameCompany: '',
-    descCompany: '',
-    numberImg: 0,
-    descDeal: '',
     skills: ['One day challenge', 'live code'],
-    date: 2022,
     link: "svgWave",
     isChallenge: true
   },
   {
     imageDirectory: 'history',
     nameTitle: 'Challenge day',
-    nameCompany: '',
-    descCompany: '',
-    numberImg: 0,
-    descDeal: '',
     skills: ['One day challenge', 'live code'],
-    date: 2022,
     link: "history",
+    isChallenge: true
+  },
+  {
+    imageDirectory: 'audioRecorder',
+    skills: ['One day challenge', 'live code'],
+    link: "audioRecorder",
     isChallenge: true
   }
 ]

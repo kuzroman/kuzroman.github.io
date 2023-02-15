@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
+  modules: ['@element-plus/nuxt'],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -18,5 +19,10 @@ export default defineNuxtConfig({
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-XWDSRJ4TEC' },
       ]
     }
-  }
+  },
+  elementPlus: {
+    icon: 'ElIcon',
+    importStyle: 'scss',
+    themes: ['dark'],
+  },
 })

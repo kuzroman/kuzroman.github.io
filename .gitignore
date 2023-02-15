@@ -5,5 +5,10 @@ node_modules
 .cache
 .output
 .env
-ts
-pages/myTest
+111
+pages/me
+/test-results/
+e2e/report/
+/playwright/.cache/
+tests-examples
+e2e
