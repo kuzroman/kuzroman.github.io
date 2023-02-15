@@ -46,7 +46,7 @@ enum MediaRecorderState {
 }
 
 let audioChunks = ref<Blob[]>([]);
-let mediaRecorder: MediaRecorder;
+let mediaRecorder: MediaRecorder | null = null;
 const isAllowed = ref(false);
 const recorderState = ref(MediaRecorderState.INACTIVE);
 
@@ -65,15 +65,24 @@ const handlerStart = () => {
     .then((stream) => {
       mediaRecorder = new MediaRecorder(stream);
 
-      mediaRecorder.addEventListener('dataavailable', (event: BlobEvent) => {
-        audioChunks.value.push(event.data);
-      });
-
+      mediaRecorder.addEventListener('dataavailable', pushChunk);
       mediaRecorder.addEventListener('stop', playLastChunk);
     })
 };
 
+const killMedia = () => {
+  if (!mediaRecorder) return
+  mediaRecorder.removeEventListener('dataavailable', pushChunk)
+  mediaRecorder.removeEventListener('stop', playLastChunk)
+  mediaRecorder = null
+};
+
+const pushChunk = (event: BlobEvent) => {
+  audioChunks.value.push(event.data);
+};
+
 const handlerRecord = () => {
+  if (!mediaRecorder) return
   if (mediaRecorder.state === MediaRecorderState.INACTIVE) {
     mediaRecorder.start()
     recorderState.value = MediaRecorderState.RECORDING
@@ -81,6 +90,7 @@ const handlerRecord = () => {
 };
 
 const handlerStop = () => {
+  if (!mediaRecorder) return
   if (mediaRecorder.state === MediaRecorderState.RECORDING) {
     mediaRecorder.stop()
     recorderState.value = MediaRecorderState.INACTIVE
@@ -98,6 +108,7 @@ const playLastChunk = () => {
   // audio.play();
 };
 
+onUnmounted(killMedia)
 
 </script>
 
