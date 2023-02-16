@@ -113,5 +113,10 @@ onUnmounted(killMedia)
 </script>
 
 <style scoped>
-
+  button {
+    background: #409eff;
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: white;
+  }
 </style>
