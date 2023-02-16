@@ -11,4 +11,3 @@ pages/me
 e2e/report/
 /playwright/.cache/
 tests-examples
-e2e
