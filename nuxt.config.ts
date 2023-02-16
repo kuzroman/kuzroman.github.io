@@ -19,10 +19,5 @@ export default defineNuxtConfig({
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-XWDSRJ4TEC' },
       ]
     }
-  },
-  elementPlus: {
-    icon: 'ElIcon',
-    importStyle: 'scss',
-    themes: ['dark'],
-  },
+  }
 })
