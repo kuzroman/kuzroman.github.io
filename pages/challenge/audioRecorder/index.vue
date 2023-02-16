@@ -2,23 +2,23 @@
   <div>
     <template v-if="!isAllowed">
       <p class="my-5">Click Start and "Allow" your microphone Permission!</p>
-      <el-button @click="handlerStart" type="primary">Start</el-button>
+      <button @click="handlerStart" type="primary">Start</button>
     </template>
     <template v-else>
-      <el-button
+      <button
         v-if="isRecording"
         @click="handlerStop"
         type="primary"
       >
         Stop and play it
-      </el-button>
-      <el-button
+      </button>
+      <button
         v-else
         @click="handlerRecord"
         type="primary"
       >
         Record your voice
-      </el-button>
+      </button>
     </template>
 
     <div v-if="audioChunks.length">
