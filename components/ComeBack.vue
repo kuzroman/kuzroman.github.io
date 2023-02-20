@@ -6,12 +6,13 @@
   />
 </template>
 
-<script setup>
+<script setup lang="ts">
 const router = useRouter();
 
 const isPortfolioIDPage = computed(() => {
-  return router.currentRoute.value.name === 'portfolio-id'
-    || router.currentRoute.value.name.indexOf('challenge') > -1
+  const name = router.currentRoute.value.name as string
+  return name === 'portfolio-id'
+    || name && name.includes('challenge')
 });
 
 const comeBack = () => router.push({path: '/portfolio'});
@@ -24,7 +25,7 @@ const comeBack = () => router.push({path: '/portfolio'});
   position: absolute;
   top: 1.52em;
   right: 8em;
-  z-index: $zIndex-2;
+  z-index: $zIndex-3;
 
   @media (max-width: $mq-phone) {
     top: 4em;

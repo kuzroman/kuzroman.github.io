@@ -155,20 +155,20 @@ export default [
   {
     imageDirectory: 'svgWave',
     nameTitle: 'Challenge day',
-    skills: ['One day challenge', 'live code'],
+    skills: ['One day challenge', 'live code', 'svg Wave'],
     link: "svgWave",
     isChallenge: true
   },
   {
     imageDirectory: 'history',
     nameTitle: 'Challenge day',
-    skills: ['One day challenge', 'live code'],
+    skills: ['One day challenge', 'live code', 'Landing'],
     link: "history",
     isChallenge: true
   },
   {
     imageDirectory: 'audioRecorder',
-    skills: ['One day challenge', 'live code'],
+    skills: ['One day challenge', 'live code', 'Audio recorder'],
     link: "audioRecorder",
     isChallenge: true
   }

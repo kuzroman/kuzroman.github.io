@@ -43,7 +43,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 useHead({
   title: 'some latest job',
 })
@@ -60,9 +60,9 @@ const images = computed(() => {
   }))
 });
 
-const galleryMain = ref(null);
-const galleryImgs = ref(null);
-const clickMiniImg = (key) => {
+const galleryMain = ref();
+const galleryImgs = ref();
+const clickMiniImg = (key: number) => {
   galleryImgs.value[key].scrollIntoView({behavior: 'smooth', block: 'nearest'})
 };
 

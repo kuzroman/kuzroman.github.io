@@ -15,15 +15,17 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useStore } from 'vuex'
+import {Router} from 'vue-router';
 
 const store = useStore();
 const isMenuNavigationOpened = computed(() => store.getters['app/isMenuNavigationOpened']);
 const navigation = computed(() => store.getters['app/navigation']);
-const setIsMenuNavigation = (bool) => store.commit('app/setIsMenuNavigation', bool);
+const setIsMenuNavigation = (bool: boolean) => store.commit('app/setIsMenuNavigation', bool);
 
-const toPage = (route) => {
+const toPage = (route: Router) => {
+  console.log('route', route);
   store.commit('app/toPage', route)
 };
 </script>
