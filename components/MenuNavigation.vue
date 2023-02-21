@@ -25,7 +25,6 @@ const navigation = computed(() => store.getters['app/navigation']);
 const setIsMenuNavigation = (bool: boolean) => store.commit('app/setIsMenuNavigation', bool);
 
 const toPage = (route: Router) => {
-  console.log('route', route);
   store.commit('app/toPage', route)
 };
 </script>
