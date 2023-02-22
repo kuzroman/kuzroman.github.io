@@ -1,20 +1,12 @@
-# Nuxt 3 Minimal Starter
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# Hi! I'm front end enthusiast, love IT =)
 
 ## Setup
 
 Make sure to install the dependencies:
 
 ```bash
-# yarn
-yarn install
-
 # npm
 npm install
-
-# pnpm
-pnpm install --shamefully-hoist
 ```
 
 ## Development Server
@@ -31,6 +23,7 @@ Build the application for production:
 
 ```bash
 npm run build
+npm run generate
 ```
 
 Locally preview production build:
@@ -39,5 +32,3 @@ Locally preview production build:
 npm run preview
 ```
 by default run also http://localhost:3000/
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
