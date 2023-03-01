@@ -1,18 +1,21 @@
 <template>
   <div class="history" @scroll="handleScroll">
-    <div class="grain"></div>
+    <div class="grain" />
 
     <div class="top-screen">
       <video loop muted autoplay>
         <source src="~/assets/video/history.mp4" data-wf-ignore="true">
       </video>
-      <h1 class="animation-text" ref="tricks">Some creative text</h1>
+      <h1 ref="tricks" class="animation-text">
+        Some creative text
+      </h1>
     </div>
 
     <div class="content-area">
-
       <div class="content-area-box">
-        <div class="title">Manifesto</div>
+        <div class="title">
+          Manifesto
+        </div>
         <div class="desc m50">
           A perfect design is one that is aesthetically pleasing, functionally effective, and
           emotionally resonant. It should be timeless, elegant, and sophisticated. It should be
@@ -56,56 +59,58 @@
       <UI3dHover class="flexible">
         <template #default>
           <h2>Good morning everyone.</h2>
-        </template >
+        </template>
         <template #desc>
-          <p>Today I want to talk about success. We all want to be successful in life, but what does it
+          <p>
+            Today I want to talk about success. We all want to be successful in life, but what does it
             really mean? To me, success is more than just money and fame. It’s about having a sense of
             fulfillment and purpose. It’s about having the courage to pursue your dreams and reach your
             goals.
           </p>
-          <p>Success is not something that happens overnight. It takes hard work, dedication, and
+          <p>
+            Success is not something that happens overnight. It takes hard work, dedication, and
             resilience. It requires setting goals and working towards them, even when the going gets
             tough. It’s about having the strength to push through the obstacles and challenges that life
             throws at you.
           </p>
-          <p>Success is also about learning from your mistakes and failures. It’s about taking risks and
+          <p>
+            Success is also about learning from your mistakes and failures. It’s about taking risks and
             not being afraid to fail. It’s about having the confidence to try something new and not being
             afraid to take chances.
           </p>
-          <p>Finally, success is about having the courage to be yourself and living a life that is true to
+          <p>
+            Finally, success is about having the courage to be yourself and living a life that is true to
             who you are. It’s about having the courage to follow your heart and live life on your own
             terms.
           </p>
-          <p>So, don’t be afraid to dream big and go after what you want. Believe in yourself and never
+          <p>
+            So, don’t be afraid to dream big and go after what you want. Believe in yourself and never
             give up on your dreams. With hard
           </p>
-        </template >
+        </template>
       </UI3dHover>
-
     </div>
 
     <UIDarkCards class="m50" />
-
   </div>
 </template>
 
 <script setup>
-useHead({title: 'history'})
-import {useStore} from "vuex"
-import {default as worksData} from "/db/works.js";
+import { useStore } from 'vuex'
+import { default as worksData } from '~/db/works.js'
+useHead({ title: 'history' })
 
 const store = useStore()
 store.commit('app/setIsPageLoaderHide', true)
 
-const works = ref(worksData);
-const tricks = ref();
-const top = ref(0);
+const tricks = ref()
+const top = ref(0)
 
 const worksCompiled = ref((() => {
-  return worksData.map(obj => {
-    return {...obj, rotate: getRandom(0, 360)}
+  return worksData.map((obj) => {
+    return { ...obj, rotate: getRandom(0, 360) }
   })
-})());
+})())
 
 onMounted(() => {
   setTimeout(() => {
@@ -115,10 +120,10 @@ onMounted(() => {
 
 const handleScroll = (ev) => {
   top.value = ev.target.scrollTop
-};
+}
 
-function getRandom(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+function getRandom (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 </script>
 

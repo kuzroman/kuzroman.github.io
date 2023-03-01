@@ -1,57 +1,57 @@
 <template>
   <div
     class="button-play"
-    @click="handleClick"
     :disabled="disabled"
     :class="stiles"
+    @click="handleClick"
   >
     <UIButton :text="text" />
   </div>
 </template>
 
 <script>
-import UIButton from '../UI/Button.vue'
 import { mapGetters, mapMutations } from 'vuex'
+import UIButton from '../UI/Button.vue'
 
 export default {
   name: 'ButtonPlay',
   components: { UIButton },
   props: {},
-  data() {
+  data () {
     return {
       barrier: {},
       texts: {
         default: 'Destroy this text',
         wait: 'Wait for falling ...',
-        again: 'Close',
-      },
+        again: 'Close'
+      }
     }
   },
   computed: {
     ...mapGetters('game', ['isSeedsFall', 'isGameReady', 'isGameFinished']),
 
-    text() {
+    text () {
       return this.isGameFinished
         ? this.texts.again
         : this.isSeedsFall
-        ? this.texts.wait
-        : this.texts.default
+          ? this.texts.wait
+          : this.texts.default
     },
-    disabled() {
+    disabled () {
       return this.isSeedsFall
     },
-    stiles() {
+    stiles () {
       return {
         disabled: this.disabled,
-        hide: this.isGameReady && !this.isGameFinished,
+        hide: this.isGameReady && !this.isGameFinished
       }
-    },
+    }
   },
   methods: {
     ...mapMutations('game', ['setIsGameReady', 'setBarrier']),
 
-    handleClick() {
-      if (this.isSeedsFall) return
+    handleClick () {
+      if (this.isSeedsFall) { return }
 
       if (this.isGameFinished) {
         this.$emit('button-play--restart', this.barrier)
@@ -62,19 +62,19 @@ export default {
         this.setIsGameReady(true)
       })
     },
-    createBarrier() {
-      let rect = this.$el.getBoundingClientRect()
+    createBarrier () {
+      const rect = this.$el.getBoundingClientRect()
       this.barrier = {
         x1: rect.left,
         x2: rect.left + rect.width,
-        y1: rect.top,
+        y1: rect.top
       }
-    },
+    }
   },
-  mounted() {
+  mounted () {
     this.createBarrier()
     this.setBarrier(this.barrier)
-  },
+  }
 }
 </script>
 

@@ -5,7 +5,7 @@ export default class Letter {
   y1 = 0
   y2 = 0
 
-  constructor(letter, i) {
+  constructor (letter, i) {
     const isService = letter === ' ' || letter === '|'
     this.id = i
     this.sign = letter === ' ' ? '-' : letter
@@ -13,8 +13,7 @@ export default class Letter {
     this.isService = isService
   }
 
-
-  static getLifeLetters(letters) {
-    return letters.filter((letter) => !letter.isKilled)
+  static getLifeLetters (letters) {
+    return letters.filter(letter => !letter.isKilled)
   }
 }

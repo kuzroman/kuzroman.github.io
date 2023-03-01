@@ -1,28 +1,33 @@
 <template>
   <div class="status-bar" :class="{ active: isGameReady || isDebug }">
     <div class="status-bar--top">
-      <div class="score">{{ killedLetters.length }} killed</div>
+      <div class="score">
+        {{ killedLetters.length }} killed
+      </div>
       <div class="status-bar--right">
-        <IconTime/>
-        <IconShield/>
-        <div class="time">{{ timeLeft }}s</div>
+        <IconTime />
+        <IconShield />
+
+        <div class="time">
+          {{ timeLeft }}s
+        </div>
       </div>
     </div>
-    <UI_Loader_line class="loader-Line" :percent="health"/>
+    <UI_Loader_line class="loader-Line" :percent="health" />
     <UILink2Move
-        class="leaders"
-        text="leaderboard"
-        @click.native="openLeaderBoard"
+      class="leaders"
+      text="leaderboard"
+      @click.native="openLeaderBoard"
     />
   </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
 import UI_Loader_line from '../UI/LoaderLine.vue'
-import UILink2Move from '~/components/UI/Link2Move.vue'
 import IconTime from './IconTime.vue'
 import IconShield from './IconShield.vue'
-import {mapGetters, mapMutations} from 'vuex'
+import UILink2Move from '~/components/UI/Link2Move.vue'
 
 const healthDefault = 100
 
@@ -30,25 +35,25 @@ let intervalTime
 
 export default {
   name: 'StatusBar',
-  components: {UI_Loader_line, UILink2Move, IconTime, IconShield},
-  data() {
+  components: { UI_Loader_line, UILink2Move, IconTime, IconShield },
+  data () {
     return {
       health: healthDefault,
-      isDebug: false,
+      isDebug: false
     }
   },
   watch: {
-    isGameStart() {
+    isGameStart () {
       this.runTimer()
     },
-    damage(damage) {
+    damage (damage) {
       this.health = healthDefault - damage
     },
-    health(health) {
+    health (health) {
       if (health <= 0) {
         this.setIsGameFinished(true)
       }
-    },
+    }
   },
   computed: {
     ...mapGetters('game', [
@@ -60,18 +65,18 @@ export default {
       'letters',
       'killedLetters',
       'damage',
-      'timeLeft',
-    ]),
+      'timeLeft'
+    ])
   },
   methods: {
     ...mapMutations('game', [
       'setIsGameFinished',
       'setIsLeaderBoardOpened',
       'setScore',
-      'decreaseTimeLeft',
+      'decreaseTimeLeft'
     ]),
 
-    runTimer() {
+    runTimer () {
       intervalTime = setInterval(() => {
         this.decreaseTimeLeft()
 
@@ -82,10 +87,10 @@ export default {
       }, 1000)
     },
 
-    openLeaderBoard() {
+    openLeaderBoard () {
       this.setIsLeaderBoardOpened(true)
     }
-  },
+  }
 }
 </script>
 

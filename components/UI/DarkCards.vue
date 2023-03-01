@@ -1,8 +1,11 @@
 <template>
   <div class="poker-hand">
     <div class="poker-hand__top">
-      <div class="poker-hand__top__title">Title</div>
-      <div class="poker-hand__top__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      <div class="poker-hand__top__title">
+        Title
+      </div>
+      <div class="poker-hand__top__desc">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         Ab at commodi exercitationem
         minus modi nihil odio quasi saepe sunt suscipit. Aliquid, at dicta illo labore odio
         perspiciatis repudiandae similique voluptas. Alias, cumque excepturi exercitationem in
@@ -14,7 +17,8 @@
     <div class="poker-hand__bottom">
       <div
         v-for="n in [...Array(4).keys()]"
-        class="poker-hand__column">
+        class="poker-hand__column"
+      >
         <div class="poker-hand__deck">
           <div class="poker-hand__deck__front-card">
             <b>
@@ -33,11 +37,10 @@
             <UIAnimationGradient v-else />
           </div>
         </div>
-        <div class="poker-hand__border"></div>
+        <div class="poker-hand__border" />
       </div>
     </div>
   </div>
-
 </template>
 
 <style lang="scss" scoped>
@@ -54,7 +57,6 @@
     display: grid;
     grid-template-areas: "desc title";
     grid-template-columns: 1fr 1fr;
-
 
     &__title {
       grid-area: title;

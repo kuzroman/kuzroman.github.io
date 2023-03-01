@@ -1,16 +1,16 @@
 <template>
   <div class="page-game">
-    <GameMainGame/>
+    <GameMainGame />
 
-    <div id="stars"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>
+    <div id="stars" />
+    <div id="stars2" />
+    <div id="stars3" />
   </div>
 </template>
 
 <script setup lang="ts">
 useHead({
-  title: 'In game',
+  title: 'In game'
 })
 </script>
 

@@ -1,9 +1,9 @@
 <template>
   <div
+    ref="shooter"
     class="robot-shooter"
     :class="state"
     :style="left"
-    ref="shooter"
   />
 </template>
 
@@ -15,30 +15,30 @@ import CustomAudio from '../abstractions/Audio'
 const store = useStore()
 let audioDamage
 const props = defineProps({
-  position: {type: Object, default: {}},
+  position: { type: Object, default: {} }
 })
 
-const isDamage = ref(false);
-const shooter = ref(null);
-const isGameReady = computed(() => store.getters['game/isGameReady']);
-const isGameFinished = computed(() => store.getters['game/isGameFinished']);
-const damage = computed(() => store.getters['game/damage']);
+const isDamage = ref(false)
+const shooter = ref(null)
+const isGameReady = computed(() => store.getters['game/isGameReady'])
+const isGameFinished = computed(() => store.getters['game/isGameFinished'])
+const damage = computed(() => store.getters['game/damage'])
 const left = computed(() => {
-  return {left: props.position.x1 + 'px'}
-});
+  return { left: props.position.x1 + 'px' }
+})
 const state = computed(() => {
   return {
     active: isGameReady.value && !isGameFinished.value,
-    damage: isDamage.value,
+    damage: isDamage.value
   }
-});
+})
 
 const showDamage = () => {
   isDamage.value = true
   setTimeout(() => {
     isDamage.value = false
   }, 300)
-};
+}
 
 watch(() => damage.value, () => {
   showDamage()

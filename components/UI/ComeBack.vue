@@ -1,20 +1,20 @@
 <template>
   <div class="ui-come-back">
-    <i></i>
-    <i></i>
-    <i></i>
-    <i></i>
-    <i></i>
-    <i></i>
-    <i></i>
-    <i></i>
-    <i></i>
+    <i />
+    <i />
+    <i />
+    <i />
+    <i />
+    <i />
+    <i />
+    <i />
+    <i />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'UIComeBack',
+  name: 'UIComeBack'
 }
 </script>
 

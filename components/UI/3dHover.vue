@@ -1,6 +1,6 @@
 <template>
   <div class="flexible">
-    <article class="flexible__card" ref="cardEl">
+    <article ref="cardEl" class="flexible__card">
       <div class="flexible__content">
         <slot name="default">
           <h2>Title</h2>
@@ -14,39 +14,37 @@
 </template>
 
 <script setup>
-const THRESHOLD = 15;
-const cardEl = ref();
+const THRESHOLD = 15
+const cardEl = ref()
 
 onMounted(() => {
-  if (window.innerWidth < 480) return;
-  const motionMatchMedia = window.matchMedia('(prefers-reduced-motion)');
+  if (window.innerWidth < 480) { return }
+  const motionMatchMedia = window.matchMedia('(prefers-reduced-motion)')
   if (!motionMatchMedia.matches) {
-    cardEl.value.addEventListener('mousemove', handleHover);
-    cardEl.value.addEventListener('mouseleave', resetStyles);
+    cardEl.value.addEventListener('mousemove', handleHover)
+    cardEl.value.addEventListener('mouseleave', resetStyles)
   }
 })
 
 onBeforeUnmount(() => {
-  cardEl.value.removeEventListener('mousemove', handleHover);
-  cardEl.value.removeEventListener('mouseleave', resetStyles);
+  cardEl.value.removeEventListener('mousemove', handleHover)
+  cardEl.value.removeEventListener('mouseleave', resetStyles)
 })
 
-function handleHover(e) {
-  const { clientX, clientY, currentTarget } = e;
-  const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
+function handleHover (e) {
+  const { clientX, clientY, currentTarget } = e
+  const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget
 
-  const horizontal = (clientX - offsetLeft) / clientWidth;
-  const vertical = (clientY - offsetTop) / clientHeight;
-  const rotateX = (THRESHOLD / 2 - horizontal * THRESHOLD).toFixed(2);
-  const rotateY = (vertical * THRESHOLD - THRESHOLD / 2).toFixed(2);
+  const horizontal = (clientX - offsetLeft) / clientWidth
+  const vertical = (clientY - offsetTop) / clientHeight
+  const rotateX = (THRESHOLD / 2 - horizontal * THRESHOLD).toFixed(2)
+  const rotateY = (vertical * THRESHOLD - THRESHOLD / 2).toFixed(2)
 
-  console.log(rotateY, rotateX);
-
-  cardEl.value.style.transform = `perspective(${clientWidth}px) rotateX(${-rotateY}deg) rotateY(${-rotateX}deg) scale3d(1, 1, 1)`;
+  cardEl.value.style.transform = `perspective(${clientWidth}px) rotateX(${-rotateY}deg) rotateY(${-rotateX}deg) scale3d(1, 1, 1)`
 }
 
-function resetStyles(e) {
-  cardEl.value.style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
+function resetStyles (e) {
+  cardEl.value.style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`
 }
 </script>
 

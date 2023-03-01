@@ -1,8 +1,9 @@
 <template>
-  <div class="gradient-animation"></div>
+  <div class="gradient-animation" />
 </template>
 
 <style lang="scss" scoped>
+
 .gradient-animation {
   width: 100%;
   height: 100vh;

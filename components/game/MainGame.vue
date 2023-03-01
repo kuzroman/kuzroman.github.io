@@ -1,12 +1,12 @@
 <template>
   <div
+    :key="mainGameKey"
     class="main-game"
     @click="makeShot"
     @mousemove="moveShooter"
-    :key="mainGameKey"
   >
     <GameCanvasLetters
-      :isDebug="isDebug"
+      :is-debug="isDebug"
       :shooter="shooterPosition"
       @canvas-letters-damage="increaseDamage"
     />
@@ -18,62 +18,62 @@
       />
     </Transition>
 
-    <GameStatusBar/>
-    <GameRobotShooter :position="shooterPosition" ref="shooter"/>
-    <GameScoreBoard/>
+    <GameStatusBar />
+    <GameRobotShooter ref="shooter" :position="shooterPosition" />
+    <GameScoreBoard />
     <!--    <GameLeaderBoard />-->
   </div>
 </template>
 
 <script setup>
-import {useStore} from 'vuex'
+import { useStore } from 'vuex'
 import CustomAudio from '../abstractions/Audio'
 import shootMp3 from '../../assets/media/shoot.mp3'
 import backgroundGame from '../../assets/media/backgroundGame.mp3'
 
 const store = useStore()
 let audioShot, audioBg
-const isDebug = ref(false);
-const shooterPosition = ref({});
-const mainGameKey = ref(0);
-const shooter = ref(null);
+const isDebug = ref(false)
+const shooterPosition = ref({})
+const mainGameKey = ref(0)
+const shooter = ref(null)
 
-const isGameFinished = computed(() => store.getters['game/isGameFinished']);
-const isGameReady = computed(() => store.getters['game/isGameReady']);
-const isPageAnimationFinished = computed(() => store.getters['app/isPageAnimationFinished']);
+const isGameFinished = computed(() => store.getters['game/isGameFinished'])
+const isGameReady = computed(() => store.getters['game/isGameReady'])
+const isPageAnimationFinished = computed(() => store.getters['app/isPageAnimationFinished'])
 
-const setIsGameStart = (bool) => store.commit('game/setIsGameStart', bool);
-const resetStateGame = () => store.commit('game/resetStateGame');
-const increaseShoots = () => store.commit('game/increaseShoots');
-const increaseDamage = () => store.commit('game/increaseDamage');
-const resetStateLeaderBoard = () => store.commit('leaderBoard/resetStateLeaderBoard');
+const setIsGameStart = bool => store.commit('game/setIsGameStart', bool)
+const resetStateGame = () => store.commit('game/resetStateGame')
+const increaseShoots = () => store.commit('game/increaseShoots')
+const increaseDamage = () => store.commit('game/increaseDamage')
+const resetStateLeaderBoard = () => store.commit('leaderBoard/resetStateLeaderBoard')
 
 const forceUpdateComponent = () => {
   mainGameKey.value += 1
-};
+}
 const restartGame = () => {
   resetStateLeaderBoard()
   resetStateGame()
   forceUpdateComponent()
   audioBg.destroy()
   audioShot.destroy()
-};
+}
 
 const makeShot = () => {
-  if (!isGameReady.value || isGameFinished.value) return
+  if (!isGameReady.value || isGameFinished.value) { return }
   setIsGameStart(true)
   increaseShoots()
   audioShot.replay()
-};
+}
 const moveShooter = (ev) => {
-  if (!shooter?.value?.shooter) return
+  if (!shooter?.value?.shooter) { return }
   const shooterEl = shooter.value.shooter
   shooterPosition.value = {
     x1: ev.clientX,
     y1: shooterEl.getBoundingClientRect().top,
-    x2: ev.clientX + shooterEl.offsetWidth,
+    x2: ev.clientX + shooterEl.offsetWidth
   }
-};
+}
 const restartGameByResizeBody = (ev) => {
   let timeId
   window.addEventListener('resize', () => {
@@ -82,7 +82,7 @@ const restartGameByResizeBody = (ev) => {
       restartGame()
     }, 300)
   })
-};
+}
 
 onMounted(() => {
   audioShot = new CustomAudio(shootMp3, 0.3)

@@ -6,10 +6,10 @@
   >
     <nav>
       <UILink2Move
-          v-for="route in navigation"
-          :key="route?.name"
-          :text="route?.name === 'index' ? 'game' : route?.name"
-          @click.native="toPage({ route })"
+        v-for="route in navigation"
+        :key="route?.name"
+        :text="route?.name === 'index' ? 'game' : route?.name"
+        @click="toPage({ route })"
       />
     </nav>
   </div>
@@ -17,16 +17,16 @@
 
 <script setup lang="ts">
 import { useStore } from 'vuex'
-import {Router} from 'vue-router';
+import { Router } from 'vue-router'
 
-const store = useStore();
-const isMenuNavigationOpened = computed(() => store.getters['app/isMenuNavigationOpened']);
-const navigation = computed(() => store.getters['app/navigation']);
-const setIsMenuNavigation = (bool: boolean) => store.commit('app/setIsMenuNavigation', bool);
+const store = useStore()
+const isMenuNavigationOpened = computed(() => store.getters['app/isMenuNavigationOpened'])
+const navigation = computed(() => store.getters['app/navigation'])
+const setIsMenuNavigation = (bool: boolean) => store.commit('app/setIsMenuNavigation', bool)
 
 const toPage = (route: Router) => {
   store.commit('app/toPage', route)
-};
+}
 </script>
 
 <style lang="scss">
@@ -41,8 +41,6 @@ const toPage = (route: Router) => {
   transition: transform 0.4s;
   border-radius: 0 0 0 8px;
   user-select: none;
-  //background-image: radial-gradient($color-7 1px, transparent 0);
-  //background-size: 4px 4px;
 
   &.active {
     transform: translateX(0);

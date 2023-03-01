@@ -6,7 +6,7 @@
     @mouseleave="removeActive"
   >
     <span>{{ text }}</span>
-    <em></em>
+    <em />
   </div>
 </template>
 
@@ -14,20 +14,20 @@
 const props = defineProps({
   direction: { type: String, default: 'left' },
   text: { type: String, default: 'someText' },
-  fadeOut: { type: Boolean, default: false },
+  fadeOut: { type: Boolean, default: false }
 })
 
-const isActive = ref(false);
+const isActive = ref(false)
 
 const classList = computed(() => {
-  let active = { active: isActive.value }
-  let direction = { [props.direction]: true }
-  let fadeOut = { fadeOut: props.fadeOut }
+  const active = { active: isActive.value }
+  const direction = { [props.direction]: true }
+  const fadeOut = { fadeOut: props.fadeOut }
   return { ...active, ...direction, ...fadeOut }
-});
+})
 
-const addActive = () => isActive.value = true;
-const removeActive = () => isActive.value = false;
+const addActive = () => isActive.value = true
+const removeActive = () => isActive.value = false
 </script>
 
 <style lang="scss">

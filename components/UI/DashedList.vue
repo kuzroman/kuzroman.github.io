@@ -1,10 +1,11 @@
 <template>
   <div class="ui-dashed-list">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
 <style lang="scss">
+
 @import './_props.scss';
 
 .ui-dashed-list {

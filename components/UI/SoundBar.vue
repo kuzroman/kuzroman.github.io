@@ -1,12 +1,12 @@
 <template>
   <div class="ui-sound-bar" :class="{ active: isActive }">
-    <i v-for="i in '1234567'" :key="i"></i>
+    <i v-for="i in '1234567'" :key="i" />
   </div>
 </template>
 
 <script setup>
 defineProps({
-  isActive: { type: Boolean, default: false },
+  isActive: { type: Boolean, default: false }
 })
 
 </script>

@@ -1,13 +1,13 @@
 <template>
   <div
     v-if="sign !== '|'"
+    ref="letterEl"
     class="letter-tag"
     :class="styles"
-    ref="letterEl"
   >
     {{ sign }}
   </div>
-  <br v-else />
+  <br v-else>
 </template>
 
 <script setup>
@@ -16,32 +16,32 @@ const emit = defineEmits(['letter-tag--show'])
 const props = defineProps({
   sign: { type: String, default: ' ' },
   isKilled: { type: Boolean, default: false },
-  isShow: { type: Boolean, default: false },
+  isShow: { type: Boolean, default: false }
 })
 
-const letterEl = ref(null);
-const x1 = ref(null);
-const x2 = ref(null);
-const y1 = ref(null);
-const y2 = ref(null);
-const id = ref(getCurrentInstance().vnode.key);
+const letterEl = ref(null)
+const x1 = ref(null)
+const x2 = ref(null)
+const y1 = ref(null)
+const y2 = ref(null)
+const id = ref(getCurrentInstance().vnode.key)
 
 const styles = computed(() => {
   return [{ show: props.isShow }, { hide: props.isKilled }]
-});
+})
 
 const updateData = () => {
-  if (!letterEl.value) return;
-  let rect = letterEl.value.getBoundingClientRect()
+  if (!letterEl.value) { return }
+  const rect = letterEl.value.getBoundingClientRect()
   x1.value = Math.ceil(rect.left)
   y1.value = Math.ceil(rect.top)
   x2.value = Math.ceil(rect.left + letterEl.value.clientWidth)
   y2.value = Math.ceil(rect.top + letterEl.value.clientHeight)
-};
+}
 
 watch(() => props.isShow, () => {
   updateData()
-  if (!x1.value || !y1.value) return
+  if (!x1.value || !y1.value) { return }
   emit('letter-tag--show', {
     x1: x1.value,
     x2: x2.value,

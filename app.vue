@@ -13,17 +13,17 @@
           @after-enter="onAfterEnter"
           @before-leave="onBeforeLeave"
         >
-            <component :is="Component" class="view pt-28" :class="routeStyles"  />
+          <component :is="Component" class="view pt-28" :class="routeStyles" />
         </transition>
       </router-view>
 
-      <div class="content-arrow left" v-if="showArrow" :class="{ hide: isGameReady }">
+      <div v-if="showArrow" class="content-arrow left" :class="{ hide: isGameReady }">
         <a @click="toPage({ route: prevRoute, direction: 'to-left' })">
           <PageControl direction="left" :text="prevRoute?.name" />
         </a>
       </div>
 
-      <div class="content-arrow right" v-if="showArrow" :class="{ hide: isGameReady }">
+      <div v-if="showArrow" class="content-arrow right" :class="{ hide: isGameReady }">
         <a @click="toPage({ route: nextRoute, direction: 'to-right' })">
           <PageControl direction="right" :text="nextRoute?.name" />
         </a>
@@ -41,27 +41,27 @@ const router = useRouter()
 
 store.commit('app/setRoutes', router)
 
-const transitionDirection = computed(() => store.getters['app/transitionDirection']);
-const isPageLoaderHide = computed(() => store.getters['app/isPageLoaderHide']);
-const navigation = computed(() => store.getters['app/navigation']);
-const isGameReady = computed(() => store.getters['game/isGameReady']);
-const routesLen = computed(() => navigation.value.length);
+const transitionDirection = computed(() => store.getters['app/transitionDirection'])
+const isPageLoaderHide = computed(() => store.getters['app/isPageLoaderHide'])
+const navigation = computed(() => store.getters['app/navigation'])
+const isGameReady = computed(() => store.getters['game/isGameReady'])
+const routesLen = computed(() => navigation.value.length)
 
-const toPage = (page) => store.commit('app/toPage', page)
+const toPage = page => store.commit('app/toPage', page)
 
-const onBeforeLeave = (() => {
+const onBeforeLeave = () => {
   store.commit('app/setIsPageAnimationFinished', false)
-})
-const onAfterEnter = (() => {
+}
+const onAfterEnter = () => {
   store.commit('app/setIsPageAnimationFinished', true)
-})
+}
 
 onMounted(() => {
-  runGoogleAnal();
+  runGoogleAnal()
 
-  let navigation = []
-  router.options.routes.forEach(route => {
-    if (route.name.indexOf('-id') === -1) navigation.push(route)
+  const navigation = []
+  router.options.routes.forEach((route) => {
+    if (!route.name.includes('-id')) { navigation.push(route) }
   })
   store.commit('app/setNavigation', navigation)
 
@@ -75,47 +75,47 @@ onUnmounted(() => {
 
 const resize = () => {
   store.commit('app/isMobile', mobileCheck())
-};
+}
 
 const mobileCheck = () => {
-  return window.innerWidth < 480;
-};
+  return window.innerWidth < 480
+}
 
 const runGoogleAnal = () => {
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || []
 
-  function gtag() {
-    dataLayer.push(arguments);
+  function gtag () {
+    dataLayer.push(arguments)
   }
 
-  gtag('js', new Date());
-  gtag('config', 'G-XWDSRJ4TEC');
-};
+  gtag('js', new Date())
+  gtag('config', 'G-XWDSRJ4TEC')
+}
 
 const routeStyles = computed(() => {
-  let styles = []
+  const styles = []
   styles.push(transitionDirection.value)
   return styles
-});
+})
 
-const currentPath = computed(() => route.path);
+const currentPath = computed(() => route.path)
 
 const currentRouteIndex = computed(() => {
   return navigation.value.findIndex((x) => {
     return x.path === currentPath.value
   })
 })
-const showArrow = computed(() => !route.params.id);
+const showArrow = computed(() => !route.params.id)
 const prevRoute = computed(() => {
   return currentRouteIndex.value === 0
-      ? navigation.value[routesLen.value - 1]
-      : navigation.value[currentRouteIndex.value - 1]
-});
+    ? navigation.value[routesLen.value - 1]
+    : navigation.value[currentRouteIndex.value - 1]
+})
 const nextRoute = computed(() => {
   return currentRouteIndex.value === routesLen.value - 1
-      ? navigation.value[0]
-      : navigation.value[currentRouteIndex.value + 1]
-});
+    ? navigation.value[0]
+    : navigation.value[currentRouteIndex.value + 1]
+})
 </script>
 
 <style lang="scss">

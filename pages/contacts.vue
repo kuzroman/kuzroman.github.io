@@ -1,23 +1,26 @@
 <template>
   <div class="contacts">
-        <h1 class="h1">Contacts</h1>
-        <div class="text pt1 pb1">
-          <p>Currently I'm located in Russia, Moscow (GMT+3)</p>
-          <p>Wanna talk about a project or offer me job?</p>
-          <p>Welcome
-            <a class="email" href="mailto:kuzroman@list.ru">kuzroman@list.ru</a>
-          </p>
-        </div>
-        <div class="social">
-          <a class="linkedin" href="https://www.linkedin.com/in/kuzroman" target="_blank">linkedin</a>
-          <a class="github" href="https://github.com/kuzroman" target="_blank">github</a>
-        </div>
+    <h1 class="h1">
+      Contacts
+    </h1>
+    <div class="text pt1 pb1">
+      <p>Currently I'm located in Russia, Moscow (GMT+3)</p>
+      <p>Wanna talk about a project or offer me job?</p>
+      <p>
+        Welcome
+        <a class="email" href="mailto:kuzroman@list.ru">kuzroman@list.ru</a>
+      </p>
+    </div>
+    <div class="social">
+      <a class="linkedin" href="https://www.linkedin.com/in/kuzroman" target="_blank">linkedin</a>
+      <a class="github" href="https://github.com/kuzroman" target="_blank">github</a>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 useHead({
-  title: 'my contacts',
+  title: 'my contacts'
 })
 </script>
 

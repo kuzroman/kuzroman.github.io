@@ -6,9 +6,9 @@
 
 <script setup>
 defineProps({
-  text: {type: String, default: 'someText'},
-  href: {type: String, default: null},
-  target: {type: String, default: null},
+  text: { type: String, default: 'someText' },
+  href: { type: String, default: null },
+  target: { type: String, default: null }
 })
 </script>
 

@@ -9,7 +9,9 @@
     <div>isGameStart {{ isGameStart }}</div>
     <div>isGameFinished {{ isGameFinished }}</div>
 
-    <div class="link">Click for Fire!</div>
+    <div class="link">
+      Click for Fire!
+    </div>
   </div>
 </template>
 
@@ -19,19 +21,19 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'ClickForFire',
   computed: {
-    ...mapGetters('game', ['isSeedsFall', 'isGameReady', 'isGameFinished', 'isGameStart']),
+    ...mapGetters('game', ['isSeedsFall', 'isGameReady', 'isGameFinished', 'isGameStart'])
 
   },
   methods: {
     ...mapMutations('game', ['setIsGameReady']),
 
-    handleClick() {
+    handleClick () {
 
-    },
+    }
   },
-  mounted() {
+  mounted () {
 
-  },
+  }
 }
 </script>
 

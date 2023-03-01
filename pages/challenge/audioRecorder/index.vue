@@ -1,21 +1,26 @@
 <template>
   <div>
     <template v-if="!isAllowed">
-      <p class="my-5">Click Start and "Allow" your microphone Permission!</p>
-      <button @click="handlerStart" type="primary">Start</button>
+      <p class="my-5">
+        Click Start and "Allow" your microphone Permission!
+      </p>
+      <button type="primary" @click="handlerStart">
+        Start
+      </button>
     </template>
     <template v-else>
       <button
+
         v-if="isRecording"
-        @click="handlerStop"
         type="primary"
+        @click="handlerStop"
       >
         Stop and play it
       </button>
       <button
         v-else
-        @click="handlerRecord"
         type="primary"
+        @click="handlerRecord"
       >
         Record your voice
       </button>
@@ -24,19 +29,17 @@
     <div v-if="audioChunks.length">
       <audio
         v-for="(chunk, i) in audioChunks"
+        :key="i"
         :src="chunkToUrl(chunk)"
         controls
-        :key="i"
         class="my-5 h-10 audio"
-      >
-      </audio>
+      />
     </div>
-
   </div>
 </template>
 
 <script setup lang="ts">
-import { useStore } from 'vuex';
+import { useStore } from 'vuex'
 const store = useStore()
 store.commit('app/setIsPageLoaderHide', true)
 
@@ -45,68 +48,68 @@ enum MediaRecorderState {
   RECORDING = 'recording',
 }
 
-let audioChunks = ref<Blob[]>([]);
-let mediaRecorder: MediaRecorder | null = null;
-const isAllowed = ref(false);
-const recorderState = ref(MediaRecorderState.INACTIVE);
+const audioChunks = ref<Blob[]>([])
+let mediaRecorder: MediaRecorder | null = null
+const isAllowed = ref(false)
+const recorderState = ref(MediaRecorderState.INACTIVE)
 
 const isRecording = computed(() => {
-  return recorderState.value === MediaRecorderState.RECORDING;
-});
+  return recorderState.value === MediaRecorderState.RECORDING
+})
 
 const chunkToUrl = (chunk: Blob) => {
-  const audioBlob = new Blob([chunk]);
-  return URL.createObjectURL(audioBlob);
-};
+  const audioBlob = new Blob([chunk])
+  return URL.createObjectURL(audioBlob)
+}
 
 const handlerStart = () => {
-  isAllowed.value = true;
+  isAllowed.value = true
   navigator.mediaDevices.getUserMedia({ audio: true })
     .then((stream) => {
-      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder = new MediaRecorder(stream)
 
-      mediaRecorder.addEventListener('dataavailable', pushChunk);
-      mediaRecorder.addEventListener('stop', playLastChunk);
+      mediaRecorder.addEventListener('dataavailable', pushChunk)
+      mediaRecorder.addEventListener('stop', playLastChunk)
     })
-};
+}
 
 const killMedia = () => {
-  if (!mediaRecorder) return
+  if (!mediaRecorder) { return }
   mediaRecorder.removeEventListener('dataavailable', pushChunk)
   mediaRecorder.removeEventListener('stop', playLastChunk)
   mediaRecorder = null
-};
+}
 
 const pushChunk = (event: BlobEvent) => {
-  audioChunks.value.push(event.data);
-};
+  audioChunks.value.push(event.data)
+}
 
 const handlerRecord = () => {
-  if (!mediaRecorder) return
+  if (!mediaRecorder) { return }
   if (mediaRecorder.state === MediaRecorderState.INACTIVE) {
     mediaRecorder.start()
     recorderState.value = MediaRecorderState.RECORDING
   }
-};
+}
 
 const handlerStop = () => {
-  if (!mediaRecorder) return
+  if (!mediaRecorder) { return }
   if (mediaRecorder.state === MediaRecorderState.RECORDING) {
     mediaRecorder.stop()
     recorderState.value = MediaRecorderState.INACTIVE
   }
-};
+}
 
 const playLastChunk = () => {
   const audioList = document.querySelectorAll('audio')
-  let lastAudio = audioList[audioList.length- 1];
+  const lastAudio = audioList[audioList.length - 1]
   lastAudio.play()
 
   // const audioBlob = new Blob([audioChunks.value[audioChunks.value.length - 1]]);
   // let audioUrl = URL.createObjectURL(audioBlob);
   // const audio = new Audio(audioUrl);
   // audio.play();
-};
+}
 
 onUnmounted(killMedia)
 

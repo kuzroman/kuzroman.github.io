@@ -1,7 +1,9 @@
 <template>
   <div class="score-board" :class="{ active: isGameFinished || isDebug }">
     <h3>{{ score }} points</h3>
-    <div class="hooray">Hooray!</div>
+    <div class="hooray">
+      Hooray!
+    </div>
     <!-- <p>You've just beaten your own highscore 🎉🎉🎉</p> -->
     <DashedList>
       <div class="result">
@@ -26,11 +28,11 @@
       </div>
     </DashedList>
 
-<!--    <UIButton-->
-<!--        text="show leaderboard"-->
-<!--        class="btn-leaderboard"-->
-<!--        @click.native="openLeaderBoard"-->
-<!--    />-->
+    <!--    <UIButton-->
+    <!--        text="show leaderboard"-->
+    <!--        class="btn-leaderboard"-->
+    <!--        @click.native="openLeaderBoard"-->
+    <!--    />-->
   </div>
 </template>
 
@@ -43,15 +45,15 @@ export default {
   name: 'ScoreBoard',
   components: { UIButton, DashedList },
 
-  data() {
+  data () {
     return {
-      isDebug: false,
+      isDebug: false
     }
   },
   watch: {
-    score(score) {
+    score (score) {
       this.setScore(score)
-    },
+    }
   },
   computed: {
     ...mapGetters('game', [
@@ -62,13 +64,13 @@ export default {
       'letters',
       'killedLetters',
       'aliveLetters',
-      'score',
+      'score'
     ]),
 
-    score() {
+    score () {
       let aliveLettersInner = this.aliveLetters.length
-      if (!this.killedLetters.length) return 0
-      if (!aliveLettersInner) aliveLettersInner = 1
+      if (!this.killedLetters.length) { return 0 }
+      if (!aliveLettersInner) { aliveLettersInner = 1 }
 
       const mainScore = Math.ceil(
         (this.killedLetters.length * 10000) /
@@ -76,15 +78,15 @@ export default {
       )
       const bonus = this.timeLeft * 10 - this.damage * 5
       return mainScore + bonus
-    },
+    }
   },
   methods: {
-    ...mapMutations('game', ['setScore','setIsLeaderBoardOpened']),
+    ...mapMutations('game', ['setScore', 'setIsLeaderBoardOpened']),
 
-    openLeaderBoard() {
+    openLeaderBoard () {
       this.setIsLeaderBoardOpened(true)
-    },
-  },
+    }
+  }
 }
 </script>
 

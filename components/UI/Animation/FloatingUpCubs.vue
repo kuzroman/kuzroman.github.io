@@ -1,7 +1,7 @@
 <template>
   <div class="floating-up-cubs">
     <ul class="circles">
-      <li v-for="n in Array(10)"></li>
+      <li v-for="n in Array(10)" />
     </ul>
   </div>
 </template>

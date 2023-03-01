@@ -1,16 +1,17 @@
 <template>
   <div class="leader-board" :class="state">
-    <h2 class="title">Leader Board</h2>
+    <h2 class="title">
+      Leader Board
+    </h2>
 
     <DashedList class="dashed-list">
       <template v-for="(leader, i) in top10Leaders" :key="i">
-
         <LeaderBoardForm
           v-if="i === yourRate && isResultInTop"
           @leader-board-form--save-result="getLeaders"
         />
 
-        <div class="result" >
+        <div class="result">
           <div>
             <span>{{ leader.rate + 1 }}</span>
             <span>{{ leader.user }}</span>
@@ -20,9 +21,8 @@
       </template>
     </DashedList>
 
-    <DashedList class="dashed-list" v-if="!isResultInTop">
+    <DashedList v-if="!isResultInTop" class="dashed-list">
       <template v-for="(leader, i) in betweenLeaders" :key="i">
-
         <LeaderBoardForm
           v-if="i === 1"
           @leader-board-form--save-result="getLeaders"
@@ -35,21 +35,20 @@
           </div>
           <div>{{ leader.score }} points</div>
         </div>
-
       </template>
     </DashedList>
 
     <LeaderBoardForm
-        v-if="getSortLeaders.length === yourRate"
-        @leader-board-form--save-result="getLeaders"
+      v-if="getSortLeaders.length === yourRate"
+      @leader-board-form--save-result="getLeaders"
     />
 
-    <CloseSpinner class="close-spinner" @click.native="closeLeaderBoard"/>
+    <CloseSpinner class="close-spinner" @click.native="closeLeaderBoard" />
   </div>
 </template>
 
 <script>
-import {mapActions, mapMutations, mapGetters} from 'vuex'
+import { mapActions, mapMutations, mapGetters } from 'vuex'
 import DashedList from '~/components/UI/DashedList.vue'
 import CloseSpinner from '~/components/UI/CloseSpinner.vue'
 import LeaderBoardForm from '~/components/game/LeaderBoardForm.vue'
@@ -57,49 +56,49 @@ import UIButton from '~/components/UI/Button.vue'
 
 export default {
   name: 'LeaderBoard',
-  components: {DashedList, CloseSpinner, UIButton, LeaderBoardForm},
+  components: { DashedList, CloseSpinner, UIButton, LeaderBoardForm },
 
-  data() {
+  data () {
     return {
-      isDebug: false,
+      isDebug: false
     }
   },
   computed: {
     ...mapGetters('leaderBoard', ['getSortLeaders']),
     ...mapGetters('game', ['isLeaderBoardOpened', 'score']),
 
-    top10Leaders() {
+    top10Leaders () {
       return this.getSortLeaders.slice(0, 10)
     },
 
-    state() {
+    state () {
       return this.isLeaderBoardOpened || this.isDebug ? 'active' : 'hide'
     },
 
-    yourRate() {
+    yourRate () {
       const rate = this.getSortLeaders.findIndex(x => x.score < this.score)
-      return -1 < rate ? rate : this.getSortLeaders.length
+      return rate > -1 ? rate : this.getSortLeaders.length
     },
 
-    isResultInTop() {
+    isResultInTop () {
       return this.yourRate < 10
     },
 
-    betweenLeaders() {
+    betweenLeaders () {
       return this.getSortLeaders.slice(this.yourRate - 1, this.yourRate + 1)
-    },
+    }
   },
   methods: {
     ...mapActions('leaderBoard', ['getLeaders']),
     ...mapMutations('game', ['setIsLeaderBoardOpened']),
 
-    closeLeaderBoard() {
+    closeLeaderBoard () {
       this.setIsLeaderBoardOpened(false)
-    },
+    }
   },
-  mounted() {
+  mounted () {
     this.getLeaders()
-  },
+  }
 }
 </script>
 

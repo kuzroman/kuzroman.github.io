@@ -26,46 +26,46 @@ export default {
     shots: defaultShots,
     damage: defaultDamage,
     timeLeft: defaultTimeLeft,
-    barrier: null,
+    barrier: null
   },
   getters: {
-    isSeedsFall: (state) => state.isSeedsFall,
-    isGameReady: (state) => state.isGameReady,
-    isGameStart: (state) => state.isGameStart,
-    isGameFinished: (state) => state.isGameFinished,
-    isLeaderBoardOpened: (state) => state.isLeaderBoardOpened,
-    score: (state) => state.score,
-    letters: (state) => state.letters,
-    killedLetters: (state) =>
-        state.letters.filter((x) => x.isKilled && !x.isService),
-    aliveLetters: (state) =>
-        state.letters.filter((x) => !x.isKilled && !x.isService),
-    shots: (state) => state.shots,
-    damage: (state) => state.damage,
-    timeLeft: (state) => state.timeLeft,
-    barrier: (state) => state.barrier,
+    isSeedsFall: state => state.isSeedsFall,
+    isGameReady: state => state.isGameReady,
+    isGameStart: state => state.isGameStart,
+    isGameFinished: state => state.isGameFinished,
+    isLeaderBoardOpened: state => state.isLeaderBoardOpened,
+    score: state => state.score,
+    letters: state => state.letters,
+    killedLetters: state =>
+      state.letters.filter(x => x.isKilled && !x.isService),
+    aliveLetters: state =>
+      state.letters.filter(x => !x.isKilled && !x.isService),
+    shots: state => state.shots,
+    damage: state => state.damage,
+    timeLeft: state => state.timeLeft,
+    barrier: state => state.barrier
   },
   mutations: {
-    setBarrier(state, data) {
+    setBarrier (state, data) {
       state.barrier = data
     },
-    setIsSeedsFall(state, bool) {
+    setIsSeedsFall (state, bool) {
       state.isSeedsFall = bool
     },
-    setIsGameReady(state, bool) {
+    setIsGameReady (state, bool) {
       state.isGameReady = bool
     },
-    setIsGameStart(state, bool) {
+    setIsGameStart (state, bool) {
       state.isGameStart = bool
     },
-    setIsGameFinished(state, bool) {
+    setIsGameFinished (state, bool) {
       state.isGameFinished = bool
       state.isGameReady = false
     },
-    setIsLeaderBoardOpened(state, bool) {
+    setIsLeaderBoardOpened (state, bool) {
       state.isLeaderBoardOpened = bool
     },
-    resetStateGame(state) {
+    resetStateGame (state) {
       state.isSeedsFall = defaultIsSeedsFall
       state.isGameReady = defaultIsGameReady
       state.isGameStart = defaultIsGameStart
@@ -76,34 +76,33 @@ export default {
       state.damage = defaultDamage
       state.timeLeft = defaultTimeLeft
     },
-    setScore(state, num) {
+    setScore (state, num) {
       state.score = num
     },
-    setLetters(state, collection) {
+    setLetters (state, collection) {
       state.letters = collection
     },
-    showLetter(state, letters) {
+    showLetter (state, letters) {
       state.letters[letters.id].isShow = true
     },
-    killLetter(state, letters) {
+    killLetter (state, letters) {
       state.letters[letters.id].isKilled = true
     },
-    updateLetters(state, letter) {
+    updateLetters (state, letter) {
       state.letters[letter.id] = letter
       // vue.set(state.letters, letter.id, letter)
     },
-    increaseShoots(state) {
+    increaseShoots (state) {
       state.shots += 1
     },
-    increaseDamage(state) {
+    increaseDamage (state) {
       state.damage += 2
     },
-    decreaseTimeLeft(state) {
+    decreaseTimeLeft (state) {
       state.timeLeft -= 1
-    },
-  },
+    }
+  }
 }
-
 
 // import Vue from 'vue'
 //
@@ -150,55 +149,55 @@ export default {
 // }
 
 // export const mutations = {
-  // setIsSeedsFall(state, bool) {
-  //   state.isSeedsFall = bool
-  // },
-  // setIsGameReady(state, bool) {
-  //   state.isGameReady = bool
-  // },
-  // setIsGameStart(state, bool) {
-  //   state.isGameStart = bool
-  // },
-  // setIsGameFinished(state, bool) {
-  //   state.isGameFinished = bool
-  //   state.isGameReady = false
-  // },
-  // setIsLeaderBoardOpened(state, bool) {
-  //   state.isLeaderBoardOpened = bool
-  // },
-  // resetStateGame(state) {
-  //   state.isSeedsFall = defaultIsSeedsFall
-  //   state.isGameReady = defaultIsGameReady
-  //   state.isGameStart = defaultIsGameStart
-  //   state.isGameFinished = defaultIsGameFinished
-  //   state.score = defaultScore
-  //   state.letters = [...defaultLetters]
-  //   state.shots = defaultShots
-  //   state.damage = defaultDamage
-  //   state.timeLeft = defaultTimeLeft
-  // },
-  // setScore(state, num) {
-  //   state.score = num
-  // },
-  // setLetters(state, collection) {
-  //   state.letters = collection
-  // },
-  // showLetter(state, letters) {
-  //   state.letters[letters.id].isShow = true
-  // },
-  // killLetter(state, letters) {
-  //   state.letters[letters.id].isKilled = true
-  // },
-  // updateLetters(state, letter) {
-  //   Vue.set(state.letters, letter.id, letter)
-  // },
-  // increaseShoots(state) {
-  //   state.shots += 1
-  // },
-  // increaseDamage(state) {
-  //   state.damage += 2
-  // },
-  // decreaseTimeLeft(state) {
-  //   state.timeLeft -= 1
-  // },
+// setIsSeedsFall(state, bool) {
+//   state.isSeedsFall = bool
+// },
+// setIsGameReady(state, bool) {
+//   state.isGameReady = bool
+// },
+// setIsGameStart(state, bool) {
+//   state.isGameStart = bool
+// },
+// setIsGameFinished(state, bool) {
+//   state.isGameFinished = bool
+//   state.isGameReady = false
+// },
+// setIsLeaderBoardOpened(state, bool) {
+//   state.isLeaderBoardOpened = bool
+// },
+// resetStateGame(state) {
+//   state.isSeedsFall = defaultIsSeedsFall
+//   state.isGameReady = defaultIsGameReady
+//   state.isGameStart = defaultIsGameStart
+//   state.isGameFinished = defaultIsGameFinished
+//   state.score = defaultScore
+//   state.letters = [...defaultLetters]
+//   state.shots = defaultShots
+//   state.damage = defaultDamage
+//   state.timeLeft = defaultTimeLeft
+// },
+// setScore(state, num) {
+//   state.score = num
+// },
+// setLetters(state, collection) {
+//   state.letters = collection
+// },
+// showLetter(state, letters) {
+//   state.letters[letters.id].isShow = true
+// },
+// killLetter(state, letters) {
+//   state.letters[letters.id].isKilled = true
+// },
+// updateLetters(state, letter) {
+//   Vue.set(state.letters, letter.id, letter)
+// },
+// increaseShoots(state) {
+//   state.shots += 1
+// },
+// increaseDamage(state) {
+//   state.damage += 2
+// },
+// decreaseTimeLeft(state) {
+//   state.timeLeft -= 1
+// },
 // }

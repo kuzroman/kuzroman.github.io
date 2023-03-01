@@ -1,6 +1,5 @@
 <template>
   <div class="scroll-y">
-
     <div>(OSR) Optical character recognition</div>
 
     <div class="images">
@@ -9,26 +8,25 @@
       <div>{{ stringFromImage }}</div>
     </div>
 
-<!--    <input @change="setFile" type="file">-->
-<!--    <button @click="getStringByFile">Get Text</button>-->
+    <!--    <input @change="setFile" type="file">-->
+    <!--    <button @click="getStringByFile">Get Text</button>-->
   </div>
 </template>
 
 <script setup lang="ts">
-import axios from "axios";
-import {useStore} from "vuex"
+import axios from 'axios'
+import { useStore } from 'vuex'
 import { ofetch } from 'ofetch'
 
 const store = useStore()
 store.commit('app/setIsPageLoaderHide', true)
 
 const file = ref()
-const randomMemeUrl = ref('');
-const pathToDownloadedFile = ref('');
-const stringFromImage = ref('');
+const randomMemeUrl = ref('')
+const pathToDownloadedFile = ref('')
+const stringFromImage = ref('')
 
 onMounted(async () => {
-  
   randomMemeUrl.value = await getMemeUrl()
 
   const { data } = await useFetch('/api/getRandomMeme', {
@@ -37,15 +35,15 @@ onMounted(async () => {
   })
   // const value:FileData = data.value
 
-  console.log("data", data);
+  console.log('data', data)
 
   // // now we have no CORS file
   const importImages = import.meta.glob('~/assets/challenge/ImageToText/*.*')
   pathToDownloadedFile.value = `/_nuxt/${data.value.directory}/${data.value.fileName}.${data.value.fileType}`
-  console.log('importImages', importImages);
+  console.log('importImages', importImages)
 
   file.value = await getFileFromUrl(pathToDownloadedFile.value)
-  console.log('file', file.value);
+  console.log('file', file.value)
   await getStringByFile1(file.value)
 })
 
@@ -53,15 +51,15 @@ onUnmounted(() => {
   debugger
 })
 
-async function getFileFromUrl(url: string) {
+async function getFileFromUrl (url: string) {
   // https://preview.redd.it/181ncpyq7eba1.jpg?width=640&crop=smart&auto=webp&s=887203388dc8616909cb224489f1798840ddd8d1
   const fileName = url.split('/').at(-1) as string
 
   // const response = await fetch(url)
   // const data = await response.blob()
-  const blob = await ofetch(url, {responseType: 'blob'})
+  const blob = await ofetch(url, { responseType: 'blob' })
 
-  console.log('fileName', fileName, blob);
+  console.log('fileName', fileName, blob)
 
   return blob
 
@@ -70,20 +68,20 @@ async function getFileFromUrl(url: string) {
   // })
 }
 
-async function getStringByFile1(file: File) {
+async function getStringByFile1 (file: File) {
   // console.log('file', file);
 
-  const formData = new FormData();
-  formData.append('image', file);
+  const formData = new FormData()
+  formData.append('image', file)
 
-  axios.post('https://api.api-ninjas.com/v1/imagetotext', formData,{
+  axios.post('https://api.api-ninjas.com/v1/imagetotext', formData, {
     headers: {
-      "Content-Type": "multipart/form-data",
-      "X-Api-Key": 'NYU1gAiQjDbX5zmq5E16wg==dGQOlldR4D80fX7E',
-    },
+      'Content-Type': 'multipart/form-data',
+      'X-Api-Key': 'NYU1gAiQjDbX5zmq5E16wg==dGQOlldR4D80fX7E'
+    }
   }).then((res) => {
     stringFromImage.value = res.data.map(obj => obj.text).join(' ')
-    console.log('res', res);
+    console.log('res', res)
     // debugger
   }).catch(e => console.error(e))
 }
@@ -97,7 +95,7 @@ const getMemeUrl = async () => {
     })
     .catch(error => console.log(error))
   return url
-};
+}
 
 // async function getStringByFile2(file: File) {
 //

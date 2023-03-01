@@ -1,21 +1,21 @@
 <template>
   <UIComeBack
-      class="come-back"
-      v-if="isPortfolioIDPage"
-      @click.native="comeBack"
+    v-if="isPortfolioIDPage"
+    class="come-back"
+    @click="comeBack"
   />
 </template>
 
 <script setup lang="ts">
-const router = useRouter();
+const router = useRouter()
 
 const isPortfolioIDPage = computed(() => {
   const name = router.currentRoute.value.name as string
-  return name === 'portfolio-id'
-    || name && name.includes('challenge')
-});
+  return name === 'portfolio-id' ||
+    (name && name.includes('challenge'))
+})
 
-const comeBack = () => router.push({path: '/portfolio'});
+const comeBack = () => router.push({ path: '/portfolio' })
 </script>
 
 <style lang="scss">

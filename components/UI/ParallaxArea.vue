@@ -3,8 +3,8 @@
     <div class="left">
       <slot>
         <div
-          class="image"
           v-for="(work, i) in props.images"
+          class="image"
           :style="styleImages(work, i)"
         />
       </slot>
@@ -29,12 +29,12 @@ const styleImages = (work, index) => {
     left: 0,
     transform: `translateY(${isEven ? -150 + topShift : 0 - topShift}px)`
   }
-};
+}
 
 const getBg = (work, name) => {
   const type = name === 'logo' ? '.png' : '.jpg'
   return `/img/portfolio/gallery/${work.imageDirectory}/${name + type}`
-};
+}
 </script>
 
 <style lang="scss" scoped>

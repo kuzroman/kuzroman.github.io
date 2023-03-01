@@ -1,9 +1,13 @@
 <template>
   <div class="skills-me">
-    <div class="knowledge" v-for="(skills, key) in knowledge" :key="key">
-      <div class="main">{{ key }}</div>
+    <div v-for="(skills, key) in knowledge" :key="key" class="knowledge">
+      <div class="main">
+        {{ key }}
+      </div>
       <div class="general">
-        <div v-for="skill in skills" :key="skill">{{ skill }}</div>
+        <div v-for="skill in skills" :key="skill">
+          {{ skill }}
+        </div>
       </div>
     </div>
   </div>
@@ -11,7 +15,7 @@
 
 <script setup>
 import { default as skills } from '~/db/skills.json'
-const knowledge = ref(skills);
+const knowledge = ref(skills)
 </script>
 
 <style lang="scss">

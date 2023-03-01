@@ -1,14 +1,15 @@
 <template>
-  <div class="leader-board-form" v-if="!isSent && score">
+  <div v-if="!isSent && score" class="leader-board-form">
     <label>
       <span>Your name</span>
       <input
+        v-model="inputText"
         type="text"
         placeholder="Yur name, or feedback)"
         maxlength="30"
-        v-model="inputText"
         @keypress.enter="saveResult"
-      />
+      >
+
       <UIButton
         class="save-result"
         text="Save"
@@ -20,41 +21,41 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import UIButton from '~/components/UI/Button.vue'
 
 export default {
   name: 'LeaderBoard',
-  components: {UIButton},
+  components: { UIButton },
 
-  data() {
+  data () {
     return {
-      inputText: '',
+      inputText: ''
     }
   },
   watch: {
-    inputText(text) {
+    inputText (text) {
       this.inputText = text.replace(/[^a-zа-я 0-9]|^\s/gi, '').replace(/\s\s/gi, ' ')
-    },
+    }
   },
   computed: {
     ...mapGetters('leaderBoard', ['isSent']),
-    ...mapGetters('game', ['score']),
+    ...mapGetters('game', ['score'])
 
   },
   methods: {
     ...mapActions('leaderBoard', ['addLeader']),
 
-    saveResult() {
+    saveResult () {
       // const text = this.inputText.replace(/[^a-z 0-9]/gi, '')
-      if (!this.inputText.trim()) return
+      if (!this.inputText.trim()) { return }
 
-      this.addLeader({user: this.inputText, score: this.score})
+      this.addLeader({ user: this.inputText, score: this.score })
         .then(() => {
           this.$emit('leader-board-form--save-result')
         })
-    },
-  },
+    }
+  }
 }
 </script>
 

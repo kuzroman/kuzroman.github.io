@@ -1,8 +1,7 @@
 export default class Bullet {
   gravityY = 10
   ground = -20
-
-  constructor(x, y) {
+  constructor (x, y) {
     const size = 6
 
     this.x1 = x
@@ -12,7 +11,7 @@ export default class Bullet {
     this.isStopped = false
   }
 
-  update() {
+  update () {
     if (this._isOverScreen()) {
       this.isStopped = true
       return
@@ -21,15 +20,15 @@ export default class Bullet {
     this._move()
   }
 
-  _move() {
+  _move () {
     this._moveY()
   }
 
-  _moveY() {
+  _moveY () {
     this.y1 -= Math.round(this.gravityY)
   }
 
-  _isOverScreen() {
+  _isOverScreen () {
     return this.y1 < this.ground
   }
 }

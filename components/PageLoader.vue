@@ -1,8 +1,10 @@
 <template>
   <div class="page-loader" :class="animations">
     <div class="circle">
-      <div class="loader"></div>
-      <div class="text">Hi!</div>
+      <div class="loader" />
+      <div class="text">
+        Hi!
+      </div>
     </div>
   </div>
 </template>
@@ -10,7 +12,7 @@
 <script setup>
 import { useStore } from 'vuex'
 
-const store = useStore();
+const store = useStore()
 const time = 300
 
 const animation = ref({
@@ -19,21 +21,21 @@ const animation = ref({
   rotate2: false,
   fadeIn: false,
   tilt: false,
-  goDown: false,
-});
-const showLeftRing = ref(false);
+  goDown: false
+})
+const showLeftRing = ref(false)
 const animations = computed(() => {
   return Object.keys(animation.value).reduce((a, key) => {
     return animation.value[key] === false ? a : a + ' ' + key
   }, '')
-});
+})
 
 const runAnimations = () => {
   Object.keys(animation.value).map((key, i) => {
     setTimeout(() => {
       animation.value[key] = true
     }, time + time * i)
-  });
+  })
 }
 
 onMounted(() => {

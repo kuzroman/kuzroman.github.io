@@ -1,10 +1,10 @@
 <template>
-  <div class="ui-close-spinner"></div>
+  <div class="ui-close-spinner" />
 </template>
 
 <script>
 export default {
-  name: 'UICloseSpinner',
+  name: 'UICloseSpinner'
 }
 </script>
 
