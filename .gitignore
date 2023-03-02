@@ -4,7 +4,6 @@ node_modules
 .nitro
 .cache
 .output
-.dist
 .env
 111
 pages/me
