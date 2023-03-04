@@ -1,5 +1,18 @@
-import { createElementNS, isDOM, getClientSize, warn, creatSvgPath, getStepColor } from './utils'
-import { SVG_NAME, WRAP_CLASS, STOP_CLASS, SVG_MAIN_CLASS, SVG_BASE_CLASS } from './config'
+import {
+  createElementNS,
+  isDOM,
+  getClientSize,
+  warn,
+  creatSvgPath,
+  getStepColor,
+} from './utils'
+import {
+  SVG_NAME,
+  WRAP_CLASS,
+  STOP_CLASS,
+  SVG_MAIN_CLASS,
+  SVG_BASE_CLASS,
+} from './config'
 import './index.css'
 
 let id = 1
@@ -9,7 +22,7 @@ const defaultOptions = {
   baseHeight: 0,
   color: 'transparent',
   delay: 0,
-  duration: 2000
+  duration: 2000,
   // curve: 10
 }
 
@@ -19,10 +32,10 @@ class WavySvg {
   // wavy size
   size = {
     width: 0,
-    height: 0
+    height: 0,
   }
 
-  constructor (el, options = {}) {
+  constructor(el, options = {}) {
     if (el && options) {
       this.initWrap(el)
       this.createWave(options instanceof Array ? options : [options])
@@ -38,7 +51,7 @@ class WavySvg {
       return
     }
     const { width, height } = getClientSize(el)
-    this.wrap = createWrap(this.size = { width, height })
+    this.wrap = createWrap((this.size = { width, height }))
   }
 
   createWave = (options) => {
@@ -55,7 +68,12 @@ class WavySvg {
       if (!endColor) {
         option.endColor = endColor = color
       }
-      option.middleColor = getStepColor({ start: color, end: endColor, total: waveHeight + baseHeight, step: waveHeight })
+      option.middleColor = getStepColor({
+        start: color,
+        end: endColor,
+        total: waveHeight + baseHeight,
+        step: waveHeight,
+      })
       const base = createBase(option)
       const svg = createSvg(option)
       this.wrap.append(svg)
@@ -64,14 +82,14 @@ class WavySvg {
     }
   }
 
-  run () {
+  run() {
     if (this.status === 0) {
       this.status = 1
       this.wrap.classList.remove(STOP_CLASS)
     }
   }
 
-  stop () {
+  stop() {
     if (this.status === 1) {
       this.status = 0
       this.wrap.classList.add(STOP_CLASS)
@@ -79,24 +97,36 @@ class WavySvg {
   }
 }
 
-function createWrap ({ width = 0, height = 0 }) {
+function createWrap({ width = 0, height = 0 }) {
   const wrap = document.createElement('div')
   wrap.setAttribute('class', WRAP_CLASS)
   wrap.setAttribute('style', `width: ${width}px;height: ${height}px;`)
   return wrap
 }
 
-function createBase ({ baseHeight, color, endColor, middleColor }) {
+function createBase({ baseHeight, color, endColor, middleColor }) {
   const base = document.createElement('div')
   base.setAttribute('class', SVG_BASE_CLASS)
   if (middleColor && endColor !== middleColor) {
     endColor = `linear-gradient(to bottom, ${middleColor}, ${endColor})`
   }
-  base.setAttribute('style', `height: ${baseHeight}px;background:${endColor};z-index: ${id}`)
+  base.setAttribute(
+    'style',
+    `height: ${baseHeight}px;background:${endColor};z-index: ${id}`
+  )
   return base
 }
 
-function createSvg ({ width, waveHeight, baseHeight, color, middleColor, curve, delay, duration }) {
+function createSvg({
+  width,
+  waveHeight,
+  baseHeight,
+  color,
+  middleColor,
+  curve,
+  delay,
+  duration,
+}) {
   const name = `${SVG_NAME}-${id}`
   const wrap = document.createElement('div')
   wrap.setAttribute('class', SVG_MAIN_CLASS)
@@ -106,7 +136,10 @@ function createSvg ({ width, waveHeight, baseHeight, color, middleColor, curve, 
   const svg = createElementNS('svg')
   svg.setAttribute('width', width * 2 + 'px')
   svg.setAttribute('height', waveHeight + 'px')
-  svg.setAttribute('style', `animation-duration:${duration / 1000}s;animation-delay:${delay / 1000}s`)
+  svg.setAttribute(
+    'style',
+    `animation-duration:${duration / 1000}s;animation-delay:${delay / 1000}s`
+  )
 
   const defs = createElementNS('defs')
   const linearGradient = createElementNS('linearGradient')
@@ -122,7 +155,10 @@ function createSvg ({ width, waveHeight, baseHeight, color, middleColor, curve, 
   stop2.setAttribute('offset', '100%')
   stop2.setAttribute('stop-color', middleColor || color)
   const path = createElementNS('path')
-  path.setAttribute('d', creatSvgPath({ width: width * 2, height: waveHeight, curve }))
+  path.setAttribute(
+    'd',
+    creatSvgPath({ width: width * 2, height: waveHeight, curve })
+  )
   path.setAttribute('fill', `url(#${name})`)
   linearGradient.appendChild(stop1)
   linearGradient.appendChild(stop2)

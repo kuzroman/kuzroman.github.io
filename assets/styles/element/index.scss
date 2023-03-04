@@ -1,31 +1,31 @@
 // Colors
 $--colors: (
-  "primary": (
-    "base": #0055B8,
+  'primary': (
+    'base': #0055b8,
   ),
-  "success": (
-    "base": #21ba45,
+  'success': (
+    'base': #21ba45,
   ),
-  "warning": (
-    "base": #f2711c,
+  'warning': (
+    'base': #f2711c,
   ),
-  "danger": (
-    "base": #db2828,
+  'danger': (
+    'base': #db2828,
   ),
-  "error": (
-    "base": #db2828,
+  'error': (
+    'base': #db2828,
   ),
-  "info": (
-    "base": #5E36AD,
-  )
+  'info': (
+    'base': #5e36ad,
+  ),
 );
 
-$color-gray: #A5B0BE;
-$color-gray-light: #E4E7EB;
-$color-new: #64B4FD;
-$color-started: #FF7A00;
-$color-completed: #1CAD19;
-$color-warning: #D33636;
+$color-gray: #a5b0be;
+$color-gray-light: #e4e7eb;
+$color-new: #64b4fd;
+$color-started: #ff7a00;
+$color-completed: #1cad19;
+$color-warning: #d33636;
 
 $viewport-mobile: 480px;
 $viewport-tablet: 768px;
@@ -34,15 +34,15 @@ $header-height: 60px;
 $footer-height: 60px;
 
 // we can add this to custom namespace, default is 'el'
-@forward "../../../node_modules/element-plus/theme-chalk/src/mixins/config";
+@forward '../../../node_modules/element-plus/theme-chalk/src/mixins/config';
 
 // You should use them in scss, because we calculate it by sass.
 // comment next lines to use default color
-@forward "../../../node_modules/element-plus/theme-chalk/src/common/var" with (
+@forward '../../../node_modules/element-plus/theme-chalk/src/common/var' with (
   // do not use same name, it will override.
   $colors: $--colors,
-  $button-border-radius: ("large": 6px),
-  $button-font-size: ("large": 18px),
+  $button-border-radius: ('large': 6px),
+  $button-font-size: ('large': 18px)
 );
 
 // if you want to import all

@@ -11,12 +11,10 @@ export default defineNuxtConfig({
     head: {
       // viewport: 'width=500, initial-scale=1',
       title: 'Roman Smith',
-      meta: [
-        { name: 'description', content: 'Kuzroman Frontend Developer' }
-      ],
+      meta: [{ name: 'description', content: 'Kuzroman Frontend Developer' }],
       script: [
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-XWDSRJ4TEC' },
-      ]
-    }
-  }
+      ],
+    },
+  },
 })

@@ -1,20 +1,14 @@
 <template>
-  <a
-    class="button-link"
-    :href="props.href"
-    :target="props.target"
-  >
+  <a class="button-link" :href="props.href" :target="props.target">
     <slot />
   </a>
 </template>
 
 <script setup lang="ts">
-
 const props = defineProps({
   href: { type: String, default: '' },
-  target: { type: String, default: '_blank' }
+  target: { type: String, default: '_blank' },
 })
-
 </script>
 
 <style lang="scss">
@@ -31,7 +25,7 @@ const props = defineProps({
   color: #fff;
   box-shadow: 3px 3px #222;
   text-decoration: none;
-  transition: transform .3s;
+  transition: transform 0.3s;
 
   &:hover {
     transform: translateY(-2px);

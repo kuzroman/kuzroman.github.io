@@ -1,8 +1,8 @@
 {
   "General": ["JavaScript", "HTML", "CSS", "Type Script"],
-  "Framework": ["Vue.js 2-3","Nuxt.js 2-3"],
+  "Framework": ["Vue.js 2-3", "Nuxt.js 2-3"],
   "FileManager": ["pnpm", "npm", "Yarn", "Bower", "composer"],
-  "Library": ["Tailwind", "UI Element plus", "Lodash" ,"JQuery"],
+  "Library": ["Tailwind", "UI Element plus", "Lodash", "JQuery"],
   "Protocol": ["HTTP", "WebSocket", "SSE"],
   "Bundler": ["Vite", "Webpack", "Browserify"],
   "Compiler": ["PostCss", "Babel", "Sass", "Less"],
@@ -12,9 +12,26 @@
   "API": ["Highcharts", "Yandex map", "DaData", "Sync Fusion"],
 
   "TaskRunner": ["Gulp", "Grunt"],
-  "TemplateEngines": ["Twig", "Razor", "Twig.js","Django","Dot.js","Jade.js","JQuery templates"],
+  "TemplateEngines": [
+    "Twig",
+    "Razor",
+    "Twig.js",
+    "Django",
+    "Dot.js",
+    "Jade.js",
+    "JQuery templates"
+  ],
 
-  "T-shape": ["Node", "Express", "MongoDB", "Nginx", "Apache", "CenOs","Photoshop", "lowDB"],
+  "T-shape": [
+    "Node",
+    "Express",
+    "MongoDB",
+    "Nginx",
+    "Apache",
+    "CenOs",
+    "Photoshop",
+    "lowDB"
+  ],
 
   "Familiar": ["PHP", "MySQL", "Backbone", "Mercurial"]
 }

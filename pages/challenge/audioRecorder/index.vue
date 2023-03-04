@@ -1,27 +1,14 @@
 <template>
   <div>
     <template v-if="!isAllowed">
-      <p class="my-5">
-        Click Start and "Allow" your microphone Permission!
-      </p>
-      <button type="primary" @click="handlerStart">
-        Start
-      </button>
+      <p class="my-5">Click Start and "Allow" your microphone Permission!</p>
+      <button type="primary" @click="handlerStart">Start</button>
     </template>
     <template v-else>
-      <button
-
-        v-if="isRecording"
-        type="primary"
-        @click="handlerStop"
-      >
+      <button v-if="isRecording" type="primary" @click="handlerStop">
         Stop and play it
       </button>
-      <button
-        v-else
-        type="primary"
-        @click="handlerRecord"
-      >
+      <button v-else type="primary" @click="handlerRecord">
         Record your voice
       </button>
     </template>
@@ -64,17 +51,18 @@ const chunkToUrl = (chunk: Blob) => {
 
 const handlerStart = () => {
   isAllowed.value = true
-  navigator.mediaDevices.getUserMedia({ audio: true })
-    .then((stream) => {
-      mediaRecorder = new MediaRecorder(stream)
+  navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+    mediaRecorder = new MediaRecorder(stream)
 
-      mediaRecorder.addEventListener('dataavailable', pushChunk)
-      mediaRecorder.addEventListener('stop', playLastChunk)
-    })
+    mediaRecorder.addEventListener('dataavailable', pushChunk)
+    mediaRecorder.addEventListener('stop', playLastChunk)
+  })
 }
 
 const killMedia = () => {
-  if (!mediaRecorder) { return }
+  if (!mediaRecorder) {
+    return
+  }
   mediaRecorder.removeEventListener('dataavailable', pushChunk)
   mediaRecorder.removeEventListener('stop', playLastChunk)
   mediaRecorder = null
@@ -85,7 +73,9 @@ const pushChunk = (event: BlobEvent) => {
 }
 
 const handlerRecord = () => {
-  if (!mediaRecorder) { return }
+  if (!mediaRecorder) {
+    return
+  }
   if (mediaRecorder.state === MediaRecorderState.INACTIVE) {
     mediaRecorder.start()
     recorderState.value = MediaRecorderState.RECORDING
@@ -93,7 +83,9 @@ const handlerRecord = () => {
 }
 
 const handlerStop = () => {
-  if (!mediaRecorder) { return }
+  if (!mediaRecorder) {
+    return
+  }
   if (mediaRecorder.state === MediaRecorderState.RECORDING) {
     mediaRecorder.stop()
     recorderState.value = MediaRecorderState.INACTIVE
@@ -112,14 +104,13 @@ const playLastChunk = () => {
 }
 
 onUnmounted(killMedia)
-
 </script>
 
 <style scoped>
-  button {
-    background: #409eff;
-    border-radius: 6px;
-    padding: 6px 12px;
-    color: white;
-  }
+button {
+  background: #409eff;
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: white;
+}
 </style>

@@ -10,9 +10,10 @@
       </slot>
     </div>
     <div class="right">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolore, dolorem est
-      excepturi exercitationem facilis hic magni minima natus nobis numquam obcaecati perspiciatis
-      quae quibusdam quo quos sunt, voluptate? Ad.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur
+      dolore, dolorem est excepturi exercitationem facilis hic magni minima
+      natus nobis numquam obcaecati perspiciatis quae quibusdam quo quos sunt,
+      voluptate? Ad.
     </div>
   </div>
 </template>
@@ -27,7 +28,7 @@ const styleImages = (work, index) => {
   return {
     'background-image': `url(${getBg(work, '0')})`,
     left: 0,
-    transform: `translateY(${isEven ? -150 + topShift : 0 - topShift}px)`
+    transform: `translateY(${isEven ? -150 + topShift : 0 - topShift}px)`,
   }
 }
 

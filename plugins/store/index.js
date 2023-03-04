@@ -7,8 +7,8 @@ const store = createStore({
   modules: {
     app,
     game,
-    leaderBoard
-  }
+    leaderBoard,
+  },
 })
 
 export default defineNuxtPlugin((nuxtApp) => {

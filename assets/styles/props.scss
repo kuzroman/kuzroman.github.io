@@ -31,5 +31,5 @@ $mq-phone: 481px;
 }
 
 @function rem($size, $viewport: 1920) {
-  @return calc($size / ($viewport * 0.01 * 1px) ) * 1vw;
+  @return calc($size / ($viewport * 0.01 * 1px)) * 1vw;
 }

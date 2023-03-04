@@ -15,20 +15,20 @@
 export default {
   name: 'UIIconBurger', // animation/_IconBurger
   props: {},
-  data () {
+  data() {
     return {
-      isActive: false
+      isActive: false,
     }
   },
   computed: {},
   methods: {
-    addActive () {
+    addActive() {
       this.isActive = true
     },
-    removeActive () {
+    removeActive() {
       this.isActive = false
-    }
-  }
+    },
+  },
 }
 </script>
 

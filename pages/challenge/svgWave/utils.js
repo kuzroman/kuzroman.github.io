@@ -1,4 +1,4 @@
-export function creatSvgPath ({ width, height, curve }) {
+export function creatSvgPath({ width, height, curve }) {
   let x = 0
   let y = height / 2
   let path = `M0,${y} `
@@ -11,31 +11,37 @@ export function creatSvgPath ({ width, height, curve }) {
   return path + `L${width},0 ${width},${height} 0,${height}`
 }
 
-export let isDOM = (typeof HTMLElement === 'object')
-  ? function (dom) {
-    return dom instanceof HTMLElement
-  }
-  : function (dom) {
-    return dom && typeof dom === 'object' && dom.nodeType === 1 && typeof dom.nodeName === 'string'
-  }
+export let isDOM =
+  typeof HTMLElement === 'object'
+    ? function (dom) {
+        return dom instanceof HTMLElement
+      }
+    : function (dom) {
+        return (
+          dom &&
+          typeof dom === 'object' &&
+          dom.nodeType === 1 &&
+          typeof dom.nodeName === 'string'
+        )
+      }
 
-export function getClientSize (dom) {
+export function getClientSize(dom) {
   return {
     width: dom.clientWidth,
-    height: dom.clientHeight
+    height: dom.clientHeight,
   }
 }
 
-export function warn (message) {
+export function warn(message) {
   console.warn(message)
 }
 
-export function rgbToHex (r, g, b) {
+export function rgbToHex(r, g, b) {
   let hex = ((r << 16) | (g << 8) | b).toString(16)
   return '#' + new Array(Math.abs(hex.length - 7)).join('0') + hex
 }
 
-export function hexToRgb (hex) {
+export function hexToRgb(hex) {
   let rgb = []
   let length = hex.length
   let temp = parseInt((length - 1) / 3)
@@ -45,12 +51,14 @@ export function hexToRgb (hex) {
   return rgb
 }
 
-function getRGBValue (rgb = '') {
-  const match = rgb.replace(/\s+/g, '').match(/^(?:rgb(?:a)?)\(([\d(\.\d*),]*)\)$/)
+function getRGBValue(rgb = '') {
+  const match = rgb
+    .replace(/\s+/g, '')
+    .match(/^(?:rgb(?:a)?)\(([\d(\.\d*),]*)\)$/)
   return match ? match[1].split(',') : null
 }
 
-function getColorValue (color) {
+function getColorValue(color) {
   let res = []
   if (color.startsWith('rgb')) {
     res = getRGBValue(color)
@@ -59,10 +67,10 @@ function getColorValue (color) {
   } else {
     return null
   }
-  return res.map(v => Number(v))
+  return res.map((v) => Number(v))
 }
 
-export function getStepColor ({ start, end, total, step }) {
+export function getStepColor({ start, end, total, step }) {
   if (start === end) {
     return start
   }
@@ -73,17 +81,19 @@ export function getStepColor ({ start, end, total, step }) {
   if (sColor && eColor) {
     let p = step / total
 
-    let rStep = (eColor[0] - sColor[0])
-    let gStep = (eColor[1] - sColor[1])
-    let bStep = (eColor[2] - sColor[2])
+    let rStep = eColor[0] - sColor[0]
+    let gStep = eColor[1] - sColor[1]
+    let bStep = eColor[2] - sColor[2]
     let opacity = (eColor[3] || 1) - (sColor[3] || 1)
 
-    return `rgba(${rStep * p + sColor[0]}, ${gStep * p + sColor[1]}, ${bStep + sColor[2]}, ${opacity * p + (sColor[3] || 1)})`
+    return `rgba(${rStep * p + sColor[0]}, ${gStep * p + sColor[1]}, ${
+      bStep + sColor[2]
+    }, ${opacity * p + (sColor[3] || 1)})`
   } else {
     return null
   }
 }
 
-export function createElementNS (tagName) {
+export function createElementNS(tagName) {
   return document.createElementNS('http://www.w3.org/2000/svg', tagName)
 }

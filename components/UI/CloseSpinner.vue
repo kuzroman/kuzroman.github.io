@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'UICloseSpinner'
+  name: 'UICloseSpinner',
 }
 </script>
 

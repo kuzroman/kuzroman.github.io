@@ -8,6 +8,7 @@
     "@vue/typescript/recommended"
   ],
   "rules": {
+    "no-console": "off",
     "no-undef": "off",
     "import/extensions": "off",
     "import/no-unresolved": "off",
@@ -17,20 +18,21 @@
     "vue/multi-word-component-names": "off",
     "import/no-extraneous-dependencies": "off",
     "vuejs-accessibility/form-control-has-label": "off",
-    "vue/component-tags-order": ["error", {
-      "order": [
-        "template",
-        "script",
-        "route",
-        "style"
-      ]
-    }],
+    "vue/component-tags-order": [
+      "error",
+      {
+        "order": ["template", "script", "route", "style"]
+      }
+    ],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
     "linebreak-style": 0,
-    "max-len": ["error", {
-      "code": 120
-    }]
+    "max-len": [
+      "error",
+      {
+        "code": 120
+      }
+    ]
   },
   "ignorePatterns": ["*.d.ts", "**/vendor/*.js"],
   "parserOptions": {

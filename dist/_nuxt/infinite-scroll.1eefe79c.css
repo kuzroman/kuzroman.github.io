@@ -1,1 +1,6 @@
-.app .content .scroll{word-wrap:break-word;height:100vh;overflow-x:hidden;overflow-y:auto}
+.app .content .scroll {
+  word-wrap: break-word;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

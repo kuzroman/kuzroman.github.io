@@ -10,12 +10,12 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'In game'
+  title: 'In game',
 })
 </script>
 
 <style lang="scss">
-@import "../assets/styles/stars.css";
+@import '../assets/styles/stars.css';
 
 .app .content .view {
   &.page-game {

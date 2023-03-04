@@ -20,9 +20,12 @@ import { useStore } from 'vuex'
 import { Router } from 'vue-router'
 
 const store = useStore()
-const isMenuNavigationOpened = computed(() => store.getters['app/isMenuNavigationOpened'])
+const isMenuNavigationOpened = computed(
+  () => store.getters['app/isMenuNavigationOpened']
+)
 const navigation = computed(() => store.getters['app/navigation'])
-const setIsMenuNavigation = (bool: boolean) => store.commit('app/setIsMenuNavigation', bool)
+const setIsMenuNavigation = (bool: boolean) =>
+  store.commit('app/setIsMenuNavigation', bool)
 
 const toPage = (route: Router) => {
   store.commit('app/toPage', route)

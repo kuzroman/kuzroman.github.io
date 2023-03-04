@@ -10,43 +10,46 @@ export default {
     router: null,
     radioKey: '',
     isMobile: null,
-    isPageAnimationFinished: true
+    isPageAnimationFinished: true,
   },
   getters: {
-    isMenuNavigationOpened: state => state.isMenuNavigationOpened,
-    isActiveBurger: state => state.isActiveBurger,
-    transitionDirection: state => state.transitionDirection,
-    hidePageControl: state => state.hidePageControl,
-    isPageLoaderHide: state => state.isPageLoaderHide,
-    navigation: state => state.navigation,
-    radioKey: state => state.radioKey,
-    isMobile: state => state.isMobile,
-    isPageAnimationFinished: state => state.isPageAnimationFinished
+    isMenuNavigationOpened: (state) => state.isMenuNavigationOpened,
+    isActiveBurger: (state) => state.isActiveBurger,
+    transitionDirection: (state) => state.transitionDirection,
+    hidePageControl: (state) => state.hidePageControl,
+    isPageLoaderHide: (state) => state.isPageLoaderHide,
+    navigation: (state) => state.navigation,
+    radioKey: (state) => state.radioKey,
+    isMobile: (state) => state.isMobile,
+    isPageAnimationFinished: (state) => state.isPageAnimationFinished,
   },
   mutations: {
-    setIsPageAnimationFinished (state, bool) {
+    setIsPageAnimationFinished(state, bool) {
       state.isPageAnimationFinished = bool
     },
-    isMobile (state, bool) {
+    isMobile(state, bool) {
       state.isMobile = bool
     },
-    setIsMenuNavigation (state, bool) {
+    setIsMenuNavigation(state, bool) {
       state.isMenuNavigationOpened = bool
     },
-    setHidePageControl (state, bool) {
+    setHidePageControl(state, bool) {
       state.hidePageControl = bool
     },
-    setDirection (state, { route, direction }) {
+    setDirection(state, { route, direction }) {
       if (direction) {
         state.transitionDirection = direction
         return
       }
       const { routes } = state.router?.options
-      const currentIndex = routes.findIndex(x => x.name === state.router.currentRoute.name)
-      const goToIndex = routes.findIndex(x => x.name === route.name)
-      state.transitionDirection = currentIndex < goToIndex ? 'to-right' : 'to-left'
+      const currentIndex = routes.findIndex(
+        (x) => x.name === state.router.currentRoute.name
+      )
+      const goToIndex = routes.findIndex((x) => x.name === route.name)
+      state.transitionDirection =
+        currentIndex < goToIndex ? 'to-right' : 'to-left'
     },
-    toPage (state, { route, direction }) {
+    toPage(state, { route, direction }) {
       this.commit('app/setIsMenuNavigation', false)
       this.commit('app/setHidePageControl', true)
       this.commit('app/setDirection', { route, direction })
@@ -54,18 +57,20 @@ export default {
       setTimeout(() => navigateTo(route), 600)
       setTimeout(() => this.commit('app/setHidePageControl', false), 900)
     },
-    setIsPageLoaderHide (state, bool) {
+    setIsPageLoaderHide(state, bool) {
       state.isPageLoaderHide = bool
     },
-    setNavigation (state, arr) {
+    setNavigation(state, arr) {
       const orderList = ['index', 'portfolio', 'about', 'contacts']
-      state.navigation = orderList.map(name => arr.find(x => x.name === name))
+      state.navigation = orderList.map((name) =>
+        arr.find((x) => x.name === name)
+      )
     },
-    setRoutes (state, routes) {
+    setRoutes(state, routes) {
       state.router = routes
     },
-    setRadioKey (state, radioKey) {
+    setRadioKey(state, radioKey) {
       state.radioKey = radioKey
-    }
-  }
+    },
+  },
 }

@@ -15,7 +15,7 @@
 .wavy-svg-container svg {
   animation-name: WavySvgSlideToLeft;
   animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(.22,.33,.86,.76);
+  animation-timing-function: cubic-bezier(0.22, 0.33, 0.86, 0.76);
   vertical-align: middle;
 }
 .wavy-svg-container-base {

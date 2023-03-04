@@ -3,7 +3,7 @@
     <div>(OSR) Optical character recognition</div>
 
     <div class="images">
-      <img :src="randomMemeUrl">
+      <img :src="randomMemeUrl" />
       <div>Text inner image:</div>
       <div>{{ stringFromImage }}</div>
     </div>
@@ -31,7 +31,7 @@ onMounted(async () => {
 
   const { data } = await useFetch('/api/getRandomMeme', {
     method: 'POST',
-    body: { url: randomMemeUrl.value }
+    body: { url: randomMemeUrl.value },
   })
   // const value:FileData = data.value
 
@@ -51,7 +51,7 @@ onUnmounted(() => {
   debugger
 })
 
-async function getFileFromUrl (url: string) {
+async function getFileFromUrl(url: string) {
   // https://preview.redd.it/181ncpyq7eba1.jpg?width=640&crop=smart&auto=webp&s=887203388dc8616909cb224489f1798840ddd8d1
   const fileName = url.split('/').at(-1) as string
 
@@ -68,32 +68,36 @@ async function getFileFromUrl (url: string) {
   // })
 }
 
-async function getStringByFile1 (file: File) {
+async function getStringByFile1(file: File) {
   // console.log('file', file);
 
   const formData = new FormData()
   formData.append('image', file)
 
-  axios.post('https://api.api-ninjas.com/v1/imagetotext', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      'X-Api-Key': 'NYU1gAiQjDbX5zmq5E16wg==dGQOlldR4D80fX7E'
-    }
-  }).then((res) => {
-    stringFromImage.value = res.data.map(obj => obj.text).join(' ')
-    console.log('res', res)
-    // debugger
-  }).catch(e => console.error(e))
+  axios
+    .post('https://api.api-ninjas.com/v1/imagetotext', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'X-Api-Key': 'NYU1gAiQjDbX5zmq5E16wg==dGQOlldR4D80fX7E',
+      },
+    })
+    .then((res) => {
+      stringFromImage.value = res.data.map((obj) => obj.text).join(' ')
+      console.log('res', res)
+      // debugger
+    })
+    .catch((e) => console.error(e))
 }
 
 const getMemeUrl = async () => {
   let url = ''
-  await axios.get('https://meme-api.com/gimme')
+  await axios
+    .get('https://meme-api.com/gimme')
     .then((res) => {
       const preview = res.data.preview
       url = preview[3] || preview.at(-1)
     })
-    .catch(error => console.log(error))
+    .catch((error) => console.log(error))
   return url
 }
 
@@ -180,10 +184,9 @@ const getMemeUrl = async () => {
 </script>
 
 <style lang="scss">
-@import "~/assets/styles/props";
+@import '~/assets/styles/props';
 
 .images {
-
   img {
     width: 300px;
     padding: 6px;

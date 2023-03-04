@@ -4,41 +4,41 @@ export default {
   namespaced: true,
   state: {
     leaders: [],
-    isSent: defaultIsSent
+    isSent: defaultIsSent,
   },
   getters: {
-    leaders: state => state.leaders,
-    isSent: state => state.isSent,
+    leaders: (state) => state.leaders,
+    isSent: (state) => state.isSent,
     getSortLeaders: (state) => {
       return [...state.leaders]
         .sort((a, b) => b.score - a.score)
         .map((x, i) => ({ ...x, ...{ rate: i } }))
-    }
+    },
   },
   actions: {
-    getLeaders ({ commit }) {
+    getLeaders({ commit }) {
       return fetch('')
-        .then(response => response.json())
+        .then((response) => response.json())
         .then((leaders) => {
           commit('fetchLeaders', leaders)
         })
     },
-    addLeader ({ commit }, data) {
+    addLeader({ commit }, data) {
       return ''
-    }
+    },
   },
   mutations: {
-    fetchLeaders (state, leaders) {
+    fetchLeaders(state, leaders) {
       state.leaders = leaders
     },
-    setIsSent (state, bool) {
+    setIsSent(state, bool) {
       state.isSent = bool
     },
 
-    resetStateLeaderBoard (state) {
+    resetStateLeaderBoard(state) {
       state.isSent = defaultIsSent
-    }
-  }
+    },
+  },
 }
 
 // import axios from 'axios'

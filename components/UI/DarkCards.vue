@@ -1,35 +1,30 @@
 <template>
   <div class="poker-hand">
     <div class="poker-hand__top">
-      <div class="poker-hand__top__title">
-        Title
-      </div>
+      <div class="poker-hand__top__title">Title</div>
       <div class="poker-hand__top__desc">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Ab at commodi exercitationem
-        minus modi nihil odio quasi saepe sunt suscipit. Aliquid, at dicta illo labore odio
-        perspiciatis repudiandae similique voluptas. Alias, cumque excepturi exercitationem in
-        laudantium magnam magni necessitatibus rem? Dicta expedita labore minus molestias non
-        recusandae similique tenetur voluptatibus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at commodi
+        exercitationem minus modi nihil odio quasi saepe sunt suscipit. Aliquid,
+        at dicta illo labore odio perspiciatis repudiandae similique voluptas.
+        Alias, cumque excepturi exercitationem in laudantium magnam magni
+        necessitatibus rem? Dicta expedita labore minus molestias non recusandae
+        similique tenetur voluptatibus.
       </div>
     </div>
 
     <div class="poker-hand__bottom">
-      <div
-        v-for="n in [...Array(4).keys()]"
-        class="poker-hand__column"
-      >
+      <div v-for="n in [...Array(4).keys()]" class="poker-hand__column">
         <div class="poker-hand__deck">
           <div class="poker-hand__deck__front-card">
             <b>
-              Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit. Dolores, minus?
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores,
+              minus?
             </b>
             <p>
-              Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit. Accusantium ad aut autem consectetur cumque cupiditate deleniti
-              ducimus earum, facilis maxime, nam, nesciunt quam quidem quo reprehenderit suscipit
-              tempore unde voluptatum.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusantium ad aut autem consectetur cumque cupiditate deleniti
+              ducimus earum, facilis maxime, nam, nesciunt quam quidem quo
+              reprehenderit suscipit tempore unde voluptatum.
             </p>
           </div>
           <div class="poker-hand__deck__back-card">
@@ -44,7 +39,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/styles/props";
+@import '../../assets/styles/props';
 
 .poker-hand {
   background: black;
@@ -55,7 +50,7 @@
 
   &__top {
     display: grid;
-    grid-template-areas: "desc title";
+    grid-template-areas: 'desc title';
     grid-template-columns: 1fr 1fr;
 
     &__title {
@@ -81,7 +76,7 @@
     &:nth-child(even) {
       margin-top: 50px;
     }
-    &:nth-child(odd) .poker-hand__border{
+    &:nth-child(odd) .poker-hand__border {
       height: 200px;
     }
   }
@@ -99,7 +94,7 @@
       line-height: 1.2;
       border: 1px dashed white;
       border-radius: 8px;
-      transition: .6s;
+      transition: 0.6s;
       position: relative;
       z-index: 5;
       background: black;
@@ -117,7 +112,7 @@
       background: white;
       position: absolute;
       top: 0;
-      transition: .6s;
+      transition: 0.6s;
       border-radius: 8px;
       overflow: hidden;
     }
@@ -136,9 +131,9 @@
   &__border {
     margin-top: 16px;
     height: 150px;
-    border-top: 1px solid hsla(0,0%,100%,.5);
-    border-left: 1px solid hsla(0,0%,100%,.5);
-    border-right: 1px solid hsla(0,0%,100%,.5);
+    border-top: 1px solid hsla(0, 0%, 100%, 0.5);
+    border-left: 1px solid hsla(0, 0%, 100%, 0.5);
+    border-right: 1px solid hsla(0, 0%, 100%, 0.5);
     border-radius: 8px 8px 0 0;
   }
 }
@@ -148,7 +143,7 @@
     padding: 10px;
 
     &__top {
-      grid-template-areas: "title" "desc";
+      grid-template-areas: 'title' 'desc';
       grid-template-columns: auto;
 
       &__title {

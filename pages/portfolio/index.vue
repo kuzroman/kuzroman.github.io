@@ -1,45 +1,59 @@
 <template>
   <div class="portfolio">
     <div class="scroll-y">
-<!--      <h1 class="h1">Portfolio</h1>-->
+      <!--      <h1 class="h1">Portfolio</h1>-->
 
-<!--      <p>{{ $t("message.hello") }}</p>-->
-<!--      <select v-model="$i18n.locale">-->
-<!--        <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>-->
-<!--      </select>-->
+      <!--      <p>{{ $t("message.hello") }}</p>-->
+      <!--      <select v-model="$i18n.locale">-->
+      <!--        <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>-->
+      <!--      </select>-->
 
       <div class="works">
-        <router-link v-for="(work, i) in works" :to="{ path: `/portfolio/${i}`}">
-          <div class="work"
-               :style="{'background-image': `url(${getBg(work, '0')})`}">
+        <router-link
+          v-for="(work, i) in works"
+          :key="i"
+          :to="{ path: `/portfolio/${i}` }"
+        >
+          <div
+            class="work"
+            :style="{ 'background-image': `url(${getBg(work, '0')})` }"
+          >
             <div class="work-date">{{ work.date }}</div>
             <div class="work-desc">
-              <div v-for="skill in work.skills">{{ skill }}</div>
+              <div v-for="(skill, i) in work.skills" :key="i">{{ skill }}</div>
             </div>
-            <div class="work-logo" :style="{'background-image': `url(${getBg(work, 'logo')})`}"></div>
+            <div
+              class="work-logo"
+              :style="{ 'background-image': `url(${getBg(work, 'logo')})` }"
+            ></div>
           </div>
         </router-link>
 
-        <router-link v-for="(work, i) in challenge" :to="{ path: `/challenge/${work.link}`}" >
-          <div class="work" :style="{'background-image': `url(${getBg(work, '0')})`}">
+        <router-link
+          v-for="(work, i) in challenge"
+          :key="i"
+          :to="{ path: `/challenge/${work.link}` }"
+        >
+          <div
+            class="work"
+            :style="{ 'background-image': `url(${getBg(work, '0')})` }"
+          >
             <div class="work-desc">
-              <div v-for="skill in work.skills">{{ skill }}</div>
+              <div v-for="(skill, i) in work.skills" :key="i">{{ skill }}</div>
             </div>
           </div>
         </router-link>
-
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup>
+import { default as worksData } from '~/db/works.js'
+
 useHead({
   title: 'kuzroman portfolio',
 })
-
-import { default as worksData } from "/db/works.js";
 // import { useI18n } from 'vue-i18n';
 // const { t, locale } = useI18n(); // than can change locale!
 
@@ -47,19 +61,18 @@ import { default as worksData } from "/db/works.js";
 // const i18nPlugin = inject('i18nPlugin')
 // console.log(111, i18nPlugin.greetings.hello)
 
-const works = worksData.filter(i => !i.isChallenge);
-const challenge = worksData.filter(i => i.isChallenge);
+const works = worksData.filter((i) => !i.isChallenge)
+const challenge = worksData.filter((i) => i.isChallenge)
 const getBg = (work, name) => {
   const type = name === 'logo' ? '.png' : '.jpg'
   return `/img/portfolio/gallery/${work.imageDirectory}/${name + type}`
-};
+}
 </script>
 
 <style lang="scss">
-@import "../../assets/styles/props";
+@import '../../assets/styles/props';
 
 .portfolio {
-
   .works {
     display: flex;
     flex-wrap: wrap;
@@ -80,7 +93,7 @@ const getBg = (work, name) => {
         height: 100%;
         position: absolute;
         top: 0;
-        box-shadow: 0 0 50px rgba(0, 0, 0, .6) inset;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.6) inset;
       }
 
       &:before {
@@ -92,7 +105,7 @@ const getBg = (work, name) => {
         position: absolute;
         transform: translateY(-100%);
         opacity: 0;
-        transition: opacity 0.3s, transform .3s;
+        transition: opacity 0.3s, transform 0.3s;
       }
 
       &-date {
@@ -102,7 +115,7 @@ const getBg = (work, name) => {
         color: white;
         opacity: 0;
         transform: translateX(-100%);
-        transition: opacity .3s, transform .3s;
+        transition: opacity 0.3s, transform 0.3s;
       }
 
       &-desc {
@@ -115,7 +128,7 @@ const getBg = (work, name) => {
         text-align: center;
         transition: opacity 0.3s;
         overflow: hidden;
-        font-size: .8em;
+        font-size: 0.8em;
       }
 
       &-desc > div {
@@ -128,7 +141,7 @@ const getBg = (work, name) => {
         margin: 4px 0;
         position: relative;
         opacity: 0;
-        transition: .3s opacity .1s;
+        transition: 0.3s opacity 0.1s;
       }
 
       &-logo {
@@ -139,20 +152,18 @@ const getBg = (work, name) => {
         bottom: 0;
         box-sizing: border-box;
         transform: translateY(20%);
-        transition: transform .3s, opacity .3s;
+        transition: transform 0.3s, opacity 0.3s;
         background: $color-8 no-repeat center;
         background-size: 60%;
       }
 
       &:hover {
-
         &:before {
           transform: translateY(0);
-          opacity: .9;
+          opacity: 0.9;
         }
 
         .work {
-
           &-date {
             opacity: 1;
             transform: translateX(0);
@@ -167,7 +178,7 @@ const getBg = (work, name) => {
           }
 
           &-logo {
-            opacity: .9;
+            opacity: 0.9;
             transform: translateY(0);
           }
         }

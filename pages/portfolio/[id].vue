@@ -2,41 +2,37 @@
   <div class="portfolio-id">
     <div class="scroll-y">
       <div class="header">
-        <h1 class="h1">{{ work.nameCompany}}</h1>
+        <h1 class="h1">{{ work.nameCompany }}</h1>
         <div v-if="work.nameTitle">{{ work.nameTitle }}</div>
-        <div v-if="work.descCompany">{{work.descCompany}}</div>
+        <div v-if="work.descCompany">{{ work.descCompany }}</div>
       </div>
 
       <div class="gallery mx-0 m-12">
-        <div class="gallery__scroll" ref="galleryMain">
-          <div
-              ref="galleryImgs"
-              v-for="(image, i) in images" :key="i">
-            <img class="mx-auto border border-none" :src="image.src" alt="">
+        <div ref="galleryMain" class="gallery__scroll">
+          <div v-for="(image, i) in images" ref="galleryImgs" :key="i">
+            <img class="mx-auto border border-none" :src="image.src" alt="" />
           </div>
         </div>
         <div class="gallery__horizon mt-4">
           <div
+            v-for="(image, i) in images"
+            :key="i"
             class="inline-block w-2/12 h-full"
-            v-for="(image, i) in images" :key="i"
             @click="clickMiniImg(i)"
           >
-            <img :src="image.src" alt="">
+            <img :src="image.src" alt="" />
           </div>
         </div>
       </div>
 
-
       <div class="description">
         <div v-if="work.link" class="link">
-          Link to project: <a :href="work.link" target="_blank">{{ pureLink }}</a>
+          Link to project:
+          <a :href="work.link" target="_blank">{{ pureLink }}</a>
         </div>
-        <div
-            class="desc"
-            v-html="work.descDeal"
-        />
+        <div class="desc" v-html="work.descDeal" />
         <div class="skills">
-          <div class="skill" v-for="skill in work.skills">{{ skill }}</div>
+          <div v-for="skill in work.skills" class="skill">{{ skill }}</div>
         </div>
       </div>
     </div>
@@ -44,35 +40,38 @@
 </template>
 
 <script setup lang="ts">
+import { default as works } from '~/db/works.js'
+
 useHead({
   title: 'some latest job',
 })
 
-import { default as works } from '/db/works.js';
-
 const route = useRoute()
 
-const work = computed(() => works[route.params.id]);
-const projectName = computed(() => work.value.imageDirectory);
+const work = computed(() => works[route.params.id])
+const projectName = computed(() => work.value.imageDirectory)
 const images = computed(() => {
   return [...Array(work.value.numberImg)].map((x, i) => ({
-    src: `/img/portfolio/gallery/${projectName.value}/${i+1}.jpg`
+    src: `/img/portfolio/gallery/${projectName.value}/${i + 1}.jpg`,
   }))
-});
+})
 
-const galleryMain = ref();
-const galleryImgs = ref();
+const galleryMain = ref()
+const galleryImgs = ref()
 const clickMiniImg = (key: number) => {
-  galleryImgs.value[key].scrollIntoView({behavior: 'smooth', block: 'nearest'})
-};
+  galleryImgs.value[key].scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+  })
+}
 
 const pureLink = computed(() => {
-  return work.value.link.replace(/https:/ig, '').replace(/\//ig, '');
-});
+  return work.value.link.replace(/https:/gi, '').replace(/\//gi, '')
+})
 </script>
 
 <style lang="scss">
-@import "../../assets/styles/props";
+@import '../../assets/styles/props';
 
 .gallery {
   width: 840px;
@@ -105,7 +104,7 @@ const pureLink = computed(() => {
   .row {
     margin: 0;
   }
-  .theme--light.v-application{
+  .theme--light.v-application {
     max-width: fit-content;
     margin: 1em auto 2em;
   }
@@ -141,7 +140,6 @@ const pureLink = computed(() => {
     }
 
     .skills {
-
       display: flex;
       flex-wrap: wrap;
 

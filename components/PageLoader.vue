@@ -2,9 +2,7 @@
   <div class="page-loader" :class="animations">
     <div class="circle">
       <div class="loader" />
-      <div class="text">
-        Hi!
-      </div>
+      <div class="text">Hi!</div>
     </div>
   </div>
 </template>
@@ -21,7 +19,7 @@ const animation = ref({
   rotate2: false,
   fadeIn: false,
   tilt: false,
-  goDown: false
+  goDown: false,
 })
 const showLeftRing = ref(false)
 const animations = computed(() => {
@@ -41,7 +39,6 @@ const runAnimations = () => {
 onMounted(() => {
   runAnimations()
 })
-
 </script>
 
 <style lang="scss" scoped>

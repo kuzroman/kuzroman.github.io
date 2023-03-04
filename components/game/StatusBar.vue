@@ -1,16 +1,12 @@
 <template>
   <div class="status-bar" :class="{ active: isGameReady || isDebug }">
     <div class="status-bar--top">
-      <div class="score">
-        {{ killedLetters.length }} killed
-      </div>
+      <div class="score">{{ killedLetters.length }} killed</div>
       <div class="status-bar--right">
         <IconTime />
         <IconShield />
 
-        <div class="time">
-          {{ timeLeft }}s
-        </div>
+        <div class="time">{{ timeLeft }}s</div>
       </div>
     </div>
     <UI_Loader_line class="loader-Line" :percent="health" />
@@ -36,24 +32,24 @@ let intervalTime
 export default {
   name: 'StatusBar',
   components: { UI_Loader_line, UILink2Move, IconTime, IconShield },
-  data () {
+  data() {
     return {
       health: healthDefault,
-      isDebug: false
+      isDebug: false,
     }
   },
   watch: {
-    isGameStart () {
+    isGameStart() {
       this.runTimer()
     },
-    damage (damage) {
+    damage(damage) {
       this.health = healthDefault - damage
     },
-    health (health) {
+    health(health) {
       if (health <= 0) {
         this.setIsGameFinished(true)
       }
-    }
+    },
   },
   computed: {
     ...mapGetters('game', [
@@ -65,18 +61,18 @@ export default {
       'letters',
       'killedLetters',
       'damage',
-      'timeLeft'
-    ])
+      'timeLeft',
+    ]),
   },
   methods: {
     ...mapMutations('game', [
       'setIsGameFinished',
       'setIsLeaderBoardOpened',
       'setScore',
-      'decreaseTimeLeft'
+      'decreaseTimeLeft',
     ]),
 
-    runTimer () {
+    runTimer() {
       intervalTime = setInterval(() => {
         this.decreaseTimeLeft()
 
@@ -87,10 +83,10 @@ export default {
       }, 1000)
     },
 
-    openLeaderBoard () {
+    openLeaderBoard() {
       this.setIsLeaderBoardOpened(true)
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -161,7 +157,7 @@ export default {
   .leaders {
     font-weight: bold;
     text-transform: uppercase;
-    font-size: .8em;
+    font-size: 0.8em;
     cursor: pointer;
     padding: 0.5em 0;
     display: inline-block;

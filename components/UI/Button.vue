@@ -9,13 +9,13 @@ export default {
   name: 'UIButton',
   props: {
     text: { type: String, default: 'Button' },
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
   },
-  data () {
+  data() {
     return {}
   },
   computed: {},
-  methods: {}
+  methods: {},
 }
 </script>
 

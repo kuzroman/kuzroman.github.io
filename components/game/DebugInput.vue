@@ -14,7 +14,7 @@ const props = defineProps({
   seeds: { type: Array, default: [] },
   bullets: { type: Array, default: [] },
   letters: { type: Array, default: [] },
-  shooter: { type: Object, default: {} }
+  shooter: { type: Object, default: {} },
 })
 const isPaused = ref(false)
 
@@ -31,7 +31,9 @@ const setPauseKey = (key) => {
 }
 
 onBeforeMount(() => {
-  if (props.isDebug) { setPauseKey('Space') }
+  if (props.isDebug) {
+    setPauseKey('Space')
+  }
 })
 </script>
 

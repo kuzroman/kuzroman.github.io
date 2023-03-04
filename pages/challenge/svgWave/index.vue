@@ -2,20 +2,16 @@
   <div>
     <div id="box" ref="box">
       <div class="svg">
-        <div ref="svg1" style="width: 100%;height: 100%;" />
+        <div ref="svg1" style="width: 100%; height: 100%" />
       </div>
 
       <div class="buttons m-5">
-        <button class="buttons__btn m-1" @click="runWave">
-          Run
-        </button>
-        <button class="buttons__btn m-1" @click="stopWave">
-          Stop
-        </button>
+        <button class="buttons__btn m-1" @click="runWave">Run</button>
+        <button class="buttons__btn m-1" @click="stopWave">Stop</button>
       </div>
 
       <div class="svg">
-        <div ref="svg2" style="width: 100%;height: 100%;" />
+        <div ref="svg2" style="width: 100%; height: 100%" />
       </div>
 
       <!--    <div @click="saveSvg">Save to SVG</div>-->
@@ -43,41 +39,47 @@ onMounted(() => {
     color: 'green',
     curve: 40,
     delay: Math.random() * 1 * 100,
-    duration: 2500
+    duration: 2500,
   })
 
-  svgInstance2 = new WavySvg(svg2.value, [{
-    waveHeight: 40,
-    baseHeight: 60,
-    color: getRandomColor(),
-    endColor: getRandomColor(),
-    curve: 20,
-    delay: Math.random() * 1 * 200,
-    duration: 2500
-  }, {
-    waveHeight: 30,
-    baseHeight: 40,
-    color: getRandomColor(),
-    endColor: getRandomColor(),
-    curve: 15,
-    delay: Math.random() * 1 * 300,
-    duration: 2500
-  }])
+  svgInstance2 = new WavySvg(svg2.value, [
+    {
+      waveHeight: 40,
+      baseHeight: 60,
+      color: getRandomColor(),
+      endColor: getRandomColor(),
+      curve: 20,
+      delay: Math.random() * 1 * 200,
+      duration: 2500,
+    },
+    {
+      waveHeight: 30,
+      baseHeight: 40,
+      color: getRandomColor(),
+      endColor: getRandomColor(),
+      curve: 15,
+      delay: Math.random() * 1 * 300,
+      duration: 2500,
+    },
+  ])
 })
 
-function getRandomColor () {
-  const r = Math.round(Math.random() * 255); const g = Math.round(Math.random() * 255); const b = Math.round(Math.random() * 255); const o = Math.random() * 0.8 + 0.2
+function getRandomColor() {
+  const r = Math.round(Math.random() * 255)
+  const g = Math.round(Math.random() * 255)
+  const b = Math.round(Math.random() * 255)
+  const o = Math.random() * 0.8 + 0.2
   return `rgba(${r}, ${g}, ${b}, ${o})`
 }
 
-function runWave () {
-  [svgInstance, svgInstance2].forEach(item => item.run())
+function runWave() {
+  ;[svgInstance, svgInstance2].forEach((item) => item.run())
 }
-function stopWave () {
-  [svgInstance, svgInstance2].forEach(item => item.stop())
+function stopWave() {
+  ;[svgInstance, svgInstance2].forEach((item) => item.stop())
 }
 
-function saveSvg () {
+function saveSvg() {
   // convert the SVG to a string
   const svgString = new XMLSerializer().serializeToString(svgInstance.wrap)
   // save
@@ -99,7 +101,7 @@ function saveSvg () {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    border: 1px solid #4b4b4b
+    border: 1px solid #4b4b4b;
   }
 
   .buttons {

@@ -8,13 +8,9 @@
         placeholder="Yur name, or feedback)"
         maxlength="30"
         @keypress.enter="saveResult"
-      >
-
-      <UIButton
-        class="save-result"
-        text="Save"
-        @click.native="saveResult"
       />
+
+      <UIButton class="save-result" text="Save" @click.native="saveResult" />
       <span>{{ score }} points</span>
     </label>
   </div>
@@ -28,34 +24,36 @@ export default {
   name: 'LeaderBoard',
   components: { UIButton },
 
-  data () {
+  data() {
     return {
-      inputText: ''
+      inputText: '',
     }
   },
   watch: {
-    inputText (text) {
-      this.inputText = text.replace(/[^a-zа-я 0-9]|^\s/gi, '').replace(/\s\s/gi, ' ')
-    }
+    inputText(text) {
+      this.inputText = text
+        .replace(/[^a-zа-я 0-9]|^\s/gi, '')
+        .replace(/\s\s/gi, ' ')
+    },
   },
   computed: {
     ...mapGetters('leaderBoard', ['isSent']),
-    ...mapGetters('game', ['score'])
-
+    ...mapGetters('game', ['score']),
   },
   methods: {
     ...mapActions('leaderBoard', ['addLeader']),
 
-    saveResult () {
+    saveResult() {
       // const text = this.inputText.replace(/[^a-z 0-9]/gi, '')
-      if (!this.inputText.trim()) { return }
+      if (!this.inputText.trim()) {
+        return
+      }
 
-      this.addLeader({ user: this.inputText, score: this.score })
-        .then(() => {
-          this.$emit('leader-board-form--save-result')
-        })
-    }
-  }
+      this.addLeader({ user: this.inputText, score: this.score }).then(() => {
+        this.$emit('leader-board-form--save-result')
+      })
+    },
+  },
 }
 </script>
 

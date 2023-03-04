@@ -8,12 +8,12 @@
 defineProps({
   text: { type: String, default: 'someText' },
   href: { type: String, default: null },
-  target: { type: String, default: null }
+  target: { type: String, default: null },
 })
 </script>
 
 <style lang="scss">
-@import "../../assets/styles/props.scss";
+@import '../../assets/styles/props.scss';
 
 .ui-link-move {
   display: flex;

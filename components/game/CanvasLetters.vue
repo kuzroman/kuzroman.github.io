@@ -11,11 +11,7 @@
       />
     </div>
 
-    <canvas
-      id="canvas"
-      :width="viewPortWidth"
-      :height="viewPortHeight"
-    />
+    <canvas id="canvas" :width="viewPortWidth" :height="viewPortHeight" />
 
     <GameDebugInput
       v-if="isDebug"
@@ -46,8 +42,8 @@ const props = defineProps({
   isDebug: { type: Boolean, default: false },
   shooter: {
     type: Object,
-    default: () => {}
-  }
+    default: () => {},
+  },
 })
 
 const seeds = ref([])
@@ -67,23 +63,27 @@ const description = computed(() =>
   props.isDebug
     ? 'Hello'
     : 'Hello, my name is Roman.|' +
-    'I am a Front-End developer with 12 years old experience.|' +
-    'SPA, SSR, SSG, js and Vue ... are my passion.|' +
-    'Check this out some projects on my Work page.|' +
-    'Feel free if you wanna say hello at kuzroman@list.ru then do it!)')
+      'I am a Front-End developer with 12 years old experience.|' +
+      'SPA, SSR, SSG, js and Vue ... are my passion.|' +
+      'Check this out some projects on my Work page.|' +
+      'Feel free if you wanna say hello at kuzroman@list.ru then do it!)'
+)
 
-const setIsSeedsFall = bool => store.commit('game/setIsSeedsFall', bool)
-const setIsGameFinished = bool => store.commit('game/setIsGameFinished', bool)
-const setLetters = collection => store.commit('game/setLetters', collection)
-const updateLetters = letter => store.commit('game/updateLetters', letter)
-const showLetter = letters => store.commit('game/showLetter', letters)
-const killLetter = letters => store.commit('game/killLetter', letters)
+const setIsSeedsFall = (bool) => store.commit('game/setIsSeedsFall', bool)
+const setIsGameFinished = (bool) => store.commit('game/setIsGameFinished', bool)
+const setLetters = (collection) => store.commit('game/setLetters', collection)
+const updateLetters = (letter) => store.commit('game/updateLetters', letter)
+const showLetter = (letters) => store.commit('game/showLetter', letters)
+const killLetter = (letters) => store.commit('game/killLetter', letters)
 
-watch(() => shots.value, () => {
-  const bullet = new Bullet(props.shooter.x1, props.shooter.y1)
-  bullets.value.push(bullet)
-  startAnimation()
-})
+watch(
+  () => shots.value,
+  () => {
+    const bullet = new Bullet(props.shooter.x1, props.shooter.y1)
+    bullets.value.push(bullet)
+    startAnimation()
+  }
+)
 
 const createLetters = () => {
   const letters = Array.from(
@@ -127,7 +127,9 @@ const startAnimation = () => {
   clearInterval(animationId)
 
   animationId = setInterval(() => {
-    if (isPaused.value) { return }
+    if (isPaused.value) {
+      return
+    }
     canvas.value.clearCanvas(viewPortWidth.value, viewPortHeight.value)
 
     updateSeeds()
@@ -170,9 +172,9 @@ const checkGoals = (bullet, aliveLetters) => {
   aliveLetters.forEach((letter) => {
     if (
       bullet.y1 < letter.y1 &&
-        ((bullet.x1 < letter.x1 && letter.x1 < bullet.x2) ||
-            (bullet.x1 < letter.x2 && letter.x2 < bullet.x2) ||
-            (letter.x1 < bullet.x1 && bullet.x2 < letter.x2))
+      ((bullet.x1 < letter.x1 && letter.x1 < bullet.x2) ||
+        (bullet.x1 < letter.x2 && letter.x2 < bullet.x2) ||
+        (letter.x1 < bullet.x1 && bullet.x2 < letter.x2))
     ) {
       killLetter(letter)
       addSeed({ x1: bullet.x1, y1: bullet.y1 }, 'shrapnel')
@@ -181,11 +183,7 @@ const checkGoals = (bullet, aliveLetters) => {
   })
 }
 const checkDamage = (shooter, seed) => {
-  if (
-    shooter.y1 < seed.y1 &&
-      shooter.x1 < seed.x1 &&
-      seed.x1 < shooter.x2
-  ) {
+  if (shooter.y1 < seed.y1 && shooter.x1 < seed.x1 && seed.x1 < shooter.x2) {
     seed.isStopped = true
     emit('canvas-letters-damage')
   }

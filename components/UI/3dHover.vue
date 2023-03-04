@@ -18,7 +18,9 @@ const THRESHOLD = 15
 const cardEl = ref()
 
 onMounted(() => {
-  if (window.innerWidth < 480) { return }
+  if (window.innerWidth < 480) {
+    return
+  }
   const motionMatchMedia = window.matchMedia('(prefers-reduced-motion)')
   if (!motionMatchMedia.matches) {
     cardEl.value.addEventListener('mousemove', handleHover)
@@ -31,7 +33,7 @@ onBeforeUnmount(() => {
   cardEl.value.removeEventListener('mouseleave', resetStyles)
 })
 
-function handleHover (e) {
+function handleHover(e) {
   const { clientX, clientY, currentTarget } = e
   const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget
 
@@ -43,26 +45,26 @@ function handleHover (e) {
   cardEl.value.style.transform = `perspective(${clientWidth}px) rotateX(${-rotateY}deg) rotateY(${-rotateX}deg) scale3d(1, 1, 1)`
 }
 
-function resetStyles (e) {
+function resetStyles(e) {
   cardEl.value.style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`
 }
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/styles/props";
+@import '../../assets/styles/props';
 
 .flexible {
   position: relative;
 
   &__card {
-    background: url("assets/images/yelloustoun.jpg") no-repeat;
+    background: url('assets/images/yelloustoun.jpg') no-repeat;
     background-size: cover;
     position: relative;
     color: #fff;
     transition: transform 0.1s ease;
 
     &::before {
-      content: "";
+      content: '';
       background: rgba(0, 0, 0, 0.4);
       position: absolute;
       height: 100%;
@@ -87,12 +89,11 @@ function resetStyles (e) {
 
 @media (max-width: $mq-phone) {
   .flexible {
-
-      &__card {
-        &:hover .content {
-          transform: none;
-        }
+    &__card {
+      &:hover .content {
+        transform: none;
       }
+    }
   }
 }
 </style>

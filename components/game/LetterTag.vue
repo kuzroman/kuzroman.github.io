@@ -1,13 +1,8 @@
 <template>
-  <div
-    v-if="sign !== '|'"
-    ref="letterEl"
-    class="letter-tag"
-    :class="styles"
-  >
+  <div v-if="sign !== '|'" ref="letterEl" class="letter-tag" :class="styles">
     {{ sign }}
   </div>
-  <br v-else>
+  <br v-else />
 </template>
 
 <script setup>
@@ -16,7 +11,7 @@ const emit = defineEmits(['letter-tag--show'])
 const props = defineProps({
   sign: { type: String, default: ' ' },
   isKilled: { type: Boolean, default: false },
-  isShow: { type: Boolean, default: false }
+  isShow: { type: Boolean, default: false },
 })
 
 const letterEl = ref(null)
@@ -31,7 +26,9 @@ const styles = computed(() => {
 })
 
 const updateData = () => {
-  if (!letterEl.value) { return }
+  if (!letterEl.value) {
+    return
+  }
   const rect = letterEl.value.getBoundingClientRect()
   x1.value = Math.ceil(rect.left)
   y1.value = Math.ceil(rect.top)
@@ -39,17 +36,22 @@ const updateData = () => {
   y2.value = Math.ceil(rect.top + letterEl.value.clientHeight)
 }
 
-watch(() => props.isShow, () => {
-  updateData()
-  if (!x1.value || !y1.value) { return }
-  emit('letter-tag--show', {
-    x1: x1.value,
-    x2: x2.value,
-    y1: y1.value,
-    y2: y2.value,
-    id: id.value
-  })
-})
+watch(
+  () => props.isShow,
+  () => {
+    updateData()
+    if (!x1.value || !y1.value) {
+      return
+    }
+    emit('letter-tag--show', {
+      x1: x1.value,
+      x2: x2.value,
+      y1: y1.value,
+      y2: y2.value,
+      id: id.value,
+    })
+  }
+)
 </script>
 
 <style lang="scss">

@@ -17,13 +17,21 @@
         </transition>
       </router-view>
 
-      <div v-if="showArrow" class="content-arrow left" :class="{ hide: isGameReady }">
+      <div
+        v-if="showArrow"
+        class="content-arrow left"
+        :class="{ hide: isGameReady }"
+      >
         <a @click="toPage({ route: prevRoute, direction: 'to-left' })">
           <PageControl direction="left" :text="prevRoute?.name" />
         </a>
       </div>
 
-      <div v-if="showArrow" class="content-arrow right" :class="{ hide: isGameReady }">
+      <div
+        v-if="showArrow"
+        class="content-arrow right"
+        :class="{ hide: isGameReady }"
+      >
         <a @click="toPage({ route: nextRoute, direction: 'to-right' })">
           <PageControl direction="right" :text="nextRoute?.name" />
         </a>
@@ -41,13 +49,15 @@ const router = useRouter()
 
 store.commit('app/setRoutes', router)
 
-const transitionDirection = computed(() => store.getters['app/transitionDirection'])
+const transitionDirection = computed(
+  () => store.getters['app/transitionDirection']
+)
 const isPageLoaderHide = computed(() => store.getters['app/isPageLoaderHide'])
 const navigation = computed(() => store.getters['app/navigation'])
 const isGameReady = computed(() => store.getters['game/isGameReady'])
 const routesLen = computed(() => navigation.value.length)
 
-const toPage = page => store.commit('app/toPage', page)
+const toPage = (page) => store.commit('app/toPage', page)
 
 const onBeforeLeave = () => {
   store.commit('app/setIsPageAnimationFinished', false)
@@ -61,7 +71,9 @@ onMounted(() => {
 
   const navigation = []
   router.options.routes.forEach((route) => {
-    if (!route.name.includes('-id')) { navigation.push(route) }
+    if (!route.name.includes('-id')) {
+      navigation.push(route)
+    }
   })
   store.commit('app/setNavigation', navigation)
 
@@ -84,7 +96,7 @@ const mobileCheck = () => {
 const runGoogleAnal = () => {
   window.dataLayer = window.dataLayer || []
 
-  function gtag () {
+  function gtag() {
     dataLayer.push(arguments)
   }
 
@@ -119,7 +131,7 @@ const nextRoute = computed(() => {
 </script>
 
 <style lang="scss">
-@import "assets/styles/index.scss";
+@import 'assets/styles/index.scss';
 
 .app {
   height: 100%;
@@ -175,7 +187,7 @@ const nextRoute = computed(() => {
     }
   }
 
-  $speed: .6s;
+  $speed: 0.6s;
 
   .to-left {
     &.fade-leave-active {
@@ -249,29 +261,28 @@ const nextRoute = computed(() => {
   .app {
     .to-left {
       &.fade-leave-active {
-        animation: none
+        animation: none;
       }
       &.fade-enter-active {
-        animation: none
+        animation: none;
       }
     }
     .to-right {
       &.fade-leave-active {
-        animation: none
+        animation: none;
       }
       &.fade-enter-active {
-        animation: none
+        animation: none;
       }
     }
     .fade-leave-active {
-      animation: none
+      animation: none;
     }
     .fade-enter-active {
-      animation: none
+      animation: none;
     }
 
     .content {
-
       .view {
         padding-left: $px-mob;
         padding-right: $px-mob;

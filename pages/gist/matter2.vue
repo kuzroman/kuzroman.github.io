@@ -6,9 +6,25 @@
 
 <script>
 import Matter from 'matter-js'
-import {mapMutations} from "vuex";
-const { Engine, Render, World, Bodies, Body, Events, Composite, Composites, Constraint,
-  Vertices, Mouse, Bounds, MouseConstraint, Query, Common, Runner } = Matter
+import { mapMutations } from 'vuex'
+const {
+  Engine,
+  Render,
+  World,
+  Bodies,
+  Body,
+  Events,
+  Composite,
+  Composites,
+  Constraint,
+  Vertices,
+  Mouse,
+  Bounds,
+  MouseConstraint,
+  Query,
+  Common,
+  Runner,
+} = Matter
 
 export default {
   methods: {
@@ -20,22 +36,22 @@ export default {
 
     const engine = Engine.create({
       gravity: {
-        y: 1
-      }
-    });
+        y: 1,
+      },
+    })
 
     const render = Render.create({
       element: document.querySelector('.box'),
       // element: document.body,
-      engine: engine,
+      engine,
       options: {
         // width: 800,
         // height: 600,
         wireframes: false,
         // background: "white"
         // showAngleIndicator: true,
-      }
-    });
+      },
+    })
 
     Composite.add(engine.world, [
       // Bodies.rectangle(500, 100, 40, 40, { chamfer: {radius: 10}, restitution: 0.8 }),
@@ -55,12 +71,9 @@ export default {
         render: {
           fillStyle: '#fc0',
           strokeStyle: 'white',
-          lineWidth: 3
-        }
+          lineWidth: 3,
+        },
       }),
-
-
-
 
       // skew walls
       // Bodies.rectangle(0, 100, 800, 10, { isStatic: true, angle: Math.PI * 0.2, render: { fillStyle: '#fff' }}),
@@ -70,9 +83,7 @@ export default {
       Bodies.rectangle(400, 600, 800, 50, { isStatic: true }),
       Bodies.rectangle(800, 300, 50, 600, { isStatic: true }),
       Bodies.rectangle(0, 300, 50, 600, { isStatic: true }),
-    ]);
-
-
+    ])
 
     // объедининение объектов
     // const bigCircle = Bodies.circle(450, 0, 200, {restitution: 0.8,})
@@ -101,28 +112,27 @@ export default {
     // });
     // World.add(engine.world, stack);
 
-
     // add mouse control
-    const mouse = Mouse.create(render.canvas);
+    const mouse = Mouse.create(render.canvas)
     const mouseConstraint = MouseConstraint.create(engine, {
-      mouse: mouse,
+      mouse,
       constraint: {
         stiffness: 0.2,
         render: {
-          visible: false
-        }
-      }
-    });
-    Composite.add(engine.world, mouseConstraint);
+          visible: false,
+        },
+      },
+    })
+    Composite.add(engine.world, mouseConstraint)
 
     // run the renderer
-    Render.run(render);
+    Render.run(render)
     // create runner
-    const runner = Runner.create();
+    const runner = Runner.create()
     // run the engine
-    Runner.run(runner, engine);
-  }
-};
+    Runner.run(runner, engine)
+  },
+}
 </script>
 
 <style lang="scss">

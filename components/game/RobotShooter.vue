@@ -1,10 +1,5 @@
 <template>
-  <div
-    ref="shooter"
-    class="robot-shooter"
-    :class="state"
-    :style="left"
-  />
+  <div ref="shooter" class="robot-shooter" :class="state" :style="left" />
 </template>
 
 <script setup>
@@ -15,7 +10,7 @@ import CustomAudio from '../abstractions/Audio'
 const store = useStore()
 let audioDamage
 const props = defineProps({
-  position: { type: Object, default: {} }
+  position: { type: Object, default: {} },
 })
 
 const isDamage = ref(false)
@@ -29,7 +24,7 @@ const left = computed(() => {
 const state = computed(() => {
   return {
     active: isGameReady.value && !isGameFinished.value,
-    damage: isDamage.value
+    damage: isDamage.value,
   }
 })
 
@@ -40,10 +35,13 @@ const showDamage = () => {
   }, 300)
 }
 
-watch(() => damage.value, () => {
-  showDamage()
-  audioDamage.replay()
-})
+watch(
+  () => damage.value,
+  () => {
+    showDamage()
+    audioDamage.replay()
+  }
+)
 
 onMounted(() => {
   audioDamage = new CustomAudio(damageMp3, 0.3)
@@ -54,7 +52,7 @@ onUnmounted(() => {
 })
 
 defineExpose({
-  shooter
+  shooter,
 })
 </script>
 

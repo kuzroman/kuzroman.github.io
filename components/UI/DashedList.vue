@@ -5,7 +5,6 @@
 </template>
 
 <style lang="scss">
-
 @import './_props.scss';
 
 .ui-dashed-list {

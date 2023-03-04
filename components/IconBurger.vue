@@ -11,16 +11,23 @@
 import { useStore } from 'vuex'
 
 const store = useStore()
-const isMenuNavigationOpened = computed(() => store.getters['app/isMenuNavigationOpened'])
+const isMenuNavigationOpened = computed(
+  () => store.getters['app/isMenuNavigationOpened']
+)
 const isMobile = computed(() => store.getters['app/isMobile'])
-const setIsMenuNavigation = (bool: boolean) => store.commit('app/setIsMenuNavigation', bool)
+const setIsMenuNavigation = (bool: boolean) =>
+  store.commit('app/setIsMenuNavigation', bool)
 const burger = ref()
 
 const handlerMouseenter = () => {
-  if (!isMobile.value) { setIsMenuNavigation(true) }
+  if (!isMobile.value) {
+    setIsMenuNavigation(true)
+  }
 }
 const handlerClick = () => {
-  if (isMobile.value) { setIsMenuNavigation(!isMenuNavigationOpened.value) }
+  if (isMobile.value) {
+    setIsMenuNavigation(!isMenuNavigationOpened.value)
+  }
 }
 
 onMounted(() => {
@@ -49,8 +56,8 @@ const hideMenu = (ev: Event) => {
 
 @media (max-width: $mq-phone) {
   .icon-burger {
-    top: .5em;
-    right: .7em;
+    top: 0.5em;
+    right: 0.7em;
   }
 }
 </style>

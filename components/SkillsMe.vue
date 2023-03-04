@@ -19,15 +19,14 @@ const knowledge = ref(skills)
 </script>
 
 <style lang="scss">
-@import "../assets/styles/props.scss";
+@import '../assets/styles/props.scss';
 
 .skills-me {
-
   .knowledge {
     color: $color-12;
     background: $color-1;
-    margin: .4em 0.4em;
-    transition: color .3s, background .3s;
+    margin: 0.4em 0.4em;
+    transition: color 0.3s, background 0.3s;
     display: inline-block;
 
     &:first-child {
@@ -40,18 +39,18 @@ const knowledge = ref(skills)
     }
 
     .main {
-      padding: .8em;
+      padding: 0.8em;
       font-weight: bold;
       display: inline-block;
     }
 
     .general {
-      padding: .8em;
+      padding: 0.8em;
       display: inline-block;
 
       > div {
         display: inline-block;
-        padding: 0 .4em;
+        padding: 0 0.4em;
       }
     }
   }
@@ -63,10 +62,10 @@ const knowledge = ref(skills)
       font-size: 0.8em;
 
       .main {
-        padding: 0 .4em;
+        padding: 0 0.4em;
       }
       .general {
-        padding: 0 .4em;
+        padding: 0 0.4em;
       }
     }
   }

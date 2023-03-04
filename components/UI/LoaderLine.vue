@@ -8,16 +8,16 @@
 export default {
   name: 'UILoaderLine',
   props: {
-    percent: { type: Number, default: 50 }
+    percent: { type: Number, default: 50 },
   },
-  data () {
+  data() {
     return {}
   },
   computed: {
-    width () {
+    width() {
       return `${this.percent}%`
-    }
-  }
+    },
+  },
 }
 </script>
 

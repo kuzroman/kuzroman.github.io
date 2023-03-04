@@ -6,9 +6,8 @@
 
 <script setup>
 defineProps({
-  isActive: { type: Boolean, default: false }
+  isActive: { type: Boolean, default: false },
 })
-
 </script>
 
 <style lang="scss">

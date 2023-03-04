@@ -1,8 +1,6 @@
 <template>
   <div class="leader-board" :class="state">
-    <h2 class="title">
-      Leader Board
-    </h2>
+    <h2 class="title">Leader Board</h2>
 
     <DashedList class="dashed-list">
       <template v-for="(leader, i) in top10Leaders" :key="i">
@@ -58,47 +56,47 @@ export default {
   name: 'LeaderBoard',
   components: { DashedList, CloseSpinner, UIButton, LeaderBoardForm },
 
-  data () {
+  data() {
     return {
-      isDebug: false
+      isDebug: false,
     }
   },
   computed: {
     ...mapGetters('leaderBoard', ['getSortLeaders']),
     ...mapGetters('game', ['isLeaderBoardOpened', 'score']),
 
-    top10Leaders () {
+    top10Leaders() {
       return this.getSortLeaders.slice(0, 10)
     },
 
-    state () {
+    state() {
       return this.isLeaderBoardOpened || this.isDebug ? 'active' : 'hide'
     },
 
-    yourRate () {
-      const rate = this.getSortLeaders.findIndex(x => x.score < this.score)
+    yourRate() {
+      const rate = this.getSortLeaders.findIndex((x) => x.score < this.score)
       return rate > -1 ? rate : this.getSortLeaders.length
     },
 
-    isResultInTop () {
+    isResultInTop() {
       return this.yourRate < 10
     },
 
-    betweenLeaders () {
+    betweenLeaders() {
       return this.getSortLeaders.slice(this.yourRate - 1, this.yourRate + 1)
-    }
+    },
   },
   methods: {
     ...mapActions('leaderBoard', ['getLeaders']),
     ...mapMutations('game', ['setIsLeaderBoardOpened']),
 
-    closeLeaderBoard () {
+    closeLeaderBoard() {
       this.setIsLeaderBoardOpened(false)
-    }
+    },
   },
-  mounted () {
+  mounted() {
     this.getLeaders()
-  }
+  },
 }
 </script>
 

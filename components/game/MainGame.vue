@@ -40,13 +40,16 @@ const shooter = ref(null)
 
 const isGameFinished = computed(() => store.getters['game/isGameFinished'])
 const isGameReady = computed(() => store.getters['game/isGameReady'])
-const isPageAnimationFinished = computed(() => store.getters['app/isPageAnimationFinished'])
+const isPageAnimationFinished = computed(
+  () => store.getters['app/isPageAnimationFinished']
+)
 
-const setIsGameStart = bool => store.commit('game/setIsGameStart', bool)
+const setIsGameStart = (bool) => store.commit('game/setIsGameStart', bool)
 const resetStateGame = () => store.commit('game/resetStateGame')
 const increaseShoots = () => store.commit('game/increaseShoots')
 const increaseDamage = () => store.commit('game/increaseDamage')
-const resetStateLeaderBoard = () => store.commit('leaderBoard/resetStateLeaderBoard')
+const resetStateLeaderBoard = () =>
+  store.commit('leaderBoard/resetStateLeaderBoard')
 
 const forceUpdateComponent = () => {
   mainGameKey.value += 1
@@ -60,18 +63,22 @@ const restartGame = () => {
 }
 
 const makeShot = () => {
-  if (!isGameReady.value || isGameFinished.value) { return }
+  if (!isGameReady.value || isGameFinished.value) {
+    return
+  }
   setIsGameStart(true)
   increaseShoots()
   audioShot.replay()
 }
 const moveShooter = (ev) => {
-  if (!shooter?.value?.shooter) { return }
+  if (!shooter?.value?.shooter) {
+    return
+  }
   const shooterEl = shooter.value.shooter
   shooterPosition.value = {
     x1: ev.clientX,
     y1: shooterEl.getBoundingClientRect().top,
-    x2: ev.clientX + shooterEl.offsetWidth
+    x2: ev.clientX + shooterEl.offsetWidth,
   }
 }
 const restartGameByResizeBody = (ev) => {
@@ -95,13 +102,18 @@ onUnmounted(() => {
   restartGame()
 })
 
-watch(() => isGameReady.value, () => {
-  audioBg.replay()
-})
-watch(() => isGameFinished.value, () => {
-  audioBg.pause()
-})
-
+watch(
+  () => isGameReady.value,
+  () => {
+    audioBg.replay()
+  }
+)
+watch(
+  () => isGameFinished.value,
+  () => {
+    audioBg.pause()
+  }
+)
 </script>
 
 <style lang="scss">
