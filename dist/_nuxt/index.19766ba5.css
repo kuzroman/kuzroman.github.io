@@ -1,12 +1,1 @@
-@font-face {
-  font-family: DancingScript;
-  src: url(./DancingScript-Medium.8cc56496.ttf);
-}
-.images img {
-  cursor: pointer;
-  padding: 6px;
-  width: 300px;
-}
-.images img:hover {
-  background: #6c6c6c;
-}
+@font-face{font-family:DancingScript;src:url(./DancingScript-Medium.8cc56496.ttf)}.images img{cursor:pointer;padding:6px;width:300px}.images img:hover{background:#6c6c6c}

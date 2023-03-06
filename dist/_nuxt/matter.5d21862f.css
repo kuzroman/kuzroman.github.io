@@ -1,9 +1,1 @@
-.app .content .view {
-  padding: 0;
-}
-canvas {
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  width: 100%;
-}
+.app .content .view{padding:0}canvas{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}

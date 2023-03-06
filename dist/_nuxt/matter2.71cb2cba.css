@@ -1,15 +1,1 @@
-.app .content .view {
-  padding: 0;
-}
-.box {
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-}
-.box,
-canvas {
-  height: 100%;
-  width: 100%;
-}
+.app .content .view{padding:0}.box{left:50%;position:absolute;top:50%;transform:translate(-50%,-50%);z-index:10}.box,canvas{height:100%;width:100%}
