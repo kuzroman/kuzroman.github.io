@@ -1,38 +1,38 @@
 <template>
   <div class="portfolio-id">
-    <div class="scroll-y">
-      <div class="header">
-        <h1 class="h1">{{ work.nameCompany }}</h1>
-        <div v-if="work.nameTitle">{{ work.nameTitle }}</div>
-        <div v-if="work.descCompany">{{ work.descCompany }}</div>
-      </div>
+    <div class="header">
+      <h1 class="h1">{{ work.nameCompany }}</h1>
+      <div v-if="work.nameTitle">{{ work.nameTitle }}</div>
+      <div v-if="work.descCompany">{{ work.descCompany }}</div>
+    </div>
 
-      <div class="gallery mx-0 m-12">
-        <div ref="galleryMain" class="gallery__scroll">
-          <div v-for="(image, i) in images" ref="galleryImgs" :key="i">
-            <img class="mx-auto border border-none" :src="image.src" alt="" />
-          </div>
-        </div>
-        <div class="gallery__horizon mt-4">
-          <div
-            v-for="(image, i) in images"
-            :key="i"
-            class="inline-block w-2/12 h-full"
-            @click="clickMiniImg(i)"
-          >
-            <img :src="image.src" alt="" />
-          </div>
+    <div class="gallery mx-0 m-12">
+      <div ref="galleryMain" class="gallery__scroll">
+        <div v-for="(image, i) in images" ref="galleryImgs" :key="i">
+          <img class="mx-auto border border-none" :src="image.src" alt="" />
         </div>
       </div>
-
-      <div class="description">
-        <div v-if="work.link" class="link">
-          Link to project:
-          <a :href="work.link" target="_blank">{{ pureLink }}</a>
+      <div class="gallery__horizon mt-4">
+        <div
+          v-for="(image, i) in images"
+          :key="i"
+          class="inline-block w-2/12 h-full"
+          @click="clickMiniImg(i)"
+        >
+          <img :src="image.src" alt="" />
         </div>
-        <div class="desc" v-html="work.descDeal" />
-        <div class="skills">
-          <div v-for="skill in work.skills" class="skill">{{ skill }}</div>
+      </div>
+    </div>
+
+    <div class="description">
+      <div v-if="work.link" class="link">
+        Link to project:
+        <a :href="work.link" target="_blank">{{ pureLink }}</a>
+      </div>
+      <div class="desc" v-html="work.descDeal" />
+      <div class="skills">
+        <div v-for="(skill, i) in work.skills" :key="i" class="skill">
+          {{ skill }}
         </div>
       </div>
     </div>

@@ -123,6 +123,7 @@ watch(
   width: 100vw;
   height: 100vh;
   position: absolute;
+  z-index: $zIndex-1;
   top: 0;
   left: 0;
   overflow: hidden;

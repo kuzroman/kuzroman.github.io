@@ -1,35 +1,33 @@
 <template>
-  <div>
-    <div class="radio">
-      <UISoundBar
-        class="play"
-        :is-active="isActive"
-        :class="{ hide: isGameReady }"
-        @click="switchPlayPause"
-      />
-      <div class="stations" @click="handleClickRadio">
-        <div
-          class="pt-0"
-          :class="{ underline: isUnderlineRadio(Stations.MAXIMUM) }"
-          :data-key="Stations.MAXIMUM"
-        >
-          Maximum
-        </div>
-        <div
-          :class="{ underline: isUnderlineRadio(Stations.POP90) }"
-          :data-key="Stations.POP90"
-        >
-          90s pop
-        </div>
-        <div
-          :class="{ underline: isUnderlineRadio(Stations.CYBER_SPACE) }"
-          :data-key="Stations.CYBER_SPACE"
-        >
-          Cyber Space
-        </div>
+  <div class="radio">
+    <UISoundBar
+      class="play"
+      :is-active="isActive"
+      :class="{ hide: isGameReady }"
+      @click="switchPlayPause"
+    />
+    <div class="stations" @click="handleClickRadio">
+      <div
+        class="pt-0"
+        :class="{ underline: isUnderlineRadio(Stations.MAXIMUM) }"
+        :data-key="Stations.MAXIMUM"
+      >
+        Maximum
       </div>
-      <video ref="player" class="video" playsinline />
+      <div
+        :class="{ underline: isUnderlineRadio(Stations.POP90) }"
+        :data-key="Stations.POP90"
+      >
+        90s pop
+      </div>
+      <div
+        :class="{ underline: isUnderlineRadio(Stations.CYBER_SPACE) }"
+        :data-key="Stations.CYBER_SPACE"
+      >
+        Cyber Space
+      </div>
     </div>
+    <video ref="player" class="video" playsinline />
   </div>
 </template>
 

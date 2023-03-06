@@ -13,23 +13,12 @@ body {
   margin: 0;
   background: $color-6;
   color: $color-10;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
-}
 
-.scroll-y {
-  height: 100vh;
-  overflow-y: scroll;
-  scrollbar-width: none;
-
-  & > div:last-child {
-    margin-bottom: 10em;
+  &::-webkit-scrollbar {
+    display: none;
   }
-}
-.scroll-y::-webkit-scrollbar {
-  /* WebKit */
-  width: 0;
-  height: 0;
 }
 
 .h1 {

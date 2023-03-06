@@ -2,25 +2,26 @@
   <div class="page-game">
     <GameMainGame />
 
-    <div id="stars" />
-    <div id="stars2" />
-    <div id="stars3" />
+    <div class="stars-box">
+      <div id="stars" />
+      <div id="stars2" />
+      <div id="stars3" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 useHead({
-  title: 'In game',
+  title: 'Hi! Nice to meet you =)',
 })
 </script>
 
 <style lang="scss">
 @import '../assets/styles/stars.css';
 
-.app .content .view {
-  &.page-game {
-    display: block !important;
-    padding: 0;
-  }
+.stars-box {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
 }
 </style>

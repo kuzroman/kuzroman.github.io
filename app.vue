@@ -1,10 +1,13 @@
 <template>
   <div class="app">
     <PageLoader v-if="!isPageLoaderHide" />
-    <MenuNavigation />
-    <IconBurger />
-    <SoundBar />
-    <ComeBack />
+
+    <HeaderBox>
+      <SoundBar />
+      <MenuNavigation />
+      <IconBurger />
+      <ComeBack />
+    </HeaderBox>
 
     <main class="content">
       <router-view v-slot="{ Component }">
@@ -13,7 +16,7 @@
           @after-enter="onAfterEnter"
           @before-leave="onBeforeLeave"
         >
-          <component :is="Component" class="view pt-28" :class="routeStyles" />
+          <component :is="Component" class="view py-28" :class="routeStyles" />
         </transition>
       </router-view>
 
@@ -138,17 +141,13 @@ const nextRoute = computed(() => {
 
   .content {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
     color: $color-12;
 
     .view {
       width: 100vw;
-      height: 100vh;
       padding-left: $px-desk;
       padding-right: $px-desk;
       margin: auto;
-      //background: $color-9;
       position: absolute;
       background-image: radial-gradient($color-9 1px, transparent 0);
       background-size: 4px 4px;
@@ -158,7 +157,8 @@ const nextRoute = computed(() => {
       display: flex;
       justify-content: center;
       flex-direction: column;
-      position: absolute;
+      position: fixed;
+      z-index: $zIndex-1;
       height: 100%;
 
       @media (max-width: $mq-phone) {

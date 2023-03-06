@@ -20,7 +20,7 @@
         github
       </UIButtonLink>
       <UIButtonLink
-        class="button notion"
+        class="notion mt-2"
         href="https://ginger-dirt-4f0.notion.site/2d7e0d31a9eb4de489ed78c660d8ef39"
       >
         CV

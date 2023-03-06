@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll-y">
+  <div>
     <div>(OSR) Optical character recognition</div>
 
     <div class="images">
@@ -184,7 +184,7 @@ const getMemeUrl = async () => {
 </script>
 
 <style lang="scss">
-@import '~/assets/styles/props';
+@import '../../../assets/styles/props';
 
 .images {
   img {

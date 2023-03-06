@@ -8,9 +8,6 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
-
-const store = useStore()
 const time = 300
 
 const animation = ref({
@@ -20,8 +17,9 @@ const animation = ref({
   fadeIn: false,
   tilt: false,
   goDown: false,
+  displayNone: false,
 })
-const showLeftRing = ref(false)
+
 const animations = computed(() => {
   return Object.keys(animation.value).reduce((a, key) => {
     return animation.value[key] === false ? a : a + ' ' + key
@@ -59,6 +57,10 @@ onMounted(() => {
   &.goDown {
     transform: translateY(100%);
     opacity: 0;
+  }
+
+  &.displayNone {
+    display: none;
   }
 
   & .circle {

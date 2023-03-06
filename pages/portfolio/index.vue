@@ -1,49 +1,47 @@
 <template>
   <div class="portfolio">
-    <div class="scroll-y">
-      <!--      <h1 class="h1">Portfolio</h1>-->
+    <!--      <h1 class="h1">Portfolio</h1>-->
 
-      <!--      <p>{{ $t("message.hello") }}</p>-->
-      <!--      <select v-model="$i18n.locale">-->
-      <!--        <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>-->
-      <!--      </select>-->
+    <!--      <p>{{ $t("message.hello") }}</p>-->
+    <!--      <select v-model="$i18n.locale">-->
+    <!--        <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>-->
+    <!--      </select>-->
 
-      <div class="works">
-        <router-link
-          v-for="(work, i) in works"
-          :key="i"
-          :to="{ path: `/portfolio/${i}` }"
+    <div class="works">
+      <router-link
+        v-for="(work, i) in works"
+        :key="i"
+        :to="{ path: `/portfolio/${i}` }"
+      >
+        <div
+          class="work"
+          :style="{ 'background-image': `url(${getBg(work, '0')})` }"
         >
-          <div
-            class="work"
-            :style="{ 'background-image': `url(${getBg(work, '0')})` }"
-          >
-            <div class="work-date">{{ work.date }}</div>
-            <div class="work-desc">
-              <div v-for="(skill, i) in work.skills" :key="i">{{ skill }}</div>
-            </div>
-            <div
-              class="work-logo"
-              :style="{ 'background-image': `url(${getBg(work, 'logo')})` }"
-            ></div>
+          <div class="work-date">{{ work.date }}</div>
+          <div class="work-desc">
+            <div v-for="(skill, i) in work.skills" :key="i">{{ skill }}</div>
           </div>
-        </router-link>
+          <div
+            class="work-logo"
+            :style="{ 'background-image': `url(${getBg(work, 'logo')})` }"
+          ></div>
+        </div>
+      </router-link>
 
-        <router-link
-          v-for="(work, i) in challenge"
-          :key="i"
-          :to="{ path: `/challenge/${work.link}` }"
+      <router-link
+        v-for="(work, i) in challenge"
+        :key="i"
+        :to="{ path: `/challenge/${work.link}` }"
+      >
+        <div
+          class="work"
+          :style="{ 'background-image': `url(${getBg(work, '0')})` }"
         >
-          <div
-            class="work"
-            :style="{ 'background-image': `url(${getBg(work, '0')})` }"
-          >
-            <div class="work-desc">
-              <div v-for="(skill, i) in work.skills" :key="i">{{ skill }}</div>
-            </div>
+          <div class="work-desc">
+            <div v-for="(skill, i) in work.skills" :key="i">{{ skill }}</div>
           </div>
-        </router-link>
-      </div>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
