@@ -11,11 +11,20 @@ export default class Canvas {
     this.ctx.fillRect(x, y, size, size)
   }
 
-  drawRing(x, y, size, color) {
+  drawRing(x, y, size, color, thick, borderColor) {
     this.ctx.beginPath()
     this.ctx.arc(x, y, size, 0, 2 * Math.PI)
-    this.ctx.fillStyle = color
-    this.ctx.fill()
+    if (color) {
+      this.ctx.fillStyle = color
+      this.ctx.fill()
+    }
+    if (thick) {
+      this.ctx.lineWidth = thick
+    }
+    if (borderColor) {
+      this.ctx.strokeStyle = borderColor
+      this.ctx.stroke()
+    }
   }
 
   clearCanvas(

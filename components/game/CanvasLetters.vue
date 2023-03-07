@@ -33,6 +33,7 @@ import Canvas from './abstractions/Canvas'
 import Seed from './abstractions/Seed'
 import Bullet from './abstractions/Bullet'
 import Letter from './abstractions/Letter'
+import Circle from '~/components/game/abstractions/Circle'
 
 const store = useStore()
 let audioBit
@@ -58,6 +59,7 @@ const viewPortHeight = ref(0)
 const shots = computed(() => store.getters['game/shots'])
 const letters = computed(() => store.getters['game/letters'])
 const barrier = computed(() => store.getters['game/barrier'])
+const circles = computed(() => store.getters['game/circles'])
 
 const description = computed(() =>
   props.isDebug
@@ -73,6 +75,8 @@ const setIsSeedsFall = (bool) => store.commit('game/setIsSeedsFall', bool)
 const setIsGameFinished = (bool) => store.commit('game/setIsGameFinished', bool)
 const setLetters = (collection) => store.commit('game/setLetters', collection)
 const updateLetters = (letter) => store.commit('game/updateLetters', letter)
+const addCircle = (circle) => store.commit('game/addCircle', circle)
+const removeCircle = (key) => store.commit('game/removeCircle', key)
 const showLetter = (letters) => store.commit('game/showLetter', letters)
 const killLetter = (letters) => store.commit('game/killLetter', letters)
 
@@ -134,8 +138,13 @@ const startAnimation = () => {
 
     updateSeeds()
     updateBullets()
+    updateCircles()
 
-    if (!seeds.value.length && !bullets.value.length) {
+    if (
+      !seeds.value.length &&
+      !bullets.value.length &&
+      !Object.keys(circles.value).length
+    ) {
       clearInterval(animationId)
       setIsSeedsFall(false)
     }
@@ -168,6 +177,24 @@ const updateBullets = () => {
     return !bullet.isStopped
   })
 }
+
+const updateCircles = () => {
+  for (const key in circles.value) {
+    const circle = circles.value[key]
+    canvas.value.drawRing(
+      circle.x,
+      circle.y,
+      (circle.size += 0.5),
+      false,
+      (circle.thick -= 0.2),
+      '#fff'
+    )
+    if (circle.thick < circle.endThick) {
+      removeCircle(key)
+    }
+  }
+}
+
 const checkGoals = (bullet, aliveLetters) => {
   aliveLetters.forEach((letter) => {
     if (
@@ -177,11 +204,13 @@ const checkGoals = (bullet, aliveLetters) => {
         (letter.x1 < bullet.x1 && bullet.x2 < letter.x2))
     ) {
       killLetter(letter)
+      addCircle(new Circle(letter.x1, letter.y1))
       addSeed({ x1: bullet.x1, y1: bullet.y1 }, 'shrapnel')
       audioBit.replay()
     }
   })
 }
+
 const checkDamage = (shooter, seed) => {
   if (shooter.y1 < seed.y1 && shooter.x1 < seed.x1 && seed.x1 < shooter.x2) {
     seed.isStopped = true
