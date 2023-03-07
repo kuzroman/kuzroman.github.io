@@ -81,7 +81,7 @@ const moveShooter = (ev) => {
     x2: ev.clientX + shooterEl.offsetWidth,
   }
 }
-const restartGameByResizeBody = (ev) => {
+const restartGameByResizeBody = () => {
   let timeId
   window.addEventListener('resize', () => {
     clearTimeout(timeId)

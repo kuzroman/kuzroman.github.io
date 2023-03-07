@@ -1,3 +1,5 @@
+import { PageNames } from '~/enum/common'
+
 export default {
   namespaced: true,
   state: {
@@ -61,7 +63,7 @@ export default {
       state.isPageLoaderHide = bool
     },
     setNavigation(state, arr) {
-      const orderList = ['index', 'portfolio', 'about', 'contacts']
+      const orderList = Object.values(PageNames)
       state.navigation = orderList.map((name) =>
         arr.find((x) => x.name === name)
       )

@@ -40,11 +40,14 @@
         </a>
       </div>
     </main>
+
+    <CanvasAnimation v-if="isAboutPage" />
   </div>
 </template>
 
 <script setup>
 import { useStore } from 'vuex'
+import { PageNames } from '~/enum/common'
 
 const store = useStore()
 const route = useRoute()
@@ -59,6 +62,7 @@ const isPageLoaderHide = computed(() => store.getters['app/isPageLoaderHide'])
 const navigation = computed(() => store.getters['app/navigation'])
 const isGameReady = computed(() => store.getters['game/isGameReady'])
 const routesLen = computed(() => navigation.value.length)
+const isAboutPage = computed(() => route.name === PageNames.ABOUT)
 
 const toPage = (page) => store.commit('app/toPage', page)
 
@@ -142,6 +146,8 @@ const nextRoute = computed(() => {
   .content {
     width: 100%;
     color: $color-12;
+    position: relative;
+    z-index: $zIndex-1;
 
     .view {
       width: 100vw;
