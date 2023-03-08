@@ -5,7 +5,7 @@
     :class="stiles"
     @click="handleClick"
   >
-    <UIButton :text="text" />
+    <UIButton :text="text" :disabled="disabled" />
   </div>
 </template>
 
@@ -47,6 +47,10 @@ export default {
       }
     },
   },
+  mounted() {
+    this.createBarrier()
+    this.setBarrier(this.barrier)
+  },
   methods: {
     ...mapMutations('game', ['setIsGameReady', 'setBarrier']),
 
@@ -72,10 +76,6 @@ export default {
         y1: rect.top,
       }
     },
-  },
-  mounted() {
-    this.createBarrier()
-    this.setBarrier(this.barrier)
   },
 }
 </script>

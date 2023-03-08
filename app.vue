@@ -151,6 +151,7 @@ const nextRoute = computed(() => {
 
     .view {
       width: 100vw;
+      min-height: 100vh;
       padding-left: $px-desk;
       padding-right: $px-desk;
       margin: auto;

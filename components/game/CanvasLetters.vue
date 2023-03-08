@@ -197,7 +197,7 @@ const updateBullets = () => {
       x: bullet.x1,
       y: bullet.y1,
       size: bullet.size,
-      color: '#fc0',
+      color: '#4cb977',
     })
     return !bullet.isStopped
   })

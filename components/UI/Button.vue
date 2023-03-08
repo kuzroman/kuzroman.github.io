@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-button">
+  <div class="ui-button" :class="{ disabled: disabled }">
     {{ text }}
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
 @import './_props.scss';
 
 .ui-button {
-  background: $color-4;
+  background: $color-12;
   padding: 8px;
   color: $color-5;
   text-align: center;
@@ -31,7 +31,6 @@ export default {
   border-radius: 2px;
   cursor: pointer;
   transform: translateY(0);
-  //box-shadow: 0 8px 10px rgba(0, 0, 0, 1);
   transition: 0.3s transform, 0.3s box-shadow;
   font-size: 0.8em;
   text-transform: uppercase;
@@ -48,8 +47,11 @@ export default {
     transition: 0.3s background-color;
   }
 
+  &.disabled {
+    background: $color-4;
+  }
+
   &:not(.disabled):hover {
-    //box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7);
     transform: translateY(-2px);
 
     &:after {
