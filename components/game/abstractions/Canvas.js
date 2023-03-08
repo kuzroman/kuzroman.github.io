@@ -11,7 +11,8 @@ export default class Canvas {
     this.ctx.fillRect(x, y, size, size)
   }
 
-  drawRing(x, y, size, color, thick, borderColor) {
+  drawRing(args) {
+    const { x, y, size, color, thick, borderColor } = args
     this.ctx.beginPath()
     this.ctx.arc(x, y, size, 0, 2 * Math.PI)
     if (color) {

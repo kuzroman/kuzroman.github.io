@@ -6,7 +6,6 @@
     @mousemove="moveShooter"
   >
     <GameCanvasLetters
-      :is-debug="isDebug"
       :shooter="shooterPosition"
       @canvas-letters-damage="increaseDamage"
     />
@@ -33,7 +32,6 @@ import backgroundGame from '../../assets/media/backgroundGame.mp3'
 
 const store = useStore()
 let audioShot, audioBg
-const isDebug = ref(false)
 const shooterPosition = ref({})
 const mainGameKey = ref(0)
 const shooter = ref(null)

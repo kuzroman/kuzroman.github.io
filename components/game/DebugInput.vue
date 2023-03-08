@@ -8,15 +8,18 @@
 </template>
 
 <script setup>
+import { useStore } from 'vuex'
+
+const store = useStore()
 const emit = defineEmits(['debug-input--pause'])
 const props = defineProps({
-  isDebug: { type: Boolean, default: false },
-  seeds: { type: Array, default: [] },
-  bullets: { type: Array, default: [] },
-  letters: { type: Array, default: [] },
-  shooter: { type: Object, default: {} },
+  seeds: { type: Array, default: () => [] },
+  bullets: { type: Array, default: () => [] },
+  letters: { type: Array, default: () => [] },
+  shooter: { type: Object, default: () => {} },
 })
 const isPaused = ref(false)
+const isDebug = computed(() => store.getters['game/isDebug'])
 
 const setPauseKey = (key) => {
   const keyName = key || 'Space'
@@ -31,7 +34,7 @@ const setPauseKey = (key) => {
 }
 
 onBeforeMount(() => {
-  if (props.isDebug) {
+  if (isDebug.value) {
     setPauseKey('Space')
   }
 })

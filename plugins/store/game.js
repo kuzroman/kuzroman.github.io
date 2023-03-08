@@ -1,5 +1,4 @@
-// import vue from '@vitejs/plugin-vue';
-// import { getCurrentInstance } from 'vue'
+import { nanoid } from 'nanoid'
 
 const defaultIsSeedsFall = false
 const defaultIsGameReady = false
@@ -9,6 +8,9 @@ const defaultIsLeaderBoardOpened = false
 const defaultScore = 0
 const defaultLetters = []
 const defaultCircles = {}
+const defaultCirclesLength = 0
+const defaultMeteors = {}
+const defaultMeteorsLength = 0
 const defaultShots = 0
 const defaultDamage = 0
 const defaultTimeLeft = 30
@@ -24,11 +26,15 @@ export default {
     score: defaultScore,
     letters: [...defaultLetters],
     circles: { ...defaultCircles },
+    meteors: { ...defaultMeteors },
+    circlesLength: defaultCirclesLength,
+    meteorsLength: defaultMeteorsLength,
     killedLetters: defaultLetters.length,
     shots: defaultShots,
     damage: defaultDamage,
     timeLeft: defaultTimeLeft,
     barrier: null,
+    isDebug: false,
   },
   getters: {
     isSeedsFall: (state) => state.isSeedsFall,
@@ -39,6 +45,9 @@ export default {
     score: (state) => state.score,
     letters: (state) => state.letters,
     circles: (state) => state.circles,
+    meteors: (state) => state.meteors,
+    circlesLength: (state) => state.circlesLength,
+    meteorsLength: (state) => state.meteorsLength,
     killedLetters: (state) =>
       state.letters.filter((x) => x.isKilled && !x.isService),
     aliveLetters: (state) =>
@@ -47,6 +56,7 @@ export default {
     damage: (state) => state.damage,
     timeLeft: (state) => state.timeLeft,
     barrier: (state) => state.barrier,
+    isDebug: (state) => state.isDebug,
   },
   mutations: {
     setBarrier(state, data) {
@@ -76,6 +86,7 @@ export default {
       state.score = defaultScore
       state.letters = [...defaultLetters]
       state.circles = { ...defaultCircles }
+      state.meteors = { ...defaultMeteors }
       state.shots = defaultShots
       state.damage = defaultDamage
       state.timeLeft = defaultTimeLeft
@@ -86,21 +97,30 @@ export default {
     setLetters(state, collection) {
       state.letters = collection
     },
-    showLetter(state, letters) {
-      state.letters[letters.id].isShow = true
+    showLetter(state, letter) {
+      state.letters[letter.id].isShow = true
     },
-    killLetter(state, letters) {
-      state.letters[letters.id].isKilled = true
+    killLetter(state, letter) {
+      state.letters[letter.id].isKilled = true
     },
     updateLetters(state, letter) {
       state.letters[letter.id] = letter
-      // vue.set(state.letters, letter.id, letter)
     },
     addCircle(state, circle) {
-      state.circles[new Date().getTime()] = circle
+      state.circlesLength++
+      state.circles[nanoid()] = circle
     },
     removeCircle(state, key) {
+      state.circlesLength--
       delete state.circles[key]
+    },
+    addMeteor(state, meteor) {
+      state.meteorsLength++
+      state.meteors[nanoid()] = meteor
+    },
+    removeMeteors(state, key) {
+      state.meteorsLength--
+      delete state.meteors[key]
     },
     increaseShoots(state) {
       state.shots += 1
