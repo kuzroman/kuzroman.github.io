@@ -101,7 +101,13 @@ watch(
   () => {
     const bullet = new Bullet(props.shooter.x1, props.shooter.y1)
     bullets.value.push(bullet)
-    startAnimation()
+  }
+)
+
+watch(
+  () => hasElementsInAnimation.value,
+  (n) => {
+    if (n) startAnimation()
   }
 )
 const createLetters = () => {
@@ -110,20 +116,6 @@ const createLetters = () => {
     (letter, i) => new Letter(letter, i)
   )
   setLetters(letters)
-}
-const startShowLetters = () => {
-  let i = 0
-  let letter
-  intervalLetters = setInterval(() => {
-    if (i <= letters.value.length - 1) {
-      letter = letters.value[i]
-      showLetter(letter)
-      updateLetters(letter)
-    } else {
-      clearInterval(intervalLetters)
-    }
-    i++
-  }, fps60.value)
 }
 const letterShowed = (data) => {
   const letter = letters.value[data.id]
@@ -136,14 +128,23 @@ const addSeed = (props, type) => {
     seeds.value.push(seed)
   }
 }
+const showLetterByIndex = (tick) => {
+  if (text.length - 1 < tick) return
+  const letter = letters.value[tick]
+  showLetter(letter)
+  updateLetters(letter)
+}
+
 const startAnimation = () => {
   setIsSeedsFall(true)
+  let tick = 0
   clearInterval(animationId)
-
   animationId = setInterval(() => {
     canvas.value.clearCanvas(viewPortWidth.value, viewPortHeight.value)
 
+    showLetterByIndex(tick++)
     updateSeeds()
+
     updateBullets()
     updateCircles()
     updateMeteors()
@@ -154,6 +155,19 @@ const startAnimation = () => {
     }
   }, fps60.value)
 }
+
+// const allAnimations = (args) => {
+//   const { tick } = args
+//   canvas.value.clearCanvas(viewPortWidth.value, viewPortHeight.value)
+//
+//   showLetterByIndex(tick)
+//
+//   updateSeeds()
+//   updateBullets()
+//   updateCircles()
+//   updateMeteors()
+// }
+
 function drawMeteor(meteor) {
   meteor.updatePosition()
   meteor.updateSize()
@@ -253,7 +267,6 @@ const checkDamage = (shooter, seed) => {
 const prepareToGame = () => {
   canvas.value = new Canvas('#canvas')
   createLetters()
-  startShowLetters()
   startAnimation()
 }
 onMounted(() => {
