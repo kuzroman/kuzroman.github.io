@@ -17,6 +17,7 @@
       <div>hasElementsInAnimation: {{ hasElementsInAnimation }}</div>
       <div>seeds: {{ seeds.length }} | bullets: {{ bulletsLength }}</div>
       <div>circles: {{ circlesLength }} | meteors: {{ meteorsLength }}</div>
+      <div>text {{ text.length }}</div>
     </div>
 
     <!--    <GameDebugInput-->
@@ -84,7 +85,7 @@ const text =
   'Check this out some projects on my Work page.|' +
   'Feel free if you wanna say hello at kuzroman@list.ru then do it!)'
 
-const setIsSeedsFall = (bool) => store.commit('game/setIsSeedsFall', bool)
+const setIsSeedsFalling = (bool) => store.commit('game/setIsSeedsFalling', bool)
 const setIsGameFinished = (bool) => store.commit('game/setIsGameFinished', bool)
 const setLetters = (collection) => store.commit('game/setLetters', collection)
 const updateLetters = (letter) => store.commit('game/updateLetters', letter)
@@ -133,7 +134,7 @@ const showLetterByIndex = (tick) => {
 }
 
 const startAnimation = () => {
-  setIsSeedsFall(true)
+  setIsSeedsFalling(true)
   let tick = 0
   clearInterval(animationId)
   animationId = setInterval(() => {
@@ -148,13 +149,13 @@ const startAnimation = () => {
 
     if (!hasElementsInAnimation.value) {
       clearInterval(animationId)
-      setIsSeedsFall(false)
+      setIsSeedsFalling(false)
     }
   }, fps60)
 }
 function drawMeteor(meteor) {
   meteor.updatePosition()
-  meteor.updateSize()
+  meteor.updateMeteorSize()
 
   canvas.drawRing({
     x: meteor.x,
@@ -195,12 +196,13 @@ const updateBullets = () => {
 
     if (bullet.y1 < bullet.ground) {
       removeBullet(key)
+      continue
     }
 
-    // todo каждая пуля проверяет каждую букву - как можно улучшить алгоритм?
-    const aliveLetters = Letter.getLifeLetters(letters.value) // todo so hard O(n^2)
-    if (aliveLetters.length) {
-      checkGoals(bullet, aliveLetters)
+    // todo каждая пуля проверяет каждую букву - как можно улучшить алгоритм? O(n*y)
+    // сделать еще одну хеш таблицу где можно будет удалять поля
+    if (letters.value.length) {
+      checkGoals(bullet, letters.value)
     } else {
       setIsGameFinished(true)
     }
@@ -227,6 +229,7 @@ const updateCircles = () => {
 const checkGoals = (bullet, aliveLetters) => {
   aliveLetters.forEach((letter, index) => {
     if (
+      !letter.isKilled &&
       bullet.y1 < letter.y1 &&
       ((bullet.x1 < letter.x1 && letter.x1 < bullet.x2) ||
         (bullet.x1 < letter.x2 && letter.x2 < bullet.x2) ||
@@ -236,21 +239,19 @@ const checkGoals = (bullet, aliveLetters) => {
       if (index % 2 === 0) {
         addCircle(new Circle(letter.x1, letter.y1))
       }
-      if (index % 4 === 0) {
-        createMeteors(letter)
-      }
+      createMeteors(letter)
       audioBit.replay()
     }
   })
 }
 const createMeteors = (letter) => {
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     addMeteor(new Meteor({ x: letter.x1, y: letter.y1 }))
   }
 }
-const checkDamage = (shooter, seed) => {
-  if (shooter.y1 < seed.y && shooter.x1 < seed.x && seed.x < shooter.x2) {
-    seed.setInactive()
+const checkDamage = (shooter, meteor) => {
+  if (shooter.y1 < meteor.y && shooter.x1 < meteor.x && meteor.x < shooter.x2) {
+    meteor.setInactive()
     emit('canvas-letters-damage')
   }
 }

@@ -20,7 +20,7 @@ const defaultTimeLeft = 30
 export default {
   namespaced: true,
   state: {
-    isSeedsFall: defaultIsSeedsFall,
+    isSeedsFalling: defaultIsSeedsFall,
     isGameReady: defaultIsGameReady,
     isGameStart: defaultIsGameStart,
     isGameFinished: defaultIsGameFinished,
@@ -41,7 +41,7 @@ export default {
     isDebug: false,
   },
   getters: {
-    isSeedsFall: (state) => state.isSeedsFall,
+    isSeedsFalling: (state) => state.isSeedsFalling,
     isGameReady: (state) => state.isGameReady,
     isGameStart: (state) => state.isGameStart,
     isGameFinished: (state) => state.isGameFinished,
@@ -68,8 +68,8 @@ export default {
     setBarrier(state, data) {
       state.barrier = data
     },
-    setIsSeedsFall(state, bool) {
-      state.isSeedsFall = bool
+    setIsSeedsFalling(state, bool) {
+      state.isSeedsFalling = bool
     },
     setIsGameReady(state, bool) {
       state.isGameReady = bool
@@ -85,7 +85,7 @@ export default {
       state.isLeaderBoardOpened = bool
     },
     resetStateGame(state) {
-      state.isSeedsFall = defaultIsSeedsFall
+      state.isSeedsFalling = defaultIsSeedsFall
       state.isGameReady = defaultIsGameReady
       state.isGameStart = defaultIsGameStart
       state.isGameFinished = defaultIsGameFinished

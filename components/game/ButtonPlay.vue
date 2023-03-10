@@ -1,11 +1,11 @@
 <template>
   <div
     class="button-play"
-    :disabled="disabled"
+    :disabled="isSeedsFalling"
     :class="stiles"
     @click="handleClick"
   >
-    <UIButton :text="text" :disabled="disabled" />
+    <UIButton :text="text" :disabled="isSeedsFalling" />
   </div>
 </template>
 
@@ -28,21 +28,18 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('game', ['isSeedsFall', 'isGameReady', 'isGameFinished']),
+    ...mapGetters('game', ['isSeedsFalling', 'isGameReady', 'isGameFinished']),
 
     text() {
       return this.isGameFinished
         ? this.texts.again
-        : this.isSeedsFall
+        : this.isSeedsFalling
         ? this.texts.wait
         : this.texts.default
     },
-    disabled() {
-      return this.isSeedsFall
-    },
     stiles() {
       return {
-        disabled: this.disabled,
+        disabled: this.isSeedsFalling,
         hide: this.isGameReady && !this.isGameFinished,
       }
     },
@@ -55,7 +52,7 @@ export default {
     ...mapMutations('game', ['setIsGameReady', 'setBarrier']),
 
     handleClick() {
-      if (this.isSeedsFall) {
+      if (this.isSeedsFalling) {
         return
       }
 

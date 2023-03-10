@@ -15,7 +15,7 @@ export default class Meteor {
     this.y += Math.sin(this.angle) * this.speed
   }
 
-  updateSize() {
+  updateMeteorSize() {
     this.size -= 0.05
   }
 
