@@ -5,7 +5,7 @@
     @click="makeShot"
     @mousemove="moveShooter"
   >
-    <GameCanvasLetters
+    <GameCanvasAnimation
       :shooter="shooterPosition"
       @canvas-letters-damage="increaseDamage"
     />
@@ -17,9 +17,13 @@
       />
     </Transition>
 
-    <GameStatusBar />
-    <GameRobotShooter ref="shooter" :position="shooterPosition" />
-    <GameScoreBoard />
+    <GameStatusBar v-if="isGameReady" />
+    <GameRobotShooter
+      v-if="isGameReady"
+      ref="shooter"
+      :position="shooterPosition"
+    />
+    <GameScoreBoard v-if="isGameFinished" />
     <!--    <GameLeaderBoard />-->
   </div>
 </template>
@@ -36,6 +40,7 @@ const shooterPosition = ref({})
 const mainGameKey = ref(0)
 const shooter = ref(null)
 
+const isGameStart = computed(() => store.getters['game/isGameStart'])
 const isGameFinished = computed(() => store.getters['game/isGameFinished'])
 const isGameReady = computed(() => store.getters['game/isGameReady'])
 const isPageAnimationFinished = computed(
@@ -64,7 +69,9 @@ const makeShot = () => {
   if (!isGameReady.value || isGameFinished.value) {
     return
   }
-  setIsGameStart(true)
+  if (!isGameStart.value) {
+    setIsGameStart(true)
+  }
   increaseShoots()
   audioShot.replay()
 }

@@ -8,9 +8,11 @@ const defaultIsLeaderBoardOpened = false
 const defaultScore = 0
 const defaultLetters = []
 const defaultCircles = {}
-const defaultCirclesLength = 0
 const defaultMeteors = {}
+const defaultBullets = {}
+const defaultCirclesLength = 0
 const defaultMeteorsLength = 0
+const defaultBulletLength = 0
 const defaultShots = 0
 const defaultDamage = 0
 const defaultTimeLeft = 30
@@ -27,8 +29,10 @@ export default {
     letters: [...defaultLetters],
     circles: { ...defaultCircles },
     meteors: { ...defaultMeteors },
+    bullets: { ...defaultBullets },
     circlesLength: defaultCirclesLength,
     meteorsLength: defaultMeteorsLength,
+    bulletLength: defaultBulletLength,
     killedLetters: defaultLetters.length,
     shots: defaultShots,
     damage: defaultDamage,
@@ -46,8 +50,10 @@ export default {
     letters: (state) => state.letters,
     circles: (state) => state.circles,
     meteors: (state) => state.meteors,
+    bullets: (state) => state.bullets,
     circlesLength: (state) => state.circlesLength,
     meteorsLength: (state) => state.meteorsLength,
+    bulletLength: (state) => state.bulletLength,
     killedLetters: (state) =>
       state.letters.filter((x) => x.isKilled && !x.isService),
     aliveLetters: (state) =>
@@ -87,9 +93,13 @@ export default {
       state.letters = [...defaultLetters]
       state.circles = { ...defaultCircles }
       state.meteors = { ...defaultMeteors }
+      state.bullets = { ...defaultBullets }
       state.shots = defaultShots
       state.damage = defaultDamage
       state.timeLeft = defaultTimeLeft
+      state.circlesLength = defaultCirclesLength
+      state.meteorsLength = defaultMeteorsLength
+      state.bulletLength = defaultBulletLength
     },
     setScore(state, num) {
       state.score = num
@@ -108,7 +118,7 @@ export default {
     },
     addCircle(state, circle) {
       state.circlesLength++
-      state.circles[nanoid()] = circle
+      state.circles[nanoid(2)] = circle
     },
     removeCircle(state, key) {
       state.circlesLength--
@@ -116,11 +126,19 @@ export default {
     },
     addMeteor(state, meteor) {
       state.meteorsLength++
-      state.meteors[nanoid()] = meteor
+      state.meteors[nanoid(3)] = meteor
     },
     removeMeteors(state, key) {
       state.meteorsLength--
       delete state.meteors[key]
+    },
+    addBullet(state, bullet) {
+      state.bulletLength++
+      state.bullets[nanoid(2)] = bullet
+    },
+    removeBullet(state, key) {
+      state.bulletLength--
+      delete state.bullets[key]
     },
     increaseShoots(state) {
       state.shots += 1

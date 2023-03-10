@@ -8,27 +8,5 @@ export default class Bullet {
     this.x2 = x + size
     this.y1 = y
     this.size = size
-    this.isStopped = false
-  }
-
-  update() {
-    if (this._isOverScreen()) {
-      this.isStopped = true
-      return
-    }
-
-    this._move()
-  }
-
-  _move() {
-    this._moveY()
-  }
-
-  _moveY() {
-    this.y1 -= Math.round(this.gravityY)
-  }
-
-  _isOverScreen() {
-    return this.y1 < this.ground
   }
 }

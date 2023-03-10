@@ -15,7 +15,7 @@
 
     <div v-if="isDebug" style="position: absolute; top: 0; left: 50%">
       <div>hasElementsInAnimation: {{ hasElementsInAnimation }}</div>
-      <div>seeds: {{ seeds.length }} | bullets: {{ bullets.length }}</div>
+      <div>seeds: {{ seeds.length }} | bullets: {{ bulletsLength }}</div>
       <div>circles: {{ circlesLength }} | meteors: {{ meteorsLength }}</div>
     </div>
 
@@ -58,23 +58,24 @@ const letters = computed(() => store.getters['game/letters'])
 const barrier = computed(() => store.getters['game/barrier'])
 const circles = computed(() => store.getters['game/circles'])
 const meteors = computed(() => store.getters['game/meteors'])
+const bullets = computed(() => store.getters['game/bullets'])
 const circlesLength = computed(() => store.getters['game/circlesLength'])
 const meteorsLength = computed(() => store.getters['game/meteorsLength'])
+const bulletsLength = computed(() => store.getters['game/bulletLength'])
 const hasElementsInAnimation = computed(
   () =>
     seeds.value.length > 0 ||
-    bullets.value.length > 0 ||
+    bulletsLength.value > 0 ||
     circlesLength.value > 0 ||
     meteorsLength.value > 0
 )
 
 const seeds = ref([])
-const bullets = ref([])
-const numSeedsForOneLetter = ref(3)
-const fps60 = ref(isDebug.value ? 0 : 16) // 1000/60
-const canvas = ref(null)
-const viewPortWidth = ref(0)
-const viewPortHeight = ref(0)
+const numSeedsForOneLetter = 3
+const fps60 = isDebug.value ? 0 : 16 // 1000/60
+let canvas
+let viewPortWidth = 0
+let viewPortHeight = 0
 
 const text =
   'Hello, my name is Roman.|' +
@@ -83,24 +84,23 @@ const text =
   'Check this out some projects on my Work page.|' +
   'Feel free if you wanna say hello at kuzroman@list.ru then do it!)'
 
-const description = computed(() => (isDebug.value ? text : text))
-
 const setIsSeedsFall = (bool) => store.commit('game/setIsSeedsFall', bool)
 const setIsGameFinished = (bool) => store.commit('game/setIsGameFinished', bool)
 const setLetters = (collection) => store.commit('game/setLetters', collection)
 const updateLetters = (letter) => store.commit('game/updateLetters', letter)
 const addCircle = (circle) => store.commit('game/addCircle', circle)
 const addMeteor = (meteor) => store.commit('game/addMeteor', meteor)
+const addBullet = (bullet) => store.commit('game/addBullet', bullet)
 const removeCircle = (key) => store.commit('game/removeCircle', key)
 const removeMeteors = (key) => store.commit('game/removeMeteors', key)
+const removeBullet = (key) => store.commit('game/removeBullet', key)
 const showLetter = (letters) => store.commit('game/showLetter', letters)
 const killLetter = (letters) => store.commit('game/killLetter', letters)
 
 watch(
   () => shots.value,
   () => {
-    const bullet = new Bullet(props.shooter.x1, props.shooter.y1)
-    bullets.value.push(bullet)
+    addBullet(new Bullet(props.shooter.x1, props.shooter.y1))
   }
 )
 
@@ -111,10 +111,7 @@ watch(
   }
 )
 const createLetters = () => {
-  const letters = Array.from(
-    description.value,
-    (letter, i) => new Letter(letter, i)
-  )
+  const letters = Array.from(text, (letter, i) => new Letter(letter, i))
   setLetters(letters)
 }
 const letterShowed = (data) => {
@@ -123,7 +120,7 @@ const letterShowed = (data) => {
   addSeed(data)
 }
 const addSeed = (props, type) => {
-  for (let i = 0; i < numSeedsForOneLetter.value; i++) {
+  for (let i = 0; i < numSeedsForOneLetter; i++) {
     const seed = new Seed(props.x1, props.y1, type)
     seeds.value.push(seed)
   }
@@ -140,7 +137,7 @@ const startAnimation = () => {
   let tick = 0
   clearInterval(animationId)
   animationId = setInterval(() => {
-    canvas.value.clearCanvas(viewPortWidth.value, viewPortHeight.value)
+    canvas.clearCanvas(viewPortWidth, viewPortHeight)
 
     showLetterByIndex(tick++)
     updateSeeds()
@@ -153,26 +150,13 @@ const startAnimation = () => {
       clearInterval(animationId)
       setIsSeedsFall(false)
     }
-  }, fps60.value)
+  }, fps60)
 }
-
-// const allAnimations = (args) => {
-//   const { tick } = args
-//   canvas.value.clearCanvas(viewPortWidth.value, viewPortHeight.value)
-//
-//   showLetterByIndex(tick)
-//
-//   updateSeeds()
-//   updateBullets()
-//   updateCircles()
-//   updateMeteors()
-// }
-
 function drawMeteor(meteor) {
   meteor.updatePosition()
   meteor.updateSize()
 
-  canvas.value.drawRing({
+  canvas.drawRing({
     x: meteor.x,
     y: meteor.y,
     size: meteor.size,
@@ -193,35 +177,41 @@ const updateMeteors = () => {
 const updateSeeds = () => {
   seeds.value = seeds.value.filter((seed) => {
     seed.update(barrier.value)
-    canvas.value.drawRect(seed.x1, seed.y1, seed.size)
+    canvas.drawRect(seed.x1, seed.y1, seed.size)
     return !seed.isStopped
   })
 }
 const updateBullets = () => {
-  bullets.value = bullets.value.filter((bullet) => {
-    bullet.update()
-    const aliveLetters = Letter.getLifeLetters(letters.value)
-    if (aliveLetters.length) {
-      checkGoals(bullet, aliveLetters)
-    } else {
-      setIsGameFinished(true)
-    }
+  for (const key in bullets.value) {
+    const bullet = bullets.value[key]
+    bullet.y1 -= bullet.gravityY
 
-    canvas.value.drawRing({
+    canvas.drawRing({
       x: bullet.x1,
       y: bullet.y1,
       size: bullet.size,
       color: '#4cb977',
     })
-    return !bullet.isStopped
-  })
+
+    if (bullet.y1 < bullet.ground) {
+      removeBullet(key)
+    }
+
+    // todo каждая пуля проверяет каждую букву - как можно улучшить алгоритм?
+    const aliveLetters = Letter.getLifeLetters(letters.value) // todo so hard O(n^2)
+    if (aliveLetters.length) {
+      checkGoals(bullet, aliveLetters)
+    } else {
+      setIsGameFinished(true)
+    }
+  }
 }
 const updateCircles = () => {
   for (const key in circles.value) {
     const circle = circles.value[key]
     circle.size += 0.5
     circle.thick -= 0.2
-    canvas.value.drawRing({
+    canvas.drawRing({
       x: circle.x,
       y: circle.y,
       size: circle.size,
@@ -265,13 +255,13 @@ const checkDamage = (shooter, seed) => {
   }
 }
 const prepareToGame = () => {
-  canvas.value = new Canvas('#canvas')
+  canvas = new Canvas('#canvas')
   createLetters()
   startAnimation()
 }
 onMounted(() => {
-  viewPortWidth.value = window.innerWidth
-  viewPortHeight.value = window.innerHeight
+  viewPortWidth = window.innerWidth
+  viewPortHeight = window.innerHeight
   audioBit = new CustomAudio(bitMp3, 0.3)
 
   prepareToGame()

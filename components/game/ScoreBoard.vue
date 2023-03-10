@@ -36,22 +36,16 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import UIButton from '../UI/Button.vue'
 import DashedList from '../UI/DashedList.vue'
 
 export default {
   name: 'ScoreBoard',
-  components: { UIButton, DashedList },
+  components: { DashedList },
 
   data() {
     return {
       isDebug: false,
     }
-  },
-  watch: {
-    score(score) {
-      this.setScore(score)
-    },
   },
   computed: {
     ...mapGetters('game', [
@@ -80,6 +74,11 @@ export default {
       )
       const bonus = this.timeLeft * 10 - this.damage * 5
       return mainScore + bonus
+    },
+  },
+  watch: {
+    score(score) {
+      this.setScore(score)
     },
   },
   methods: {
