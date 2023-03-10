@@ -1,0 +1,1 @@
+import{P as n}from"./entry.47d84b8f.js";const a={__name:"test",setup(s){const e={a:n(5)};console.time();const t={};for(let o=0;o<10;o++)t[o]=e;return console.timeEnd(),console.log(t),(o,c)=>null}};export{a as default};
