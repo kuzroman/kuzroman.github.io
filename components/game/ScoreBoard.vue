@@ -94,10 +94,15 @@ export default {
       return Math.floor((100 - this.damage) * 50)
     },
     isCurrentScoreBest() {
-      return this.bestScore < this.score
+      return this.bestScoreFromLocalStorage < this.score
+    },
+    bestScoreFromLocalStorage() {
+      return +this.getBestScoreFromLocalStorage()
     },
     bestScore() {
-      return +this.getBestScore()
+      return this.isCurrentScoreBest
+        ? this.score
+        : this.bestScoreFromLocalStorage
     },
   },
   watch: {
@@ -112,7 +117,7 @@ export default {
     openLeaderBoard() {
       this.setIsLeaderBoardOpened(true)
     },
-    getBestScore() {
+    getBestScoreFromLocalStorage() {
       return localStorage.getItem('bestScore')
     },
     setBestScoreToLocalStore(score) {
