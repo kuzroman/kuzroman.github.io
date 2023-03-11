@@ -30,8 +30,12 @@
       padding: 0 1em;
     }
 
-    &.best {
+    &.bonus {
       color: $color-2;
+    }
+
+    &.best {
+      color: $color-12;
     }
   }
 }

@@ -1,8 +1,12 @@
 <template>
   <div class="score-board" :class="{ active: isGameFinished || isDebug }">
-    <h3>{{ score }} points</h3>
-    <div class="hooray">Hooray!</div>
-    <!-- <p>You've just beaten your own highscore 🎉🎉🎉</p> -->
+    <h3 class="score">{{ score }} points</h3>
+    <div class="hooray">
+      <div>Hooray!</div>
+      <div v-if="isCurrentScoreBest" class="mt-4">
+        You've just beaten your own highscore 🎉🎉🎉
+      </div>
+    </div>
     <DashedList>
       <div class="result">
         <div>Time left</div>
@@ -20,9 +24,18 @@
         <div>Life</div>
         <div>{{ 100 - damage }}</div>
       </div>
+
+      <div v-if="bonusForLife" class="result bonus">
+        <div>Bonus for survival 🎉</div>
+        <div>{{ bonusForLife }}</div>
+      </div>
+      <div v-if="bonusForTime" class="result bonus">
+        <div>Bonus for speed 🎉</div>
+        <div>{{ bonusForTime }}</div>
+      </div>
       <div class="result best">
         <div>Your best score</div>
-        <div>{{ score }}</div>
+        <div>{{ bestScore }}</div>
       </div>
     </DashedList>
 
@@ -72,13 +85,25 @@ export default {
         (this.killedLetters.length * 10000) /
           (this.aliveLetters.length + this.shots)
       )
-      const bonus = this.timeLeft * 10 - this.damage * 5
-      return mainScore + bonus
+      return Math.floor(mainScore + this.bonusForLife + this.bonusForTime)
+    },
+    bonusForTime() {
+      return Math.floor(this.timeLeft * 200)
+    },
+    bonusForLife() {
+      return Math.floor((100 - this.damage) * 50)
+    },
+    isCurrentScoreBest() {
+      return this.bestScore < this.score
+    },
+    bestScore() {
+      return +this.getBestScore()
     },
   },
   watch: {
     score(score) {
       this.setScore(score)
+      this.setBestScoreToLocalStore(score)
     },
   },
   methods: {
@@ -86,6 +111,14 @@ export default {
 
     openLeaderBoard() {
       this.setIsLeaderBoardOpened(true)
+    },
+    getBestScore() {
+      return localStorage.getItem('bestScore')
+    },
+    setBestScoreToLocalStore(score) {
+      if (this.isCurrentScoreBest) {
+        localStorage.setItem('bestScore', score)
+      }
     },
   },
 }
@@ -105,7 +138,6 @@ export default {
   position: absolute;
   left: 50%;
   top: 50%;
-  height: 20em;
   transform: translate(-50%, -300%);
   transition: 0.3s transform;
   z-index: $zIndex-2;
@@ -133,6 +165,9 @@ export default {
   .btn-leaderboard {
     background: $color-10;
     margin: 2em 9em;
+  }
+  .score {
+    color: $color-15;
   }
 }
 </style>

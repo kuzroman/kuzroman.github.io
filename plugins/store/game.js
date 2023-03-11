@@ -144,7 +144,8 @@ export default {
       state.shots += 1
     },
     increaseDamage(state, meteor) {
-      state.damage = Math.floor(state.damage + meteor.size)
+      const damage = Math.floor(state.damage + meteor.size)
+      state.damage = damage > 100 ? 100 : damage
     },
     decreaseTimeLeft(state) {
       state.timeLeft -= 1
