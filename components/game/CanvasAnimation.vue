@@ -45,7 +45,6 @@ import Meteor from '~/components/game/abstractions/Meteor'
 const store = useStore()
 let audioBit
 let intervalLetters, animationId
-const emit = defineEmits(['canvas-letters-damage'])
 const props = defineProps({
   shooter: {
     type: Object,
@@ -97,6 +96,7 @@ const removeMeteors = (key) => store.commit('game/removeMeteors', key)
 const removeBullet = (key) => store.commit('game/removeBullet', key)
 const showLetter = (letters) => store.commit('game/showLetter', letters)
 const killLetter = (letters) => store.commit('game/killLetter', letters)
+const increaseDamage = (meteor) => store.commit('game/increaseDamage', meteor)
 
 watch(
   () => shots.value,
@@ -168,11 +168,10 @@ const updateMeteors = () => {
   for (const key in meteors.value) {
     const meteor = meteors.value[key]
     drawMeteor(meteor)
+    checkDamage(props.shooter, meteor)
     if (meteor.size < 0.1 || meteor.isInactive) {
       removeMeteors(key)
-      continue
     }
-    checkDamage(props.shooter, meteor)
   }
 }
 const updateSeeds = () => {
@@ -245,14 +244,14 @@ const checkGoals = (bullet, aliveLetters) => {
   })
 }
 const createMeteors = (letter) => {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 3; i++) {
     addMeteor(new Meteor({ x: letter.x1, y: letter.y1 }))
   }
 }
 const checkDamage = (shooter, meteor) => {
   if (shooter.y1 < meteor.y && shooter.x1 < meteor.x && meteor.x < shooter.x2) {
     meteor.setInactive()
-    emit('canvas-letters-damage')
+    increaseDamage(meteor)
   }
 }
 const prepareToGame = () => {

@@ -5,10 +5,7 @@
     @click="makeShot"
     @mousemove="moveShooter"
   >
-    <GameCanvasAnimation
-      :shooter="shooterPosition"
-      @canvas-letters-damage="increaseDamage"
-    />
+    <GameCanvasAnimation :shooter="shooterPosition" />
 
     <Transition>
       <GameButtonPlay
@@ -50,7 +47,6 @@ const isPageAnimationFinished = computed(
 const setIsGameStart = (bool) => store.commit('game/setIsGameStart', bool)
 const resetStateGame = () => store.commit('game/resetStateGame')
 const increaseShoots = () => store.commit('game/increaseShoots')
-const increaseDamage = () => store.commit('game/increaseDamage')
 const resetStateLeaderBoard = () =>
   store.commit('leaderBoard/resetStateLeaderBoard')
 
