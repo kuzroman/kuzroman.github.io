@@ -17,7 +17,8 @@ useHead({
 </script>
 
 <style lang="scss">
-@import '../assets/styles/stars.css';
+@import '../assets/styles/stars';
+@import '../assets/styles/props';
 
 .stars-box {
   width: 100%;
@@ -25,5 +26,10 @@ useHead({
   position: fixed;
   left: 0;
   top: 0;
+}
+@media (min-width: $mq-hd) {
+  .stars-box {
+    display: none;
+  }
 }
 </style>
