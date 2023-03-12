@@ -44,7 +44,7 @@ import Meteor from '~/components/game/abstractions/Meteor'
 
 const store = useStore()
 let audioBit
-let intervalLetters, animationId
+let animationId
 const props = defineProps({
   shooter: {
     type: Object,
@@ -267,7 +267,7 @@ onMounted(() => {
   prepareToGame()
 })
 onUnmounted(() => {
-  clearInterval(intervalLetters)
+  clearInterval(animationId)
   audioBit.destroy()
 })
 </script>
