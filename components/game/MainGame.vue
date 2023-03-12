@@ -57,8 +57,8 @@ const restartGame = () => {
   resetStateLeaderBoard()
   resetStateGame()
   forceUpdateComponent()
-  audioBg.destroy()
-  audioShot.destroy()
+  audioBg.pause()
+  audioShot.pause()
 }
 
 const makeShot = () => {
