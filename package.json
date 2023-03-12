@@ -18,6 +18,8 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
     "axios": "^1.2.2",
+    "date-fns": "^2.29.3",
+    "fetch-jsonp": "^1.2.3",
     "http-server": "^14.1.1",
     "matter-js": "^0.18.0",
     "nanoid": "^4.0.1",

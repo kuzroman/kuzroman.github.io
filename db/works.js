@@ -259,4 +259,10 @@ export default [
     link: 'audioRecorder',
     isChallenge: true,
   },
+  {
+    imageDirectory: 'inflationMeter',
+    skills: ['One day challenge', 'live code', 'calculator'],
+    link: 'inflationMeter',
+    isChallenge: true,
+  },
 ]
