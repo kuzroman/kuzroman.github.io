@@ -7,7 +7,7 @@
     </p>
     <h2>Last jobs:</h2>
     <div class="mt1 mb1">
-      2021. SyncMd, SyncId -
+      2020. SyncMd, SyncId -
       <a class="link" href="http://www.syncmd.com" target="_blank"
         >www.syncmd.com</a
       >
