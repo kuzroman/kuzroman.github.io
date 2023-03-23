@@ -1,0 +1,1 @@
+import{s as e,o as a,a as n,t as o,O as s}from"./entry.0afbd267.js";const _={name:"UIButton",props:{text:{type:String,default:"Button"},disabled:{type:Boolean,default:!1}},data(){return{}},computed:{},methods:{}};function c(d,l,t,r,u,i){return a(),n("div",{class:s(["ui-button",{disabled:t.disabled}])},o(t.text),3)}const m=e(_,[["render",c]]);export{m as _};
