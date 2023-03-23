@@ -25,7 +25,7 @@ export default [
       'npm',
       'Git',
     ],
-    date: 2021,
+    date: 2020,
     link: 'https://syncmd.com/',
   },
   {
@@ -49,7 +49,7 @@ export default [
       'Node',
       'Git',
     ],
-    date: 2021,
+    date: 2020,
     link: '',
   },
   {
